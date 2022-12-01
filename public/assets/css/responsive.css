@@ -1,0 +1,941 @@
+/* ========== X-Small devices (portrait phones, less than 576px) ========== */
+@media (max-width: 576px) {
+    .MT_Tab.nav-tabs {
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .toppers {
+        padding: 0px !important;
+    }
+
+    .toppers img {
+        right: 5px;
+        bottom: 50%;
+        transform: translateY(50%);
+        height: 170px;
+    }
+
+    nav.navbar {
+        padding: 0px;
+        padding-bottom: 5px;
+    }
+
+    .navbar+header,
+    .navbar+.cards {
+        margin-top: 100px;
+    }
+
+    .banner .caption {
+        padding: 30px 20px 20px;
+    }
+
+    .banner .caption h2 {
+        line-height: 1.4;
+        font-size: 40px;
+    }
+
+    .top-students .students .detail {
+        justify-content: center;
+        min-width: auto;
+        padding: 0px 0px 0px;
+    }
+
+    .floating-form .form-controls {
+        width: 100%;
+        max-width: initial;
+        border: none;
+        padding: 0px;
+    }
+
+    .in-banner {
+        max-width: initial;
+        margin-inline: auto;
+        flex-direction: column;
+        height: auto;
+        padding: 40px 15px 30px;
+        margin: 20px auto 0px;
+        border: 1px solid #ccc;
+    }
+
+    .in-banner::before {
+        top: 11px;
+        left: auto;
+        right: auto;
+        font-size: 16px;
+    }
+
+    .floating-form .form-controls input,
+    .floating-form .form-controls select {
+        margin-bottom: 15px;
+    }
+
+    .floating-form .form-controls label {
+        opacity: 0.5;
+    }
+
+    .floating-form .form-controls input,
+    .floating-form .form-controls select {
+        margin-top: 0px;
+        margin-bottom: 15px;
+    }
+
+    .floating-form .form-controls .btn-submit {
+        width: 100%;
+    }
+
+    .download-app {
+        display: flex;
+    }
+
+    .records {
+        margin-top: 60px;
+        margin-bottom: 50px;
+    }
+
+    .records h4 {
+        max-width: initial;
+        margin-top: 25px;
+        margin-bottom: 15px;
+    }
+
+    .record-grid,
+    .timeline {
+        overflow: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    :is(.record-grid, .timeline)::-webkit-scrollbar {
+        display: none;
+    }
+
+    .cards .col-md-12 {
+        padding: 40px 20px 0px;
+    }
+
+    .cards .headline,
+    .cards .sub-headline {
+        max-width: initial;
+    }
+
+    .articles {
+        margin: 20px 0px 0px;
+        padding: 0px 0px 20px;
+    }
+
+    .articles .article .detail {
+        padding: 18px;
+    }
+
+    .articles .article .detail h5 {
+        margin-bottom: 12px;
+        min-height: auto;
+    }
+
+    .articles .article .detail .tag-link .tag {
+        margin-bottom: 5px;
+    }
+
+    .articles .article .detail .description {
+        min-height: initial;
+    }
+
+    .footer p {
+        max-width: initial;
+    }
+
+    .footer .download-app {
+        margin-bottom: 20px;
+    }
+
+    .subscription-form form>div {
+        display: flex;
+    }
+
+    .terms-policies {
+        max-width: initial;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .articles {
+        margin-inline: 2px;
+    }
+
+    .record-grid>div {
+        padding: 8px;
+    }
+
+    .navbar {
+        box-shadow: 0px 2px 15px rgb(0 0 0 / 10%);
+    }
+
+    .terms .pills a {
+        margin-right: 10px;
+    }
+
+    .MT_Tab.nav-tabs .nav-item .nav-link {
+        padding: 6px 14px;
+        font-size: 12px;
+    }
+
+    .btn-enquire-now {
+        font-size: 14px;
+        height: auto;
+        width: 160px;
+        left: auto;
+        right: -64px;
+    }
+}
+
+/* ========== Small devices (landscape phones, 576px and up) ========== */
+@media (min-width: 576px) {}
+
+/* ========== Medium devices (tablets, 768px and down) ========== */
+@media (max-width: 767.98px) {}
+
+/* ========== Medium devices (tablets, 768px and up) ========== */
+@media (min-width: 768px) {}
+
+/* @media (min-width: 768px) and (max-width: 991.98px) {} */
+
+/* ========== Large devices (desktops, 992px and up) ========== */
+@media (max-width: 992px) {}
+
+@media (min-width: 992px) {}
+
+/* ========== X-Large devices (large desktops, 1200px and down) ========== */
+@media (max-width: 1200px) {}
+
+/* ========== X-Large devices (large desktops, 1200px and up) ========== */
+@media (min-width: 1200px) {}
+
+/* ========== XX-Large devices (larger desktops, 1400px and up) ========== */
+@media (min-width: 1400px) {}
+
+
+/* ========== Disable aos animation delay on mobile devices ========== */
+@media screen and (max-width: 768px) {}
+
+
+
+
+/* ========== Gourav's Code ========== */
+
+@media only screen and (min-width: 1360px) and (max-width: 1440px) {
+
+    .navbar+header {
+        margin-top: 120px;
+    }
+
+    .top-students .students .detail {
+        min-width: 450px;
+    }
+
+    .top-students .students .detail img {
+        height: 240px;
+    }
+
+    .records {
+        margin-top: 30px;
+        margin-bottom: 70px;
+    }
+
+    .our-toppers {
+        margin: 60px auto 70px;
+    }
+
+    .toppers {
+        margin-top: 75px;
+    }
+
+    .cards .col-md-12 {
+        padding: 20px 20px 0;
+    }
+
+    .articles .article {
+        max-width: 100%;
+    }
+
+    .connect {
+        margin-top: 40px;
+        margin-bottom: 90px;
+    }
+
+    .footer {
+        margin-bottom: 90px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+    .fixed-top {
+        position: relative !important;
+    }
+
+    .enquiry-form {
+        padding: 15px;
+        margin-bottom: 32px;
+    }
+
+    .btn-close-modal {
+        display: none;
+    }
+
+    .navbar+header {
+        margin-top: 6px;
+    }
+
+    .navbar-toggler,
+    .navbar-toggler:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    .navbar-collapse.d-flex.justify-content-end {
+        display: none !important;
+        justify-content: unset !important;
+    }
+
+    .navbar-collapse.d-flex.justify-content-end.show {
+        display: flex !important;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        line-height: 1.6 !important;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    h4 {
+        font-size: 18px;
+    }
+
+    .carousel-indicators {
+        display: none;
+    }
+
+    .banner {
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    .banner .caption {
+        padding: 0;
+    }
+
+    .top-students .students .detail {
+        padding: 0;
+        min-width: auto;
+    }
+
+    .top-students .students .detail img {
+        min-width: auto !important;
+        height: 150px;
+        margin: 0px 20px;
+    }
+
+    .top-students .students .detail h3 {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .floating-form {
+        height: auto;
+        display: block;
+        padding: 15px;
+        border: 1px solid #f9f9f9;
+    }
+
+    .in-banner::before {
+        top: -24px;
+        font-size: 14px;
+    }
+
+    .in-banner {
+        position: relative;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin: 40px 0px;
+        max-width: initial;
+        width: 100%;
+    }
+
+    .floating-form .form-controls {
+        max-width: none;
+        margin-bottom: 16px;
+        padding: 0;
+        border: none;
+    }
+
+    .floating-form .form-controls:last-of-type {
+        margin-bottom: 0;
+    }
+
+    .floating-form .form-controls .btn-submit {
+        width: 100%;
+        height: 40px;
+    }
+
+    .toppers {
+        margin-top: 40px;
+    }
+
+    .top-students .students .detail .name {
+        font-size: 16px;
+        line-height: 22px;
+        margin-bottom: 5px !important;
+    }
+
+    .our-toppers {
+        margin: 20px auto 40px;
+    }
+
+    .toppers .detail {
+        width: 100%;
+        margin: 0 0 64px;
+        border-radius: 12px;
+        max-width: none;
+        max-height: 190px;
+        position: relative;
+        padding: 24px 0px 24px 12px;
+    }
+
+    .toppers .detail .detail {
+        max-width: 185px;
+    }
+
+    .toppers .detail img {
+        right: 0;
+    }
+
+    .toppers .detail:last-of-type {
+        margin-bottom: 0;
+    }
+
+    .records {
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+
+    .records h4 {
+        max-width: none;
+        margin-top: 16px;
+        margin-bottom: 15px;
+    }
+
+    .records .download-app img {
+        max-width: 110px;
+    }
+
+    .record-grid .row-span {
+        padding: 70px 5px;
+    }
+
+    .cards .col-md-12 {
+        padding: 16px 16px 0;
+        margin: 0;
+    }
+
+    .box-radius {
+        border-radius: 0;
+    }
+
+    .articles {
+        display: block;
+    }
+
+    .articles .article {
+        max-width: none;
+        width: auto;
+        margin-bottom: 16px
+    }
+
+    .explore-lakshya {
+        padding: 16px;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .explore-lakshya div:last-of-type a {
+        display: block;
+        width: 100%;
+        margin-bottom: 0;
+        margin-top: 10px;
+    }
+
+    .article-header {
+        display: block;
+        margin: 20px 0 40px;
+        max-width: 100%;
+        overflow: auto;
+    }
+
+    .article-header .pills {
+        min-width: auto;
+        display: flex;
+        overflow: auto;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .article-header .pills a {
+        margin-right: 16px;
+        margin-top: 20px;
+        font-size: 14px;
+
+    }
+
+    .article-header .pills a:last-of-type {
+        display: inline-block;
+    }
+
+    .article-header .pills+.view-all {
+        display: none;
+    }
+
+    .connect {
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+
+    .footer {
+        padding: 20px 16px 16px;
+        margin-bottom: 0;
+    }
+
+    .footer .footer-links {
+        display: block;
+    }
+
+    .footer .footer-links ul {
+        width: 100%;
+        margin-bottom: 16px !important;
+    }
+
+    .footer .social-bookmarks {
+        margin-top: 30px;
+    }
+
+    .navbar+.cards {
+        margin-top: 0;
+    }
+
+    .article-header.with-search {
+        overflow: initial;
+    }
+
+    .article-header.with-search .pills {
+        margin-bottom: 15px;
+    }
+
+    .article-header.with-search form {
+        width: auto;
+    }
+
+    .provisions .provision-list {
+        padding: 0;
+    }
+
+    .provision-list ul {
+        display: block;
+        text-align: center;
+    }
+
+    .provision-list ul li {
+        display: inline-block;
+        width: 125px;
+        vertical-align: bottom;
+        margin-bottom: 32px;
+        text-align: center;
+    }
+
+    .provision-list ul li img {
+        max-width: 32px;
+    }
+
+    .provision-list ul li span {
+        display: inline-block;
+        max-width: 110px;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .articles .article:hover {
+        box-shadow: none;
+    }
+
+    .floating-form .form-controls img {
+        display: none;
+    }
+
+    .floating-form .form-controls input,
+    .floating-form .form-controls select {
+        width: 100%;
+        padding: 5px;
+        border-radius: 4px;
+        border: 1px solid var(--light-blue);
+    }
+
+    .shadow+p,
+    .in-banner+.shadow+p {
+        padding: 5px 0 0 24px;
+    }
+
+    .navbar-collapse,
+    .navbar-collapse .navbar-nav {
+        width: 100%;
+    }
+
+    .navbar .dropdown-menu {
+        border-radius: 4px;
+        box-shadow: none;
+        padding: 5px;
+        MARGIN-TOP: -1px;
+    }
+
+    .navbar .nav-link {
+        width: 100%;
+        padding-left: 6px !important;
+        padding-right: 6px !important;
+        border-bottom: 1px solid #f9f9f9;
+    }
+
+    .navbar .nav-link.active::before {
+        display: none;
+    }
+
+    .navbar .btn-admission {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .record-grid>div .record {
+        font-size: 30px;
+    }
+
+    .explore-lakshya a {
+        padding: 8px 16px;
+    }
+
+    .why-mt-educare .mt-card {
+        border-radius: 24px;
+        padding: 16px;
+        margin: 6px;
+        min-height: 260px;
+    }
+
+    .why-mt-educare .mt-card img {
+        margin-bottom: 16px;
+        max-width: 60px;
+    }
+
+    .why-mt-educare .mt-card h5 {
+        margin-bottom: 6px;
+    }
+
+    .footer p {
+        margin-bottom: 16px;
+    }
+
+    .footer .row>div ul h5 {
+        margin-bottom: 5px !important;
+    }
+
+    .footer .row>div:nth-child(3n) ul:last-of-type {
+        padding: 0;
+    }
+
+    .footer .row>div:nth-child(3n) ul:first-of-type {
+        margin-bottom: 0 !important;
+    }
+
+    .footer .row>div:nth-child(3n) ul:last-of-type li:first-of-type {
+        /* display: none; */
+    }
+
+    .footer .footer-links a {
+        padding: 5px 0;
+    }
+
+    .contact-us .modal-body,
+    .enquire-now .modal-body {
+        padding: 0 15px 15px;
+    }
+
+    .contact-us .modal-body h2,
+    .enquire-now .modal-body h2 {
+        margin-bottom: 16px !important;
+    }
+
+    .contact-us .modal-body .card-wrapper,
+    .enquire-now .modal-body .card-wrapper {
+        margin: 60px auto 0;
+    }
+
+    .contact-us .modal-body .info-card,
+    .enquire-now .modal-body .info-card {
+        margin-bottom: 32px;
+    }
+
+    .contact-us .modal-body .info-card .floating-form,
+    .enquire-now .modal-body .info-card .floating-form {
+        margin-top: 16px;
+    }
+
+    .contact-us .modal-body .card-wrapper .col,
+    .enquire-now .modal-body .card-wrapper .col {
+        flex: 100%;
+    }
+
+    .contact-us .modal-body .card-wrapper .col .info-card,
+    .enquire-now .modal-body .card-wrapper .col .info-card {
+        max-width: 460px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .navbar-toggler {
+        border: none;
+    }
+
+    .our-centers {
+        margin-top: 0;
+        margin-bottom: 32px;
+    }
+
+    .our-centers .box-radius {
+        padding: 15px;
+    }
+
+    .our-centers .in-banner {
+        margin: 0;
+    }
+
+    .management .headline {
+        margin-bottom: 16px;
+    }
+
+    nav[aria-label="breadcrumb"] {
+        margin-left: 0;
+    }
+
+    .terms h4 {
+        font-size: 18px;
+        margin-bottom: 16px;
+    }
+
+    .timeline {
+        padding: 0;
+        margin-top: 0;
+        margin-bottom: 16px;
+        width: 100%;
+        overflow-x: auto;
+        min-height: 65px;
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .timeline ul {
+        min-width: 600px;
+        margin-inline: 30px;
+    }
+
+    .timeline ul li a {
+        font-size: 16px;
+    }
+
+    .timeline ul li.active::after {
+        box-shadow: none;
+    }
+
+    .timeline-card {
+        border-radius: 12px;
+        background-color: var(--creame);
+        padding: 15px;
+        margin-bottom: 40px;
+    }
+
+    .timeline-card .row {
+        flex-direction: column-reverse;
+    }
+
+    .timeline-card img {
+        width: 100%;
+        margin-bottom: 16px;
+    }
+
+    .management {
+        margin-bottom: 40px;
+    }
+
+    .management .pills {
+        margin: 6px 0;
+        display: flex;
+        overflow: auto;
+    }
+
+    .management .pills a {
+        white-space: nowrap;
+    }
+
+    .management .card-address h5 {
+        font-size: 16px;
+        border-radius: 12px;
+        min-height: 65px;
+    }
+
+    .articles .article .detail {
+        padding: 26px 16px 16px;
+    }
+
+    .management .card-address .detail {
+        padding: 16px;
+    }
+
+    .cards.terms {
+        margin-top: 0;
+    }
+
+    .jumbotron {
+        padding: 15px;
+        border-radius: 12px;
+        margin-bottom: 24px;
+    }
+
+    .jumbotron .img-wrapper {
+        padding: 0 0 16px;
+    }
+
+    .jumbotron .row {
+        flex-direction: column-reverse;
+    }
+
+    .jumbotron h2 {
+        font-size: 22px;
+        margin-bottom: 0;
+    }
+
+    .shape-wrapper .shapes {
+        position: absolute;
+        top: -10px;
+        right: 0;
+    }
+
+    .shape-wrapper .shapes img {
+        width: 32px;
+    }
+
+    .terms .reports {
+        padding: 0;
+    }
+
+    .terms .stories {
+        margin-bottom: 40px;
+    }
+
+    .terms .stories p img {
+        width: 100%;
+    }
+
+    .terms .story {
+        margin: 0 0 24px;
+        border-radius: 12px;
+        padding: 16px
+    }
+
+    .terms .story h5,
+    .terms .story p {
+        padding: 0;
+    }
+
+    .terms .pills {
+        margin-bottom: 16px;
+        display: flex;
+        overflow: auto;
+    }
+
+    .terms .pills a {
+        white-space: nowrap;
+    }
+
+    .terms .stories .col-md-4 {
+        padding: 0;
+    }
+
+    .terms .reports .col-md-4 {
+        padding: 0 12px;
+    }
+
+    .filter-dropdown {
+        width: 100%;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .filter-dropdown select {
+        width: 100%;
+    }
+
+    #gallery .box-radius {
+        padding: 0 5px;
+    }
+
+    .csr,
+    #gallery,
+    .gallery-grid {
+        margin-bottom: 40px;
+    }
+
+    .gallery-cards {
+        margin: 0 -16px;
+    }
+
+    .cards .service {
+        padding: 16px !important;
+    }
+
+    .csr-card h2 {
+        font-size: 24px;
+        margin-bottom: 16px !important;
+    }
+
+    .csr .timeline-card {
+        margin: 0;
+    }
+
+    .media-coverage {
+        padding: 0;
+        margin-bottom: 40px;
+    }
+
+    .media-coverage .coverage:nth-child(odd) .media {
+        background-color: var(--creame) !important;
+    }
+
+    .media-coverage .coverage:nth-child(even) .media {
+        background-color: var(--light-blue) !important;
+    }
+
+    .footer p.copyright-text {
+        font-size: 14px;
+    }
+
+    @media only screen and (max-width: 320px) {
+        .record-grid>div {
+            margin: 5.5px;
+        }
+    }
+}

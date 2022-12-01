@@ -1,0 +1,83 @@
+:root {
+    --colorDark: #201429;
+}
+
+*:focus-visible {
+    outline: var(--mt-blue) auto 1px;
+}
+
+*::-webkit-scrollbar {
+    width: 8px
+}
+
+*::-webkit-scrollbar-track {
+    background: 0 0;
+    position: absolute
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background: var(--mt-blue)
+}
+
+/* ========== MT-Educare Nav Tabs Start ========== */
+.MT_Tab.nav-tabs {
+    gap: 40px;
+    border: none;
+    margin: 0px 0px 20px;
+}
+
+.MT_Tab.nav-tabs .nav-item {}
+
+.MT_Tab.nav-tabs .nav-item .nav-link {
+    padding: 8px 18px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    color: var(--text);
+    background: transparent;
+    transition: all 0.3s ease-in-out;
+    white-space: nowrap;
+    border-radius: 40px;
+    font-family: 'Manrope';
+}
+
+.MT_Tab.nav-tabs .nav-item .nav-link.active {
+    background: var(--dark-black);
+    color: var(--white);
+}
+
+.MT_TabContent.tab-content:focus-visible {
+    outline: none !important;
+}
+
+.MT_TabContent.tab-content .tab-pane:focus-visible {
+    outline: none !important;
+}
+
+/* ========== MT-Educare Nav Tabs End ========== */
+
+/* ========== Owl Carousel Config Start ========== */
+.MT-OwlDots.owl-theme {
+    transition: 400ms;
+}
+
+.MT-OwlDots.owl-theme .owl-dots {
+    transition: 400ms;
+}
+
+.MT-OwlDots.owl-theme .owl-dots .owl-dot span {
+    width: 16px;
+    height: 6px;
+    background: var(--mt-blue) !important;
+    opacity: 0.12;
+    transition: 400ms;
+}
+
+.MT-OwlDots.owl-theme .owl-dots .owl-dot.active span {
+    width: 50px;
+    opacity: 1;
+}
+
+/* ========== Owl Carousel Config End ========== */
