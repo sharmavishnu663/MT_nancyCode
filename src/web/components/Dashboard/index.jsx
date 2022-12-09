@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Connect from "./Connect";
 // import Courses from "./Courses";
+import Modal from "react-bootstrap/Modal";
+
 import DemoVideos from "./Demo-vedios";
 import Feedback from "./Feedback";
 import Offerings from "./Offerings";
@@ -18,10 +20,7 @@ import { WebRoutes } from "../../../routes";
 import { parseHtml } from "../../../Utils/utils";
 import { IMAGE_BASE_URL } from "../../../redux/constants";
 
-const Dashboard = ({ categoryListApi, defaultCategoryListApi,
-  categoryDetailsApi, topperListAPI, toppersData, achivementListAPI, achivementsData,
-  categoryBaodStandardsListAPI, boardStandardsData, categoryData, cityListAPI, AreaListAPI,
-  cityData, areaData, categoryDetailsData, defaultCategoryDetailsData, studentHearApi, studentHearData, weOfferApi, weOfferData }) => {
+const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi, topperListAPI, toppersData, achivementListAPI, achivementsData, categoryBaodStandardsListAPI, boardStandardsData, categoryData, cityListAPI, AreaListAPI, cityData, areaData, categoryDetailsData, defaultCategoryDetailsData, studentHearApi, studentHearData, weOfferApi, weOfferData }) => {
   // console.log(categoryData && categoryData.data && categoryData.data[0].id);
   const [categoryActive, setCategoryActive] = useState(0);
 
@@ -118,6 +117,15 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi,
     }
   }, [city]);
 
+  const [show, setShow] = useState(false);
+  const [ReadMoreCWETitle, setReadMoreCWETitle] = useState("");
+  const [ReadMoreCWEDescription, setReadMoreCWEDescription] = useState("");
+  const readMoreModal = (title, description) => {
+    setShow(true);
+    setReadMoreCWETitle(title);
+    setReadMoreCWEDescription(description);
+  };
+
   const handleCityChange = (e) => {
     setCity(e.target.value);
     localStorage.setItem("cityId", city);
@@ -135,6 +143,7 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi,
     localStorage.setItem("categorySelectedId", id);
     categoryDetailsApi(id);
   };
+
   useEffect(() => {
     categoryDetailsApi(categoryActive);
   }, [categoryActive]);
@@ -142,6 +151,21 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi,
   return (
     <>
       {/* BANNER  */}
+      <Modal show={show} onHide={() => setShow(false)} centered size="md">
+        <Modal.Body>
+          <div className="articles our-courses p-0">
+            <div className="article border-0">
+              <div className="detail p-2">
+                <h5>{ReadMoreCWETitle}</h5>
+                <div className="description">
+                  <p>{ReadMoreCWEDescription}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
+
       <header>
         <div className="container">
           <div className="row">
@@ -208,8 +232,8 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi,
                   <div className="form-controls">
                     <Form.Item label="Category" name="category" className="form-label" rules={[{ required: true, message: "Please select your category!" }]}>
                       <select name="course" className="form-controls w-100" id="course" value={category} onChange={(e) => setCategory(e.target.value)} required>
-                        <option defaultValue selected>
-                          Select category
+                        <option disabled defaultValue readonly>
+                          Select Category
                         </option>
                         {categoryData &&
                           categoryData.data &&
@@ -225,8 +249,8 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi,
                   <div className="form-controls">
                     <Form.Item label="Baord" name="board" className="form-label" rules={[{ required: true, message: "Please select your board!" }]}>
                       <select name="boards" className="form-controls w-100" id="boards" value={boards} onChange={(e) => setBoards(e.target.value)} required>
-                        <option defaultValue selected>
-                          Select board
+                        <option disabled defaultValue readonly>
+                          Select Board
                         </option>
                         {boardStandardsData &&
                           boardStandardsData.data &&
@@ -242,8 +266,8 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi,
                   <div className="form-controls">
                     <Form.Item label="Standards" name="standards" className="form-label" rules={[{ required: true, message: "Please select your standard!" }]}>
                       <select name="standards" id="standards" className="form-controls w-100" value={standards} onChange={(e) => setStandards(e.target.value)} required>
-                        <option defaultValue selected>
-                          Select Standards
+                        <option disabled defaultValue readonly>
+                          Select Standard
                         </option>
                         {boardStandardsData &&
                           boardStandardsData.data &&
@@ -259,8 +283,8 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi,
                   <div className="form-controls">
                     <Form.Item label="City" name="city" className="form-label" rules={[{ required: true, message: "Please select your city!" }]}>
                       <select name="standards" id="standards" value={city} onChange={(e) => handleCityChange(e)} className="form-controls w-100" required>
-                        <option defaultValue selected>
-                          Select city
+                        <option disabled defaultValue readonly>
+                          Select City
                         </option>
                         {cityData &&
                           cityData.data &&
@@ -276,8 +300,8 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi,
                   <div className="form-controls">
                     <Form.Item label="Area" name="area" className="form-label" rules={[{ required: true, message: "Please select your area!" }]}>
                       <select name="area" id="area" className="form-controls w-100" value={area} onChange={(e) => setArea(e.target.value)} required>
-                        <option defaultValue selected>
-                          Select city
+                        <option disabled defaultValue readonly>
+                          Select Area
                         </option>
                         {areaData &&
                           areaData.data &&
@@ -464,7 +488,19 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi,
                                 <div className="detail">
                                   <h5>{item && item.title}</h5>
                                   <div className="description">
-                                    <p>{item && parseHtml(item.description.substring(0, 300))}</p>
+                                    <p>{item && parseHtml(item.description.substring(0, 150))}</p>
+                                    {item && item.description.length > 150 ? (
+                                      <span
+                                        onClick={() => {
+                                          readMoreModal(item.title, item.description);
+                                        }}
+                                        role="button"
+                                      >
+                                        Read more...
+                                      </span>
+                                    ) : (
+                                      ""
+                                    )}
                                   </div>
                                   <div className="tag-link">
                                     <div className="tag">{item.tag_name}</div>
@@ -483,7 +519,7 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi,
                         <img src="../assets/imgs/lakshya-logo.png" alt="lakshya-logo" />
                         <p>Lakshay is our partner which provides the higher secondary education science courses for competitive exams.</p>
                       </div>
-                      <a href="#" className="btn btn-lg">
+                      <a href="https://www.lakshyainstitute.com/" className="btn btn-lg" target="_blank">
                         Explore Lakshya
                       </a>
                     </div>
@@ -503,7 +539,19 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi,
                                 <div className="detail">
                                   <h5>{item && item.title}</h5>
                                   <div className="description">
-                                    <p>{item && parseHtml(item.description.substring(0, 300))}</p>
+                                    <p>{item && parseHtml(item.description.substring(0, 150))}</p>
+                                    {item && item.description.length > 150 ? (
+                                      <span
+                                        onClick={() => {
+                                          readMoreModal(item.title, item.description);
+                                        }}
+                                        role="button"
+                                      >
+                                        Read more...
+                                      </span>
+                                    ) : (
+                                      ""
+                                    )}
                                   </div>
                                   <div className="tag-link">
                                     <div className="tag">{item.tag_name}</div>

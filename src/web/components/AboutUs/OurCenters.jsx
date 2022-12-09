@@ -81,7 +81,7 @@ const Center = ({ categoryListApi, categoryBaodStandardsListAPI, boardStandardsD
                   <div className="form-controls">
                     <Form.Item label="Category" name="category" className="form-label">
                       <select name="course" className="form-controls w-100" id="course" value={category} onChange={(e) => setCategory(e.target.value)}>
-                        <option disabled defaultValue hidden>
+                        <option disabled defaultValue selected readonly>
                           Select Category
                         </option>
                         {categoryData && categoryData.data && categoryData.data.map((item) => <option value={item.id}>{item.name}</option>)}
@@ -92,7 +92,7 @@ const Center = ({ categoryListApi, categoryBaodStandardsListAPI, boardStandardsD
                   <div className="form-controls">
                     <Form.Item label="Baord" name="board" className="form-label">
                       <select name="boards" className="form-controls w-100" id="boards" value={boards} onChange={(e) => setBoards(e.target.value)}>
-                        <option disabled defaultValue hidden>
+                        <option disabled defaultValue selected readonly>
                           Select Board
                         </option>
                         {boardStandardsData && boardStandardsData.data && boardStandardsData.data.map((item) => <option value={item.board_name}>{item.board_name}</option>)}
@@ -103,7 +103,7 @@ const Center = ({ categoryListApi, categoryBaodStandardsListAPI, boardStandardsD
                   <div className="form-controls">
                     <Form.Item label="Standards" name="standards" className="form-label">
                       <select name="standards" id="standards" className="form-controls w-100" value={standards} onChange={(e) => setStandards(e.target.value)}>
-                        <option disabled defaultValue hidden>
+                        <option disabled defaultValue selected readonly>
                           Select Standards
                         </option>
                         {boardStandardsData && boardStandardsData.data && boardStandardsData.data.map((item) => <option value={item.id}>{item.name}</option>)}
@@ -114,7 +114,7 @@ const Center = ({ categoryListApi, categoryBaodStandardsListAPI, boardStandardsD
                   <div className="form-controls">
                     <Form.Item label="City" name="city" className="form-label">
                       <select name="standards" id="standards" className="form-controls w-100" value={city} onChange={(e) => handleCityChange(e)}>
-                        <option disabled defaultValue hidden>
+                        <option disabled defaultValue selected readonly>
                           Select City
                         </option>
                         {cityData && cityData.data && cityData.data.map((item) => <option value={item.id}>{item.name}</option>)}
@@ -125,7 +125,7 @@ const Center = ({ categoryListApi, categoryBaodStandardsListAPI, boardStandardsD
                   <div className="form-controls">
                     <Form.Item label="Area" name="area" className="form-label">
                       <select name="area" id="area" className="form-controls w-100" value={area} onChange={(e) => setArea(e.target.value)}>
-                        <option disabled defaultValue hidden>
+                        <option disabled defaultValue selected readonly>
                           Select Area
                         </option>
                         {areaData && areaData.data && areaData.data.map((item) => <option value={item.id}>{item.name}</option>)}

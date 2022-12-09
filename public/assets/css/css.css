@@ -20,6 +20,27 @@
   background: var(--mt-blue);
 }
 
+/* ========== Header Modifications Start ========== */
+.navbar.fixed-top .dropdown-toggle:not(.btn-admission)::after {
+  display: inline-block;
+  margin-left: 0.255em;
+  content: "";
+  height: 10px;
+  width: 10px;
+  background: transparent;
+  border-left: none;
+  border-top: none;
+  border-right: 3px solid #252424;
+  border-bottom: 3px solid #252424;
+  border-radius: 2px;
+  rotate: 45deg;
+  position: relative;
+  left: 10px;
+  top: 2px;
+  opacity: 0.6;
+}
+
+/* ========== Header Modifications End ========== */
 /* ========== MT-Educare Nav Tabs Start ========== */
 .MT_Tab.nav-tabs {
   gap: 40px;
@@ -27,8 +48,7 @@
   margin: 0px 0px 20px;
 }
 
-.MT_Tab.nav-tabs .nav-item {
-}
+.MT_Tab.nav-tabs .nav-item {}
 
 .MT_Tab.nav-tabs .nav-item .nav-link {
   padding: 8px 18px;

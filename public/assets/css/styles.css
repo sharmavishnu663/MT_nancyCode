@@ -712,7 +712,7 @@ section h3,
 
 .articles {
   margin: 0px;
-  padding: 0px 15px 0px;
+  padding: 0px 15px 60px;
   overflow: hidden;
   height: 100%;
 }
@@ -724,8 +724,10 @@ section h3,
   border: 1px solid var(--light-blue);
   width: 100%;
   margin: 0px;
-  transition: all 0.3s ease;
+  transition: all 0.6s ease;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .articles .article .thumbnail {
@@ -741,9 +743,9 @@ section h3,
 }
 
 .articles .article:hover {
-  -webkit-box-shadow: 0px 30px 75px -85px rgb(0 0 0);
-  -moz-box-shadow: 0px 30px 75px -85px rgb(0 0 0);
-  box-shadow: 0px 30px 75px -85px rgb(0 0 0);
+  -webkit-box-shadow: 0px 45px 60px -60px rgb(13 81 160);
+  -moz-box-shadow: 0px 45px 60px -60px rgb(13 81 160);
+  box-shadow: 0px 45px 60px -60px rgb(13 81 160);
 }
 
 .articles .article :is(img, video) {
@@ -754,6 +756,15 @@ section h3,
 
 .articles .article .detail {
   padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.articles .article .detail *:last-child {
+  margin-top: auto;
 }
 
 .articles .article .detail h5 {
@@ -763,7 +774,6 @@ section h3,
   line-height: 26px;
   letter-spacing: 0.5px;
   margin-bottom: 0px;
-  min-height: 50px;
 }
 
 /* .articles .article .detail .description {
@@ -776,7 +786,16 @@ section h3,
   font-size: 16px;
   line-height: 24px;
   color: var(--medium-black);
+  margin-bottom: 0px;
 }
+
+/* .articles .article .detail .readmore {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--medium-black);
+  margin-bottom: 0px;
+} */
 
 .articles .article .detail .tag-link {
   display: flex;
@@ -2133,13 +2152,17 @@ nav[aria-label="breadcrumb"] {
   margin-bottom: 32px;
 }
 
-.enquiry-form .form-label {
+.enquiry-form .form-label label {
   font-family: "Manrope", sans-serif;
   font-weight: 600;
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.5px;
-  margin-bottom: 0.1rem;
+  margin-bottom: 5px;
+}
+
+.EnquireNowWrp .info-card {
+  padding: 10px 30px 15px;
 }
 
 .enquiry-form .form-control,

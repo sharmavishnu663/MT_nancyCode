@@ -59,7 +59,7 @@ const Enquiry = ({ openEnquiry, handleCancel, enquiryForm, userQueryApi, categor
         </button>
         <Modal.Header closeButton></Modal.Header>
 
-        <Modal.Body>
+        <Modal.Body className="EnquireNowWrp">
           <h2 className="text-center mb-4">
             <span className="text-blue">Enquire</span> Now
           </h2>
@@ -75,8 +75,8 @@ const Enquiry = ({ openEnquiry, handleCancel, enquiryForm, userQueryApi, categor
             <div className="container enquiry-form">
               <div className="row">
                 <div className="col-md-4 form-controls">
-                  <Form.Item label="Name" name="name" className="form-label" rules={[{ required: true, message: "Please input your name!" }]}>
-                    <Input type="text" className="form-control" pattern="[a-zA-Z_&-]+([ ]?[a-zA-Z_&-]+)*" value={name} placeholder="Enter Full Name" onChange={(e) => setName(e.target.value)} required />
+                  <Form.Item label="Enter Name" name="name" className="form-label" rules={[{ required: true, message: "Please input your name!" }]}>
+                    <Input type="text" className="form-control text-capitalize" pattern="[a-zA-Z_&-]+([ ]?[a-zA-Z_&-]+)*" value={name} placeholder="Enter Full Name" onChange={(e) => setName(e.target.value)} required />
                   </Form.Item>
                 </div>
 
@@ -95,7 +95,7 @@ const Enquiry = ({ openEnquiry, handleCancel, enquiryForm, userQueryApi, categor
                 <div className="col-md-4 form-controls">
                   <Form.Item label="Category" name="category" className="form-label" rules={[{ required: true, message: "Category!" }]}>
                     <select name="course" className="custom-select form-select" id="course" value={category} onChange={(e) => setCategory(e.target.value)} required>
-                      <option disabled defaultValue>
+                      <option disabled defaultValue selected readonly>
                         Please select category
                       </option>
                       {categoryData && categoryData.data && categoryData.data.map((item) => <option value={item.id}>{item.name}</option>)}
@@ -106,7 +106,7 @@ const Enquiry = ({ openEnquiry, handleCancel, enquiryForm, userQueryApi, categor
                 <div className="col-md-4 form-controls">
                   <Form.Item label="Board" name="board" className="form-label" rules={[{ required: true, message: "Board!" }]}>
                     <select name="boards" className="custom-select form-select" id="boards" value={board} onChange={(e) => setBoard(e.target.value)} required>
-                      <option disabled defaultValue>
+                      <option disabled defaultValue selected readonly>
                         Please select board
                       </option>
                       {boardStandardsData && boardStandardsData.data && boardStandardsData.data.map((item) => <option value={item.board_name}>{item.board_name}</option>)}
@@ -117,7 +117,7 @@ const Enquiry = ({ openEnquiry, handleCancel, enquiryForm, userQueryApi, categor
                 <div className="col-md-4 form-controls">
                   <Form.Item label="Standard" name="standard" className="form-label" rules={[{ required: true, message: "Standrd!" }]}>
                     <select className="custom-select form-select" name="standards" id="standards" value={standard} onChange={(e) => setStandard(e.target.value)} required>
-                      <option disabled defaultValue>
+                      <option disabled defaultValue selected readonly>
                         Please select Standards
                       </option>
                       {boardStandardsData && boardStandardsData.data && boardStandardsData.data.map((item) => <option value={item.name}>{item.name}</option>)}
@@ -128,7 +128,9 @@ const Enquiry = ({ openEnquiry, handleCancel, enquiryForm, userQueryApi, categor
                 <div className="col-md-4 form-controls">
                   <Form.Item label=" Preferred Time for Demo" name="demo_time" className="form-label" rules={[{ required: true, message: "Demo time!" }]}>
                     <select id="" className="custom-select form-select" value={demoTime} onChange={(e) => setDemoTime(e.target.value)} required>
-                      <option value="">Select demo time</option>
+                      <option disabled defaultValue selected readonly>
+                        Select demo time
+                      </option>
                       <option value="11:00">11:00</option>
                       <option value="11:30">11:30</option>
                       <option value="12:00">12:00</option>
@@ -144,7 +146,7 @@ const Enquiry = ({ openEnquiry, handleCancel, enquiryForm, userQueryApi, categor
                 <div className="col-md-4 form-controls">
                   <Form.Item label="City" name="city" className="form-label" rules={[{ required: true, message: "City!" }]}>
                     <select name="standards" id="standards" value={city} onChange={(e) => setCity(e.target.value)} className="custom-select form-select" required>
-                      <option disabled defaultValue>
+                      <option disabled defaultValue selected readonly>
                         Please select city
                       </option>
                       {cityData && cityData.data && cityData.data.map((item) => <option value={item.id}>{item.name}</option>)}

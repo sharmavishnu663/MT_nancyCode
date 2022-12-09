@@ -5,7 +5,7 @@ import { parseHtml } from "../../../Utils/utils";
 
 const Feedback = ({ studentHearData }) => {
   const OfferingsConfig = {
-    loop: true,
+    loop: false,
     autoplay: false,
     autoplayTimeout: 2000,
     margin: 0,
@@ -34,31 +34,30 @@ const Feedback = ({ studentHearData }) => {
               <p className="sub-headline text-center">Our alumni and their parents appreciate what we at MT Educare have to offer. Want to join the league? Signup now.</p>
               <br />
               <OwlCarousel className="owl-theme MT-OwlDots" {...OfferingsConfig}>
-                {studentHearData && studentHearData.data && studentHearData.data.map((item) =>
+                {studentHearData &&
+                  studentHearData.data &&
+                  studentHearData.data.map((item) => (
+                    <div className="item">
+                      <div className="articles">
+                        <div className="article">
+                          <div className="detail">
+                            <div className="description">
+                              <p>{item && parseHtml(item.description)}</p>
+                            </div>
 
-                  <div className="item">
-                    <div className="articles">
-                      <div className="article">
-                        <div className="detail">
-                          <div className="description">
-                            <p>{item && parseHtml(item.description)}</p>
-                          </div>
+                            <div className="profile">
+                              <img src={item && IMAGE_BASE_URL + "" + item.image} alt="placeholder" />
 
-                          <div className="profile">
-                            <img src={item && IMAGE_BASE_URL + '' + item.image} alt="placeholder" />
-
-                            <div className="user">
-                              <p className="name">{item && item.name}</p>
-                              <p className="role">{item && item.designation}</p>
+                              <div className="user">
+                                <p className="name">{item && item.name}</p>
+                                <p className="role">{item && item.designation}</p>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                )}
-
-
+                  ))}
               </OwlCarousel>
             </div>
           </div>
@@ -66,6 +65,6 @@ const Feedback = ({ studentHearData }) => {
       </section>
     </>
   );
-}
+};
 
 export default Feedback;
