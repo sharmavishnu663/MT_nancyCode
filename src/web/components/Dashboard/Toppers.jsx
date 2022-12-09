@@ -23,8 +23,8 @@ const TopperDetails = ({ toppersData }) => {
   };
   return (
     <>
-      <section class="our-toppers">
-        <div class="container">
+      <section className="our-toppers">
+        <div className="container">
           <div className="row">
             <div className="col-md-12">
               <h3>
@@ -39,14 +39,14 @@ const TopperDetails = ({ toppersData }) => {
               <OwlCarousel className="owl-theme MT-OwlDots toppersCarousel" {...toppersConfig}>
                 {toppersData &&
                   toppersData.data &&
-                  toppersData.data.map((item) => (
-                    <div className="item">
-                      <div class="toppers">
-                        <div class="student-card">
-                          <div class="detail">
-                            <h4 class="text-orange">{item.percentage}</h4>
-                            <p class="name">{item.name}</p>
-                            <p class="rank">{item.description}</p>
+                  toppersData.data.map((item, index) => (
+                    <div className="item" key={index}>
+                      <div className="toppers">
+                        <div className="student-card">
+                          <div className="detail">
+                            <h4 className="text-orange">{item.percentage}</h4>
+                            <p className="name">{item.name}</p>
+                            <p className="rank">{item.description}</p>
                           </div>
 
                           <img src={IMAGE_BASE_URL + "/" + item.image} alt="topper" />

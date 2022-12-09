@@ -58,8 +58,8 @@ const Header = ({ categoryListApi, categoryData }) => {
                 <ul className="dropdown-menu">
                   {categoryData &&
                     categoryData.data &&
-                    categoryData.data.map((item) => (
-                      <li>
+                    categoryData.data.map((item, index) => (
+                      <li key={index}>
                         <Link to={WebRoutes.COLLEGE} className="dropdown-item" onClick={(e) => handleCategory(item && item.id)}>
                           {item && item.name}
                         </Link>
@@ -100,7 +100,7 @@ const Header = ({ categoryListApi, categoryData }) => {
                 </ul>
               </li>
               <li className="nav-item">
-                <a href="javascript:void(0)" onClick={() => setOpenContact(true)} className="nav-link" data-bs-toggle="modal">
+                <a href="#" onClick={() => setOpenContact(true)} className="nav-link" data-bs-toggle="modal">
                   Contact Us
                 </a>
               </li>

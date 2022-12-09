@@ -15,21 +15,21 @@ const GallaryGrid = ({ galleryAllDataAPI, galleryAllData }) => {
   }, []);
 
   return (
-    <section class="cards terms" id="privacy-policy">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+    <section className="cards terms" id="privacy-policy">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12">
             <nav aria-label="breadcrumb">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item">
+              <ol className="breadcrumb">
+                <li className="breadcrumb-item">
                   <Link to="/">
                     <img src="../assets/imgs/icon-back.svg" alt="icon" /> Home
                   </Link>
                 </li>
-                <li class="breadcrumb-item">
+                <li className="breadcrumb-item">
                   <Link to={WebRoutes.PHOTO_GALLARY}>Gallery</Link>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">
+                <li className="breadcrumb-item active" aria-current="page">
                   {localStorage.getItem("awardName")}
                 </li>
               </ol>
@@ -39,11 +39,11 @@ const GallaryGrid = ({ galleryAllDataAPI, galleryAllData }) => {
           </div>
         </div>
 
-        <div class="row gallery-grid">
+        <div className="row gallery-grid">
           {galleryAllData &&
             galleryAllData.data &&
             galleryAllData.data.map((item) => (
-              <div class="col-md-3 gallery-img">
+              <div className="col-md-3 gallery-img">
                 <a href={item && IMAGE_BASE_URL + "/" + item.image} data-fancybox="gallery" data-caption="Optional caption">
                   <img src={item && IMAGE_BASE_URL + "/" + item.image} alt="gallery-data" />
                 </a>

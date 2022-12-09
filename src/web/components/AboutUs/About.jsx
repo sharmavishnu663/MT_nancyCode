@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { introListAPI, boardDirectorAPI, boardCommitteeAPI, keyManagementAPI } from "../../../redux/action/aboutUs";
+import { introListAPI, boardDirectorAPI, boardCommitteeAPI, keyManagementAPI, boardDetailsAPI } from "../../../redux/action/aboutUs";
 import { IMAGE_BASE_URL } from "../../../redux/constants";
 // import { parseHtml } from "../../../Utils/utils";
 import Intro from "./intro";
 // import OwlCarousel from "react-owl-carousel";
 
-const About = ({ introListAPI, introData, boardCommitteeAPI, commitesData, boardDirectorAPI, directorsData, keyManagementAPI, keyManagementData }) => {
+const About = ({ introListAPI, introData, boardCommitteeAPI, commitesData, boardDirectorAPI, directorsData, keyManagementAPI, keyManagementData, boardDetailsAPI, boardDetailData }) => {
   const [activeYear, setActiveYear] = useState(introData && introData.data ? introData.data[0].id : 0);
   const [visionSet, setVisionSet] = useState();
   useEffect(() => {
@@ -15,6 +15,7 @@ const About = ({ introListAPI, introData, boardCommitteeAPI, commitesData, board
     boardCommitteeAPI();
     boardDirectorAPI();
     keyManagementAPI();
+    boardDetailsAPI();
     // setActiveYear(introData.data && introData.data && introData.data[0].id)
     setTimeout(() => {
       setActiveYear(introData.data[0].id);
@@ -81,12 +82,12 @@ const About = ({ introListAPI, introData, boardCommitteeAPI, commitesData, board
                 <ul>
                   {introData && introData.data
                     ? introData.data.map((item, index) => (
-                        <li key={item.id} className={`${item.id < activeYear || item.id === activeYear || index === 0 ? "active" : ""}`}>
-                          <Link to="" onClick={() => handleStepClick(item.id)}>
-                            {item.year}
-                          </Link>
-                        </li>
-                      ))
+                      <li key={item.id} className={`${item.id < activeYear || item.id === activeYear || index === 0 ? "active" : ""}`}>
+                        <Link to="" onClick={() => handleStepClick(item.id)}>
+                          {item.year}
+                        </Link>
+                      </li>
+                    ))
                     : null}
                 </ul>
               </div>
@@ -95,6 +96,7 @@ const About = ({ introListAPI, introData, boardCommitteeAPI, commitesData, board
                 <div className="content">
                   <Intro introData={introData} activeYear={activeYear} />
                   <div className="btn-wrapper text-right">
+
                     <Link to="#" className="btn btn-sm flip" title="prev" onClick={(e) => handleStepPrev(activeYear)}>
                       <img src="../assets/imgs/icon-arrow-right.svg" alt="icon" />
                     </Link>
@@ -144,22 +146,19 @@ const About = ({ introListAPI, introData, boardCommitteeAPI, commitesData, board
                 {/* <!-- explore-lakshya --> */}
 
                 <div className="row g-4">
-                  {keyManagementData.data &&
-                    keyManagementData.data.map((item, index) => (
+                  {boardDetailData.data &&
+                    boardDetailData.data.map((item, index) => (
                       <div className="col-md-4" key={index}>
-                        <div className="card-address">
-                          <h5>{item.title}</h5>
-                          <div className="detail">
-                            <p>
-                              {item.address},<br />
-                              {item.address1},<br />
-                              Tel: {item.mobile}
-                              <br />
-                              Fax: {item.fax}
-                              <br />
-                              Email: {item.email}
-                            </p>
-                          </div>
+                        <div className="member">
+                          {item && item.image ?
+                            <div className="member-img">
+                              <div className="bg"></div>
+                              <img src={IMAGE_BASE_URL + "/" + item.image} alt="board_directors" />
+                            </div>
+                            : null
+                          }
+                          <p className="name">{item.name}</p>
+                          <p className="designation">{item.designation}</p>
                         </div>
                       </div>
                     ))}
@@ -183,6 +182,28 @@ const About = ({ introListAPI, introData, boardCommitteeAPI, commitesData, board
                       </div>
                     ))}
                 </div>
+
+                <div className="row g-4">
+                  {keyManagementData.data &&
+                    keyManagementData.data.map((item, index) => (
+                      <div className="col-md-4" key={index}>
+                        <div className="card-address">
+                          <h5>{item.title}</h5>
+                          <div className="detail">
+                            <p>
+                              {item.address},<br />
+                              {item.address1},<br />
+                              Tel: {item.mobile}
+                              <br />
+                              Fax: {item.fax}
+                              <br />
+                              Email: {item.email}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                </div>
               </div>
               <div className="tab-pane fade" id="MT-tabPane-3" role="tabpanel" aria-labelledby="Edu-tab-3" tabIndex="0">
                 {/* <!-- explore-lakshya --> */}
@@ -190,19 +211,24 @@ const About = ({ introListAPI, introData, boardCommitteeAPI, commitesData, board
                 <div className="row">
                   {commitesData.data &&
                     commitesData.data.map((item, index) => (
+
+
                       <div className="col-md-4" key={index}>
                         <div className="card-address">
-                          <h5>{item.title}</h5>
+                          <h5>{item && item[index] && item[index].title}</h5>
                           <div className="detail">
                             <ul>
-                              <li>
-                                <span>{item.name}</span>
-                                <span>{item.designation}</span>
-                              </li>
+                              {item && item.map((record) => <li>
+                                <span>{record.name}</span>
+                                <span>{record.designation}</span>
+                              </li>)}
+
                             </ul>
                           </div>
                         </div>
                       </div>
+
+
                     ))}
                 </div>
               </div>
@@ -225,6 +251,7 @@ const mapStateToProps = (state) => {
     commitesData: AboutReducer.commitesData,
     directorsData: AboutReducer.directorsData,
     keyManagementData: AboutReducer.keyManagementData,
+    boardDetailData: AboutReducer.boardDetailData,
   };
 };
 
@@ -233,6 +260,7 @@ const mapDispatchToProps = (dispatch) => {
     introListAPI: () => dispatch(introListAPI()),
     boardCommitteeAPI: () => dispatch(boardCommitteeAPI()),
     boardDirectorAPI: () => dispatch(boardDirectorAPI()),
+    boardDetailsAPI: () => dispatch(boardDetailsAPI()),
     keyManagementAPI: () => dispatch(keyManagementAPI()),
   };
 };

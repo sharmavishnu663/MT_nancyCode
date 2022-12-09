@@ -187,6 +187,12 @@
         left: auto;
         right: -64px;
     }
+
+    .top-students .students .detail img {
+        height: 180px !important;
+        margin: auto !important;
+        width: auto;
+    }
 }
 
 /* ========== Small devices (landscape phones, 576px and up) ========== */

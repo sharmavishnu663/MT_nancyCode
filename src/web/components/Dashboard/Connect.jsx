@@ -83,17 +83,23 @@ const Connect = ({ categoryListApi, userQueryApi, categoryBaodStandardsListAPI, 
 
                   <div className="form-controls">
                     <Form.Item label="Mobile Number" name="mobile" className="form-label text-blue" rules={[{ required: true, message: "Mobile!" }]}>
-                      <input type="text" id="phone" pattern="^[0-9]*$" minlength="10" maxlength="10" placeholder="Mobile" value={queryMobile} onChange={(e) => setQueryMobile(e.target.value)} required />
+                      <input type="text" id="phone" pattern="^[0-9]*$" minLength="10" maxlength="10" placeholder="Mobile" value={queryMobile} onChange={(e) => setQueryMobile(e.target.value)} required />
                     </Form.Item>
                   </div>
 
                   <div className="form-controls">
                     <Form.Item label="Category" name="category" className="form-label" rules={[{ required: true, message: "category!" }]}>
                       <select name="course" className="form-controls w-100" id="course" value={querycategory} onChange={(e) => setQueryCategory(e.target.value)} required>
-                        <option disabled selected hidden>
+                        <option defaultValue selected>
                           Select category
                         </option>
-                        {categoryData && categoryData.data && categoryData.data.map((item) => <option value={item.id}>{item.name}</option>)}
+                        {categoryData &&
+                          categoryData.data &&
+                          categoryData.data.map((item, index) => (
+                            <option value={item.id} key={index}>
+                              {item.name}
+                            </option>
+                          ))}
                       </select>
                     </Form.Item>
                   </div>
@@ -101,10 +107,16 @@ const Connect = ({ categoryListApi, userQueryApi, categoryBaodStandardsListAPI, 
                   <div className="form-controls">
                     <Form.Item label="Baord" name="board" className="form-label" rules={[{ required: true, message: "board!" }]}>
                       <select name="boards" className="form-controls w-100" id="boards" value={queryboards} onChange={(e) => setQueryBoards(e.target.value)} required>
-                        <option disabled selected hidden>
+                        <option defaultValue selected>
                           Select board
                         </option>
-                        {boardStandardsData && boardStandardsData.data && boardStandardsData.data.map((item) => <option value={item.board_name}>{item.board_name}</option>)}
+                        {boardStandardsData &&
+                          boardStandardsData.data &&
+                          boardStandardsData.data.map((item, index) => (
+                            <option value={item.board_name} key={index}>
+                              {item.board_name}
+                            </option>
+                          ))}
                       </select>
                     </Form.Item>
                   </div>
@@ -112,10 +124,16 @@ const Connect = ({ categoryListApi, userQueryApi, categoryBaodStandardsListAPI, 
                   <div className="form-controls">
                     <Form.Item label="Standards" name="standards" className="form-label" rules={[{ required: true, message: "standard!" }]}>
                       <select name="standards" id="standards" className="form-controls w-100" value={queryStandards} onChange={(e) => setQueryStandards(e.target.value)} required>
-                        <option disabled selected hidden>
+                        <option defaultValue selected>
                           Select Standards
                         </option>
-                        {boardStandardsData && boardStandardsData.data && boardStandardsData.data.map((item) => <option value={item.name}>{item.name}</option>)}
+                        {boardStandardsData &&
+                          boardStandardsData.data &&
+                          boardStandardsData.data.map((item, index) => (
+                            <option value={item.name} key={index}>
+                              {item.name}
+                            </option>
+                          ))}
                       </select>
                     </Form.Item>
                   </div>

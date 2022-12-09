@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getCommonApiHeader } from "../../Utils/utils";
-import { CENTERS_LIST, COMMITTE_LIST, INTRO_LIST, DIRECTOR_LIST, KEY_MANAGEMENT_LIST, AWARDS_LIST, AWARDS_DETAIL_LIST, CENTER_SERACH } from "../constants";
+import { CENTERS_LIST, COMMITTE_LIST, INTRO_LIST, DIRECTOR_LIST, KEY_MANAGEMENT_LIST, AWARDS_LIST, AWARDS_DETAIL_LIST, CENTER_SERACH, BOARD_DETAIL_LIST } from "../constants";
 
 export const centerListAPI = (data) => {
     return (dispatch, getState) => {
@@ -88,6 +88,23 @@ export const keyManagementAPI = (data) => {
     };
 }
 
+export const boardDetailsAPI = (data) => {
+    return (dispatch, getState) => {
+        dispatch(getAboutRequest());
+        axios
+            .get(BOARD_DETAIL_LIST, {
+                headers: {
+                    ...getCommonApiHeader(),
+                },
+            })
+            .then((response) => {
+                dispatch(getBOARDDETAILSDataRespond(response?.data));
+            }).catch(err => {
+                dispatch(handleError(err));
+            });
+    };
+}
+
 export const awardsAPI = (data) => {
     return (dispatch, getState) => {
         dispatch(getAboutRequest());
@@ -136,6 +153,13 @@ export const centerSearchAPI = (data) => {
             }).catch(err => {
                 dispatch(handleError(err));
             });
+    };
+}
+
+export const getBOARDDETAILSDataRespond = data => {
+    return {
+        type: "BOARD_DETAILS_RESPONSE",
+        data: data,
     };
 }
 

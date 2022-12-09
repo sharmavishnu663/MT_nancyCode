@@ -13,18 +13,18 @@ const PhotoGallary = ({ galleryDataAPI, galleryData }) => {
     localStorage.setItem("awardName", name);
   };
   return (
-    <section class="cards terms" id="privacy-policy">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+    <section className="cards terms" id="privacy-policy">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12">
             <nav aria-label="breadcrumb">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item">
+              <ol className="breadcrumb">
+                <li className="breadcrumb-item">
                   <Link to="/">
                     <img src="../assets/imgs/icon-back.svg" alt="icon" /> Home
                   </Link>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">
+                <li className="breadcrumb-item active" aria-current="page">
                   Gallery
                 </li>
               </ol>
@@ -32,8 +32,8 @@ const PhotoGallary = ({ galleryDataAPI, galleryData }) => {
 
             <h4>Gallery</h4>
 
-            <div class="pills">
-              <Link to={WebRoutes.PHOTO_GALLARY} class="active">
+            <div className="pills">
+              <Link to={WebRoutes.PHOTO_GALLARY} className="active">
                 Photo Gallery
               </Link>
               <Link to={WebRoutes.VIDEO_GALLARY}>Video Gallery</Link>
@@ -41,32 +41,32 @@ const PhotoGallary = ({ galleryDataAPI, galleryData }) => {
           </div>
         </div>
 
-        <section class="cards" id="gallery">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-12 box-radius">
-                <div class="articles gallery-cards">
+        <section className="cards" id="gallery">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-12 box-radius">
+                <div className="articles gallery-cards">
                   <div className="row">
                     {galleryData &&
                       galleryData.data &&
                       galleryData.data.map((item) => (
-                        <div class="col-md-4">
-                          <div class="article">
-                            <div class="thumbnail">
+                        <div className="col-md-4">
+                          <div className="article">
+                            <div className="thumbnail">
                               <a>
                                 <img src="../assets/imgs/gallery1.png" alt="asset_img" />
                               </a>
                             </div>
 
-                            <div class="detail gallery">
-                              <div class="gallery-header">
+                            <div className="detail gallery">
+                              <div className="gallery-header">
                                 <h5>{item.name}</h5>
-                                <Link to={`${WebRoutes.GALLARY_GRID}${item.id}`} onClick={(e) => handleSession(item.name)} class="btn btn-sm">
+                                <Link to={`${WebRoutes.GALLARY_GRID}${item.id}`} onClick={(e) => handleSession(item.name)} className="btn btn-sm">
                                   <img src="../assets/imgs/icon-arrow-right.svg" className="link-icon" alt="icon" />
                                 </Link>
                               </div>
 
-                              <div class="count">({item.total})</div>
+                              <div className="count">({item.total})</div>
                             </div>
                           </div>
                         </div>

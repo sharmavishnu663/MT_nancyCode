@@ -4,6 +4,8 @@ const initState = {
     boardStandardsData: [],
     cityData: [],
     areaData: [],
+    studentHearData: [],
+    weOfferData: [],
     error: null
 };
 const HomeReducer = (state = initState, action) => {
@@ -37,6 +39,16 @@ const HomeReducer = (state = initState, action) => {
             return {
                 ...state,
                 areaData: data,
+            };
+        case "STUDENT_HEAR_DATA_RESPONSE":
+            return {
+                ...state,
+                studentHearData: data,
+            };
+        case "WE_OFFER_DATA_RESPONSE":
+            return {
+                ...state,
+                weOfferData: data,
             };
         case "HOME_ERROR":
             return {

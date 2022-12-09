@@ -26,12 +26,11 @@ const Intro = ({ introData, activeYear }) => {
 
   return (
     <>
-
       <OwlCarousel {...toppersConfig}>
         {aboutUs &&
           aboutUs.map((item) => (
             <>
-              <div class="row align-items-center">
+              <div className="row align-items-center">
                 <div className="item col-md-6">
                   <h2 className="mb-4">
                     <span className="text-orange">{item.title}</span>
@@ -57,9 +56,7 @@ const Intro = ({ introData, activeYear }) => {
                       </ul>
                     </>
                   )}
-
                 </div>
-
 
                 <div className="col-md-6 text-center">
                   <img src={IMAGE_BASE_URL + "/" + item.image} alt="illustration" />

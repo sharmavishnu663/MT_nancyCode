@@ -12,13 +12,16 @@ import Slider from "react-slick";
 import { Form, Input, Select } from "antd";
 import { connect } from "react-redux";
 import { useEffect } from "react";
-import { topperListAPI, achivementListAPI, categoryBaodStandardsListAPI, cityListAPI, AreaListAPI } from "../../../redux/action/home";
+import { topperListAPI, achivementListAPI, categoryBaodStandardsListAPI, cityListAPI, AreaListAPI, studentHearApi, weOfferApi } from "../../../redux/action/home";
 import { categoryListApi, categoryDetailsApi, defaultCategoryListApi } from "../../../redux/action/category";
 import { WebRoutes } from "../../../routes";
 import { parseHtml } from "../../../Utils/utils";
 import { IMAGE_BASE_URL } from "../../../redux/constants";
 
-const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi, topperListAPI, toppersData, achivementListAPI, achivementsData, categoryBaodStandardsListAPI, boardStandardsData, categoryData, cityListAPI, AreaListAPI, cityData, areaData, categoryDetailsData, defaultCategoryDetailsData }) => {
+const Dashboard = ({ categoryListApi, defaultCategoryListApi,
+  categoryDetailsApi, topperListAPI, toppersData, achivementListAPI, achivementsData,
+  categoryBaodStandardsListAPI, boardStandardsData, categoryData, cityListAPI, AreaListAPI,
+  cityData, areaData, categoryDetailsData, defaultCategoryDetailsData, studentHearApi, studentHearData, weOfferApi, weOfferData }) => {
   // console.log(categoryData && categoryData.data && categoryData.data[0].id);
   const [categoryActive, setCategoryActive] = useState(0);
 
@@ -100,8 +103,9 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
     topperListAPI();
     achivementListAPI();
     defaultCategoryListApi();
-    // categoryListApi();
+    studentHearApi();
     cityListAPI();
+    weOfferApi();
   }, []);
 
   useEffect(() => {
@@ -152,8 +156,8 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
                 <div className="carousel-inner">
                   {toppersData &&
                     toppersData.data &&
-                    toppersData.data.map((item) => (
-                      <div className="carousel-item banner bg-light-orange active" data-bs-interval="10000">
+                    toppersData.data.map((item, index) => (
+                      <div className="carousel-item banner bg-light-orange active" data-bs-interval="10000" key={index}>
                         <div className="row">
                           <div className="col-md-7 col-sm-12">
                             <div className="caption">
@@ -168,8 +172,8 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
                             <OwlCarousel className="owl-theme top-students top-students-a MT-OwlDots" {...heroToppersConfig}>
                               {toppersData &&
                                 toppersData.data &&
-                                toppersData.data.slice(0, 5).map((item1) => (
-                                  <div className="item">
+                                toppersData.data.slice(0, 5).map((item1, index) => (
+                                  <div className="item" key={index}>
                                     <div className="students">
                                       <div className="detail">
                                         <div className="student text-center">
@@ -204,10 +208,16 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
                   <div className="form-controls">
                     <Form.Item label="Category" name="category" className="form-label" rules={[{ required: true, message: "Please select your category!" }]}>
                       <select name="course" className="form-controls w-100" id="course" value={category} onChange={(e) => setCategory(e.target.value)} required>
-                        <option disabled selected hidden>
+                        <option defaultValue selected>
                           Select category
                         </option>
-                        {categoryData && categoryData.data && categoryData.data.map((item) => <option value={item.id}>{item.name}</option>)}
+                        {categoryData &&
+                          categoryData.data &&
+                          categoryData.data.map((item, index) => (
+                            <option value={item.id} key={index}>
+                              {item.name}
+                            </option>
+                          ))}
                       </select>
                     </Form.Item>
                   </div>
@@ -215,10 +225,16 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
                   <div className="form-controls">
                     <Form.Item label="Baord" name="board" className="form-label" rules={[{ required: true, message: "Please select your board!" }]}>
                       <select name="boards" className="form-controls w-100" id="boards" value={boards} onChange={(e) => setBoards(e.target.value)} required>
-                        <option disabled selected hidden>
+                        <option defaultValue selected>
                           Select board
                         </option>
-                        {boardStandardsData && boardStandardsData.data && boardStandardsData.data.map((item) => <option value={item.board_name}>{item.board_name}</option>)}
+                        {boardStandardsData &&
+                          boardStandardsData.data &&
+                          boardStandardsData.data.map((item, index) => (
+                            <option value={item.board_name} key={index}>
+                              {item.board_name}
+                            </option>
+                          ))}
                       </select>
                     </Form.Item>
                   </div>
@@ -226,10 +242,16 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
                   <div className="form-controls">
                     <Form.Item label="Standards" name="standards" className="form-label" rules={[{ required: true, message: "Please select your standard!" }]}>
                       <select name="standards" id="standards" className="form-controls w-100" value={standards} onChange={(e) => setStandards(e.target.value)} required>
-                        <option disabled selected hidden>
+                        <option defaultValue selected>
                           Select Standards
                         </option>
-                        {boardStandardsData && boardStandardsData.data && boardStandardsData.data.map((item) => <option value={item.id}>{item.name}</option>)}
+                        {boardStandardsData &&
+                          boardStandardsData.data &&
+                          boardStandardsData.data.map((item, index) => (
+                            <option value={item.id} key={index}>
+                              {item.name}
+                            </option>
+                          ))}
                       </select>
                     </Form.Item>
                   </div>
@@ -237,10 +259,16 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
                   <div className="form-controls">
                     <Form.Item label="City" name="city" className="form-label" rules={[{ required: true, message: "Please select your city!" }]}>
                       <select name="standards" id="standards" value={city} onChange={(e) => handleCityChange(e)} className="form-controls w-100" required>
-                        <option disabled selected hidden>
+                        <option defaultValue selected>
                           Select city
                         </option>
-                        {cityData && cityData.data && cityData.data.map((item) => <option value={item.id}>{item.name}</option>)}
+                        {cityData &&
+                          cityData.data &&
+                          cityData.data.map((item, index) => (
+                            <option value={item.id} key={index}>
+                              {item.name}
+                            </option>
+                          ))}
                       </select>
                     </Form.Item>
                   </div>
@@ -248,10 +276,16 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
                   <div className="form-controls">
                     <Form.Item label="Area" name="area" className="form-label" rules={[{ required: true, message: "Please select your area!" }]}>
                       <select name="area" id="area" className="form-controls w-100" value={area} onChange={(e) => setArea(e.target.value)} required>
-                        <option disabled selected hidden>
+                        <option defaultValue selected>
                           Select city
                         </option>
-                        {areaData && areaData.data && areaData.data.map((item) => <option value={item.id}>{item.name}</option>)}
+                        {areaData &&
+                          areaData.data &&
+                          areaData.data.map((item, index) => (
+                            <option value={item.id} key={index}>
+                              {item.name}
+                            </option>
+                          ))}
                       </select>
                     </Form.Item>
                   </div>
@@ -388,27 +422,27 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
                     ) : null}
 
                     {indexData && indexData == 2 ? (
-                      <div class="explore-lakshya bg-light-orange">
+                      <div className="explore-lakshya bg-light-orange">
                         <div>
                           <img src="../assets/imgs/mahesh-tutorials-school.png" alt="lakshya-logo" />
                           <p>For over three decades, Mahesh tutorials has been mentoring students for success, in academics and in life. </p>
                         </div>
-                        <a href="https://www.lakshyainstitute.com/" class="btn btn-lg" target="_blank">
+                        <a href="https://www.lakshyainstitute.com/" className="btn btn-lg" target="_blank">
                           Explore School
                         </a>
                       </div>
                     ) : null}
 
                     {indexData && indexData == 1 ? (
-                      <div class="explore-lakshya bg-light-orange">
+                      <div className="explore-lakshya bg-light-orange">
                         <div>
                           <img src="../assets/imgs/mahesh-tutorials.png" alt="lakshya-logo" />
                         </div>
                         <div>
-                          <a href="https://commerce.maheshtutorials.com/" class="btn btn-lg mr-3" style={{ marginRight: "22px" }} target="_blank">
+                          <a href="https://commerce.maheshtutorials.com/" className="btn btn-lg mr-3" style={{ marginRight: "22px" }} target="_blank">
                             Explore Commerce
                           </a>
-                          <a href="http://science.maheshtutorials.com/" class="btn btn-lg" target="_blank">
+                          <a href="http://science.maheshtutorials.com/" className="btn btn-lg" target="_blank">
                             Explore Science
                           </a>
                         </div>
@@ -419,8 +453,8 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
                     <OwlCarousel {...CoursesWeOfferConfig} className="owl-theme MT-OwlDots">
                       {categoryDetailsData &&
                         categoryDetailsData.data &&
-                        categoryDetailsData.data.map((item) => (
-                          <div className="item">
+                        categoryDetailsData.data.map((item, index) => (
+                          <div className="item" key={index}>
                             <div className="articles our-courses">
                               <div className="article">
                                 <div className="thumbnail">
@@ -458,8 +492,8 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
                     <OwlCarousel {...CoursesWeOfferConfig} className="owl-theme MT-OwlDots">
                       {defaultCategoryDetailsData &&
                         defaultCategoryDetailsData.data &&
-                        defaultCategoryDetailsData.data.map((item) => (
-                          <div className="item">
+                        defaultCategoryDetailsData.data.map((item, index) => (
+                          <div className="item" key={index}>
                             <div className="articles our-courses">
                               <div className="article">
                                 <div className="thumbnail">
@@ -498,10 +532,10 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
       <DemoVideos />
 
       {/* OFFERINGS */}
-      <Offerings />
+      <Offerings weOfferData={weOfferData} />
 
       {/* FEEDBACK */}
-      <Feedback />
+      <Feedback studentHearData={studentHearData} />
 
       {/* CONNECT */}
       <Connect />
@@ -518,7 +552,9 @@ const mapStateToProps = (state) => {
     achivementsData: HomeReducer.achivementsData,
     boardStandardsData: HomeReducer.boardStandardsData,
     cityData: HomeReducer.cityData,
+    studentHearData: HomeReducer.studentHearData,
     areaData: HomeReducer.areaData,
+    weOfferData: HomeReducer.weOfferData,
     categoryData: CategoryReducer.categoryData,
     categoryDetailsData: CategoryReducer.categoryDetailsData,
     defaultCategoryDetailsData: CategoryReducer.defaultCategoryDetailsData,
@@ -532,6 +568,8 @@ const mapDispatchToProps = (dispatch) => {
     categoryBaodStandardsListAPI: (data) => dispatch(categoryBaodStandardsListAPI(data)),
     categoryListApi: () => dispatch(categoryListApi()),
     cityListAPI: () => dispatch(cityListAPI()),
+    studentHearApi: () => dispatch(studentHearApi()),
+    weOfferApi: () => dispatch(weOfferApi()),
     defaultCategoryListApi: () => dispatch(defaultCategoryListApi()),
     AreaListAPI: (data) => dispatch(AreaListAPI(data)),
     categoryDetailsApi: (data) => dispatch(categoryDetailsApi(data)),

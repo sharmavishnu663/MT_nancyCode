@@ -6,155 +6,161 @@ import { IMAGE_BASE_URL } from "../../../redux/constants";
 import { WebRoutes } from "../../../routes";
 
 const ResearchReport = ({ reportDataAPI, reportData, reportSearchApi, reportSearchData }) => {
-    const [yearSearch, setYearSearch] = useState('All');
-    const [currentReportId, setCurrentReportId] = useState(2);
-    useEffect(() => {
-        reportDataAPI(2);
-    }, []);
+  const [yearSearch, setYearSearch] = useState("All");
+  const [currentReportId, setCurrentReportId] = useState(2);
+  useEffect(() => {
+    reportDataAPI(2);
+  }, []);
 
-    const years = reportData && reportData.data && [
-        ...new Set(reportData.data.map((q) => q.report_year)),
-    ];
+  const years = reportData && reportData.data && [...new Set(reportData.data.map((q) => q.report_year))];
 
-    const handlesearch = (event) => {
-        setYearSearch(event);
-        reportSearchApi({ year: event, reportId: 2 })
-    }
-    return (
-        <>
-            <section class="cards terms" id="privacy-policy">
+  const handlesearch = (event) => {
+    setYearSearch(event);
+    reportSearchApi({ year: event, reportId: 2 });
+  };
+  return (
+    <>
+      <section className="cards terms" id="privacy-policy">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <nav aria-label="breadcrumb">
+                <ol className="breadcrumb">
+                  <li className="breadcrumb-item">
+                    <Link to="/">
+                      <img src="../assets/imgs/icon-back.svg" alt="icon" /> Home
+                    </Link>
+                  </li>
+                  <li className="breadcrumb-item active" aria-current="page">
+                    Reports
+                  </li>
+                </ol>
+              </nav>
 
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><Link to="/"><img src="../assets/imgs/icon-back.svg" alt="icon" /> Home</Link></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Reports</li>
-                                </ol>
-                            </nav>
+              <h4>Reports</h4>
 
-                            <h4>Reports</h4>
+              <div className="jumbotron bg-light-orange">
+                <div className="row">
+                  <div className="col-md-6">
+                    <h2>
+                      <span className="text-orange">Reserch </span>
+                      <br />
+                      Reports
+                    </h2>
+                    <p>We have been making the right investments in creating the necessary framework, technology and processes to capitalise on a new world of learning. We seek to continue the transformation growth across the entire education value chain</p>
+                  </div>
 
-                            <div class="jumbotron bg-light-orange">
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h2>
-                                            <span class="text-orange">Reserch </span><br />Reports
-                                        </h2>
-                                        <p>We have been making the right investments in creating the necessary framework, technology and processes to capitalise on a new world of learning. We seek to continue the transformation growth across the entire education value chain</p>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="img-wrapper">
-                                            <img src="../assets/imgs/img-jumbo1.png" alt="image" />
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="pills">
-                                <Link to="/reports" >Financial Reports</Link>
-                                <Link to="/research-report" className="active">Reserch Reports</Link>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <h4 class="m-0">Quarterly Financial Report For Year 2021-2022</h4>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="filter-dropdown">
-                                        <label for="dropdown">Year</label>
-                                        <select name="year" id="dropdown" value={yearSearch} onChange={(e) => handlesearch(e.target.value)}>
-                                            <option disabled selected> select year</option>
-                                            {years && years.map((item) =>
-                                                <option value={item}>{item}</option>
-                                            )}
-
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                  <div className="col-md-6">
+                    <div className="img-wrapper">
+                      <img src="../assets/imgs/img-jumbo1.png" alt="image" />
                     </div>
+                  </div>
+                </div>
+              </div>
 
-                    <div className="row stories reports">
-                        {reportSearchData && reportSearchData.data ?
-                            <>
-                                {reportSearchData && reportSearchData.data && reportSearchData.data.map((item) =>
-                                    <div className="col-md-4">
-                                        <div className="story report">
-                                            <div className="download">
-                                                <div className="file-type">
-                                                    <img src="../assets/imgs/icon-pdf.svg" alt="icon" />
-                                                </div>
+              <div className="pills">
+                <Link to="/reports">Financial Reports</Link>
+                <Link to="/research-report" className="active">
+                  Reserch Reports
+                </Link>
+              </div>
 
-                                                <div className="file-link">
-                                                    <a href={IMAGE_BASE_URL + '/' + item.file_name} download={IMAGE_BASE_URL + '/' + item.file_name} target="_blank">
-                                                        <img src="../assets/imgs/icon-download.svg" alt="icon" />
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <h5>{item.quarter_name}</h5>
-
-                                            <p>{item.quarter_code}</p>
-                                        </div>
-                                    </div>
-                                )}
-                            </>
-                            :
-                            <>
-                                {reportData && reportData.data && reportData.data.map((item) =>
-                                    <div className="col-md-4">
-                                        <div className="story report">
-                                            <div className="download">
-                                                <div className="file-type">
-                                                    <img src="../assets/imgs/icon-pdf.svg" alt="icon" />
-                                                </div>
-
-                                                <div className="file-link">
-                                                    <a href={IMAGE_BASE_URL + '/' + item.file_name} download={IMAGE_BASE_URL + '/' + item.file_name} target="_blank">
-                                                        <img src="../assets/imgs/icon-download.svg" alt="icon" />
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <h5>{item.quarter_name}</h5>
-
-                                            <p>{item.quarter_code}</p>
-                                        </div>
-                                    </div>
-                                )}
-                            </>
-                        }
-
-                    </div>
+              <div className="row">
+                <div className="col-md-8">
+                  <h4 className="m-0">Quarterly Financial Report For Year 2021-2022</h4>
                 </div>
 
-            </section>
-        </>
-    );
-}
+                <div className="col-md-4">
+                  <div className="filter-dropdown">
+                    <label for="dropdown">Year</label>
+                    <select name="year" id="dropdown" value={yearSearch} onChange={(e) => handlesearch(e.target.value)}>
+                      <option disabled defaultValue>
+                        {" "}
+                        select year
+                      </option>
+                      {years && years.map((item) => <option value={item}>{item}</option>)}
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
+          <div className="row stories reports">
+            {reportSearchData && reportSearchData.data ? (
+              <>
+                {reportSearchData &&
+                  reportSearchData.data &&
+                  reportSearchData.data.map((item) => (
+                    <div className="col-md-4">
+                      <div className="story report">
+                        <div className="download">
+                          <div className="file-type">
+                            <img src="../assets/imgs/icon-pdf.svg" alt="icon" />
+                          </div>
+
+                          <div className="file-link">
+                            <a href={IMAGE_BASE_URL + "/" + item.file_name} download={IMAGE_BASE_URL + "/" + item.file_name} target="_blank">
+                              <img src="../assets/imgs/icon-download.svg" alt="icon" />
+                            </a>
+                          </div>
+                        </div>
+
+                        <h5>{item.quarter_name}</h5>
+
+                        <p>{item.quarter_code}</p>
+                      </div>
+                    </div>
+                  ))}
+              </>
+            ) : (
+              <>
+                {reportData &&
+                  reportData.data &&
+                  reportData.data.map((item) => (
+                    <div className="col-md-4">
+                      <div className="story report">
+                        <div className="download">
+                          <div className="file-type">
+                            <img src="../assets/imgs/icon-pdf.svg" alt="icon" />
+                          </div>
+
+                          <div className="file-link">
+                            <a href={IMAGE_BASE_URL + "/" + item.file_name} download={IMAGE_BASE_URL + "/" + item.file_name} target="_blank">
+                              <img src="../assets/imgs/icon-download.svg" alt="icon" />
+                            </a>
+                          </div>
+                        </div>
+
+                        <h5>{item.quarter_name}</h5>
+
+                        <p>{item.quarter_code}</p>
+                      </div>
+                    </div>
+                  ))}
+              </>
+            )}
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
 
 const mapStateToProps = (state) => {
-    const { InvestorReducer } = state;
-    const { reportData, reportSearchData } = InvestorReducer;
-    return {
-        reportData: InvestorReducer.reportData,
-        reportSearchData: InvestorReducer.reportSearchData,
-    };
+  const { InvestorReducer } = state;
+  const { reportData, reportSearchData } = InvestorReducer;
+  return {
+    reportData: InvestorReducer.reportData,
+    reportSearchData: InvestorReducer.reportSearchData,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        reportDataAPI: (data) => dispatch(reportDataAPI(1)),
-        reportSearchApi: (data) => dispatch(reportSearchApi(data))
-    };
+  return {
+    reportDataAPI: (data) => dispatch(reportDataAPI(1)),
+    reportSearchApi: (data) => dispatch(reportSearchApi(data)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResearchReport);

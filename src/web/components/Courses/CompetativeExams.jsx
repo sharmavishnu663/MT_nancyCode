@@ -8,53 +8,40 @@ import CourseCard from "../Cards/CourseCard";
 function CompetativeExam() {
   return (
     <>
-      <section class="cards" id="courses">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12 bg-light-blue box-radius">
-              <h3 class="headline text-center mb-3">
-                <span class="text-blue">Courses</span> we offer
+      <section className="cards" id="courses">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12 bg-light-blue box-radius">
+              <h3 className="headline text-center mb-3">
+                <span className="text-blue">Courses</span> we offer
               </h3>
-              <p class="sub-headline text-center">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Volutpat montes, pharetra cras odio nec scelerisque viverra.
-              </p>
+              <p className="sub-headline text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Volutpat montes, pharetra cras odio nec scelerisque viverra.</p>
 
-              <div class="article-header with-search">
-                <div class="pills">
-                  <Link to="/courses/competativeExams" class="active">
+              <div className="article-header with-search">
+                <div className="pills">
+                  <Link to="/courses/competativeExams" className="active">
                     Competative Exams
                   </Link>
-                  <Link to="/courses/college" >Colleges</Link>
-                  <Link to="/courses/school" >School</Link>
+                  <Link to="/courses/college">Colleges</Link>
+                  <Link to="/courses/school">School</Link>
                 </div>
 
                 <form action="">
-                  <input
-                    type="text"
-                    class="search"
-                    placeholder="Search Course"
-                  />
+                  <input type="text" className="search" placeholder="Search Course" />
                 </form>
               </div>
 
-              <div class="explore-lakshya bg-light-orange">
+              <div className="explore-lakshya bg-light-orange">
                 <div>
-                  <img
-                    src="../assets/imgs/lakshya-logo.png"
-                    alt="lakshya-logo"
-                  />
-                  <p>
-                    Lakshay is our partner which provides the higher secondary
-                    education science courses for competitive exams.
-                  </p>
+                  <img src="../assets/imgs/lakshya-logo.png" alt="lakshya-logo" />
+                  <p>Lakshay is our partner which provides the higher secondary education science courses for competitive exams.</p>
                 </div>
-                <a href="https://www.lakshyainstitute.com/" class="btn btn-lg">
+                <a href="https://www.lakshyainstitute.com/" className="btn btn-lg">
                   Explore Lakshya
                 </a>
               </div>
 
-              <div class="articles">
+              <div className="articles">
                 <CourseCard />
 
                 <CourseCard />
@@ -66,26 +53,22 @@ function CompetativeExam() {
                 <CourseCard />
 
                 <CourseCard />
-
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="cards provisions">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <h3 class="headline text-center mb-3">
-                Our <span class="text-blue">provisions</span>
+      <section className="cards provisions">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <h3 className="headline text-center mb-3">
+                Our <span className="text-blue">provisions</span>
               </h3>
-              <p class="sub-headline text-center">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
-              </p>
+              <p className="sub-headline text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 
-              <div class="provision-list">
+              <div className="provision-list">
                 <ul>
                   <li>
                     <img src="../assets/imgs/icon-hostel.svg" alt="icon" />
@@ -109,7 +92,7 @@ function CompetativeExam() {
                   </li>
                 </ul>
               </div>
-              <div class="shadow"></div>
+              <div className="shadow"></div>
             </div>
           </div>
         </div>
@@ -122,10 +105,6 @@ function CompetativeExam() {
       <Feedback />
 
       <Connect />
-
-
-
-
     </>
   );
 }

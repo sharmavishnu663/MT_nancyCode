@@ -75,7 +75,7 @@ const Reports = ({ reportDataAPI, reportData, reportSearchApi, reportSearchData 
                   <div className="filter-dropdown">
                     <label for="dropdown">Year</label>
                     <select name="year" id="dropdown" value={yearSearch} onChange={(e) => handlesearch(e.target.value)}>
-                      <option disabled selected>
+                      <option disabled defaultValue>
                         {" "}
                         select year
                       </option>

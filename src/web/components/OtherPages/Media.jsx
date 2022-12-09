@@ -14,18 +14,18 @@ const Media = ({ mediaListApi, mediaData }) => {
 
   return (
     <>
-      <section class="cards terms" id="privacy-policy">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
+      <section className="cards terms" id="privacy-policy">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
               <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item">
+                <ol className="breadcrumb">
+                  <li className="breadcrumb-item">
                     <Link to="/">
                       <img src="../assets/imgs/icon-back.svg" alt="icon" /> Home
                     </Link>
                   </li>
-                  <li class="breadcrumb-item active" aria-current="page">
+                  <li className="breadcrumb-item active" aria-current="page">
                     Media
                   </li>
                 </ol>
@@ -35,12 +35,12 @@ const Media = ({ mediaListApi, mediaData }) => {
             </div>
           </div>
 
-          <div class="row media-coverage">
+          <div className="row media-coverage">
             {mediaData &&
               mediaData.data &&
               mediaData.data.map((item, index) => (
-                <div class={`col-md-${colSize[index]} coverage`} key={index}>
-                  <div class={index % 2 === 0 ? "media bg-light-orange" : "media bg-light-blue"}>
+                <div className={`col-md-${colSize[index]} coverage`} key={index}>
+                  <div className={index % 2 === 0 ? "media bg-light-orange" : "media bg-light-blue"}>
                     <h5>{item && item.title}</h5>
                     <p>{new Date(item && item.created_at).toLocaleDateString("en-us", { weekday: "long", year: "numeric", month: "short", day: "numeric" })}</p>
                     <p>{item && parseHtml(item.description)}</p>

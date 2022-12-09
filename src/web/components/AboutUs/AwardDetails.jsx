@@ -22,36 +22,35 @@ const AwardDetails = ({ awardsDetailAPI, awardsDetails }) => {
     responsive: {
       0: {
         items: 1,
-      }
+      },
     },
   };
   const imagesData = awardsDetails.data && awardsDetails.data.image;
   return (
     <>
-      <section class="cards terms" id="privacy-policy">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="jumbotron bg-light-orange img-slides mb-0">
-                <div class="row">
-                  <div class="col-md-6">
+      <section className="cards terms" id="privacy-policy">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="jumbotron bg-light-orange img-slides mb-0">
+                <div className="row">
+                  <div className="col-md-6">
                     <h2>{awardsDetails.data && awardsDetails.data.title}</h2>
                   </div>
 
-                  <div class="col-md-6 shape-wrapper">
-                    <div class="img-wrapper img-slider">
+                  <div className="col-md-6 shape-wrapper">
+                    <div className="img-wrapper img-slider">
                       <OwlCarousel className="owl-theme top-students top-students-a MT-OwlDots" {...heroToppersConfig}>
-
-                        {imagesData && JSON.parse(imagesData).map((item) =>
-                          <div className="item">
-                            <img src={IMAGE_BASE_URL + "/awards/" + item} alt="image" />
-                          </div>
-                        )}
-
+                        {imagesData &&
+                          JSON.parse(imagesData).map((item) => (
+                            <div className="item">
+                              <img src={IMAGE_BASE_URL + "/awards/" + item} alt="image" />
+                            </div>
+                          ))}
                       </OwlCarousel>
                     </div>
 
-                    <div class="shapes">
+                    <div className="shapes">
                       <img src="../../assets/imgs/shapes.svg" alt="illustration" />
                     </div>
                   </div>
@@ -60,8 +59,8 @@ const AwardDetails = ({ awardsDetailAPI, awardsDetails }) => {
             </div>
           </div>
 
-          <div class="row stories reports">
-            <div class="col-md-12">
+          <div className="row stories reports">
+            <div className="col-md-12">
               <p>{awardsDetails.data && parseHtml(awardsDetails.data.description)}</p>
             </div>
           </div>

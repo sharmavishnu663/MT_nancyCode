@@ -1,7 +1,9 @@
-export const BASE_URL = 'http://staging.mteducare.com/mt-educare-admin/public/api';
-// export const BASE_URL = "http://127.0.0.1:8000/api";
+// export const BASE_URL = 'http://staging.mteducare.com/mt-educare-admin/public/api';
+export const BASE_URL = "http://127.0.0.1:8000/api";
 
-export const IMAGE_BASE_URL = "http://staging.mteducare.com/mt-educare-admin/public/storage/";
+
+export const IMAGE_BASE_URL = "http://127.0.0.1:8000/storage/";
+// export const IMAGE_BASE_URL = "http://staging.mteducare.com/mt-educare-admin/public/storage/";
 
 // Gallery List api
 export const Gallery_List = `${BASE_URL}/gallary-list`;
@@ -40,6 +42,10 @@ export const COMMITTE_LIST = `${BASE_URL}/committes-list`;
 // Key Management List api
 
 export const KEY_MANAGEMENT_LIST = `${BASE_URL}/key-management-list`;
+
+// board detail List api
+
+export const BOARD_DETAIL_LIST = `${BASE_URL}/board-detail-list`;
 
 // Awards Management List api
 
@@ -133,3 +139,9 @@ export const INVESTOR_SEARCH_API = `${BASE_URL}/invester-search`;
 
 //Report search api
 export const REPORT_SEARCH_API = `${BASE_URL}/report-search`;
+
+//we offer api
+export const WE_OFFER = `${BASE_URL}/offer-list`;
+
+// student hear  api
+export const STUDENT_HEAR = `${BASE_URL}/student-hear-list`;

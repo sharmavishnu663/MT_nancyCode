@@ -330,7 +330,7 @@ const Dashboard = ({ categoryListApi, demoVideoListApi, demoVideoDetailApi, demo
                   <div className="form-controls">
                     <Form.Item label="Category" name="category" className="form-label" rules={[{ required: true, message: "Please select your category!" }]}>
                       <select name="course" className="form-controls" id="course" value={category} onChange={(e) => setCategory(e.target.value)} required>
-                        <option disabled selected>
+                        <option disabled defaultValue>
                           Please select category
                         </option>
                         {categoryData && categoryData.data && categoryData.data.map((item) => <option value={item.id}>{item.name}</option>)}
@@ -341,7 +341,7 @@ const Dashboard = ({ categoryListApi, demoVideoListApi, demoVideoDetailApi, demo
                   <div className="form-controls">
                     <Form.Item label="Baord" name="board" className="form-label" rules={[{ required: true, message: "Please select your board!" }]}>
                       <select name="boards" className="form-controls" id="boards" value={boards} onChange={(e) => setBoards(e.target.value)} required>
-                        <option disabled selected>
+                        <option disabled defaultValue>
                           Please select board
                         </option>
                         {boardStandardsData && boardStandardsData.data && boardStandardsData.data.map((item) => <option value={item.board_name}>{item.board_name}</option>)}
@@ -352,7 +352,7 @@ const Dashboard = ({ categoryListApi, demoVideoListApi, demoVideoDetailApi, demo
                   <div className="form-controls">
                     <Form.Item label="Standards" name="standards" className="form-label" rules={[{ required: true, message: "Please select your standard!" }]}>
                       <select name="standards" id="standards" value={standards} onChange={(e) => setStandards(e.target.value)} required>
-                        <option disabled selected>
+                        <option disabled defaultValue>
                           Please select Standards
                         </option>
                         {boardStandardsData && boardStandardsData.data && boardStandardsData.data.map((item) => <option value={item.id}>{item.name}</option>)}
@@ -363,7 +363,7 @@ const Dashboard = ({ categoryListApi, demoVideoListApi, demoVideoDetailApi, demo
                   <div className="form-controls">
                     <Form.Item label="City" name="city" className="form-label" rules={[{ required: true, message: "Please select your city!" }]}>
                       <select name="standards" id="standards" value={city} onChange={(e) => handleCityChange(e)} className="form-controls" required>
-                        <option disabled selected>
+                        <option disabled defaultValue>
                           Please select city
                         </option>
                         {cityData && cityData.data && cityData.data.map((item) => <option value={item.id}>{item.name}</option>)}
@@ -374,7 +374,7 @@ const Dashboard = ({ categoryListApi, demoVideoListApi, demoVideoDetailApi, demo
                   <div className="form-controls">
                     <Form.Item label="Area" name="area" className="form-label" rules={[{ required: true, message: "Please select your area!" }]}>
                       <select name="area" id="area" className="form-controls" value={area} onChange={(e) => setArea(e.target.value)} required>
-                        <option disabled selected>
+                        <option disabled defaultValue>
                           Please select city
                         </option>
                         {areaData && areaData.data && areaData.data.map((item) => <option value={item.id}>{item.name}</option>)}

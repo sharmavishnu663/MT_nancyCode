@@ -105,6 +105,7 @@ function App() {
             <Route path={WebRoutes.DISCLAIMER} element={<Disclaimer />} />
 
             <Route path={WebRoutes.CAREER} element={<Career />} />
+
             <Route path={`${WebRoutes.CAREER_DETAILS}:id`} element={<CareerDetails />} />
           </Route>
         </Routes>

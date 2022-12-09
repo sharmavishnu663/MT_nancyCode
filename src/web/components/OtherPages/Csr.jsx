@@ -26,18 +26,18 @@ const Csr = ({ CSRAPI, CSRData }) => {
   return (
     <>
       {/* Header  */}
-      <section class="cards terms" id="privacy-policy">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
+      <section className="cards terms" id="privacy-policy">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
               <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item">
+                <ol className="breadcrumb">
+                  <li className="breadcrumb-item">
                     <Link to="/">
                       <img src="../assets/imgs/icon-back.svg" alt="icon" /> Home
                     </Link>
                   </li>
-                  <li class="breadcrumb-item active" aria-current="page">
+                  <li className="breadcrumb-item active" aria-current="page">
                     CSR
                   </li>
                 </ol>
@@ -51,22 +51,22 @@ const Csr = ({ CSRAPI, CSRData }) => {
       {/* Header ends here */}
 
       {/* CSR Card starts here */}
-      <section class="about-us csr">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="csr-wrapper">
+      <section className="about-us csr">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="csr-wrapper">
                 <OwlCarousel className="owl-theme MT-OwlDots" {...toppersConfig}>
                   {CSRData &&
                     CSRData.data &&
                     CSRData.data.map((item) => (
                       <div className="item">
-                        <div class="timeline-card csr-card">
-                          <div class="content">
-                            <div class="row">
-                              <div class="col-md-12">
+                        <div className="timeline-card csr-card">
+                          <div className="content">
+                            <div className="row">
+                              <div className="col-md-12">
                                 <img src={IMAGE_BASE_URL + "/" + item.image} alt="illustration" />
-                                <h2 class="mb-4"> {parseHtml(item.title)} </h2>
+                                <h2 className="mb-4"> {parseHtml(item.title)} </h2>
                                 {parseHtml(item.description)}
                               </div>
                             </div>

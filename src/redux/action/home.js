@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getCommonApiHeader } from "../../Utils/utils";
-import { TOPPER_LIST, ACHIVEMENTS, CATEGORY_BOARD_STANDARDS, CITY_LIST, AREA_LIST } from "../constants";
+import { TOPPER_LIST, ACHIVEMENTS, CATEGORY_BOARD_STANDARDS, CITY_LIST, AREA_LIST, WE_OFFER, STUDENT_HEAR } from "../constants";
 
 export const topperListAPI = (data) => {
     return (dispatch, getState) => {
@@ -72,7 +72,6 @@ export const cityListAPI = (data) => {
 }
 
 export const AreaListAPI = (data) => {
-    console.log('vishnu' + data);
     return (dispatch, getState) => {
         dispatch(getHomeRequest());
         axios
@@ -83,6 +82,42 @@ export const AreaListAPI = (data) => {
             })
             .then((response) => {
                 dispatch(getAreaDataRespond(response?.data));
+            }).catch(err => {
+                dispatch(handleError(err));
+            });
+    };
+}
+
+
+export const studentHearApi = (data) => {
+    return (dispatch, getState) => {
+        dispatch(getHomeRequest());
+        axios
+            .get(STUDENT_HEAR, {
+                headers: {
+                    ...getCommonApiHeader(),
+                },
+            })
+            .then((response) => {
+                dispatch(getStudentHearRespond(response?.data));
+            }).catch(err => {
+                dispatch(handleError(err));
+            });
+    };
+}
+
+
+export const weOfferApi = (data) => {
+    return (dispatch, getState) => {
+        dispatch(getHomeRequest());
+        axios
+            .get(WE_OFFER, {
+                headers: {
+                    ...getCommonApiHeader(),
+                },
+            })
+            .then((response) => {
+                dispatch(getWeOfferRespond(response?.data));
             }).catch(err => {
                 dispatch(handleError(err));
             });
@@ -131,6 +166,20 @@ export const getAreaDataRespond = data => {
         data: data,
     };
 };
+
+export const getStudentHearRespond = data => {
+    return {
+        type: "STUDENT_HEAR_DATA_RESPONSE",
+        data: data,
+    };
+}
+
+export const getWeOfferRespond = data => {
+    return {
+        type: "WE_OFFER_DATA_RESPONSE",
+        data: data,
+    };
+}
 
 export const handleError = error => {
     return {

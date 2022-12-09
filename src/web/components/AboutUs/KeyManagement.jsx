@@ -37,10 +37,10 @@ const KeyManagement = ({ keyManagementAPI, keyManagementData }) => {
           <div className="row">
             {keyManagementData.data &&
               keyManagementData.data.map((item) => (
-                <div class="col-md-4">
-                  <div class="card-address">
+                <div className="col-md-4">
+                  <div className="card-address">
                     <h5>{item.title}</h5>
-                    <div class="detail">
+                    <div className="detail">
                       <p>
                         {item.address},<br />
                         {item.address1},<br />

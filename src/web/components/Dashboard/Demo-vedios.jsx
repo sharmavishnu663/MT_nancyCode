@@ -68,7 +68,7 @@ const DemoVideos = ({ demoVideoListApi, demoListData, demoVideoDetailApi, videoD
                     {demoListData &&
                       demoListData.data &&
                       demoListData.data.map((item, index) => (
-                        <li className="nav-item" role="presentation">
+                        <li className="nav-item" role="presentation" key={index}>
                           <button
                             className={`${(item && item.id == activeTab) || index === 0 ? "nav-link active" : `nav-link`}`}
                             id={`Edu-tab-${activeTab}`}
@@ -92,14 +92,14 @@ const DemoVideos = ({ demoVideoListApi, demoListData, demoVideoDetailApi, videoD
                 </div>
                 <div className="tab-content " id="MT_TabContent">
                   {activeTab ? (
-                    <div className="tab-pane fade show active" id={`MT-tabPane-${activeTab}`} role="tabpanel" aria-labelledby={`Edu-tab-${activeTab}`} tabindex="0">
+                    <div className="tab-pane fade show active" id={`MT-tabPane-${activeTab}`} role="tabpanel" aria-labelledby={`Edu-tab-${activeTab}`} tabIndex="0">
                       {/* <!-- explore-lakshya --> */}
 
                       <OwlCarousel className="owl-theme MT-OwlDots" {...demoVideoConfig}>
                         {videoDetailData &&
                           videoDetailData.data &&
                           videoDetailData.data.map((item, index) => (
-                            <div className="item">
+                            <div className="item" key={index}>
                               <div className="articles">
                                 <div className="article">
                                   <div className="thumbnail">
@@ -114,9 +114,9 @@ const DemoVideos = ({ demoVideoListApi, demoListData, demoVideoDetailApi, videoD
                                       <p>{item && parseHtml(item.description.substring(0, 300))}</p>
                                     </div>
                                     <div className="tag-link flex-none">
-                                      <div className="tag blue bg-light-blue">{item && item.title}</div>
+                                      <div className="tag blue bg-light-blue">{item && item.standard_tag}</div>
                                       {/* <div className="tag bg-light-orange">{item && item.title}</div> */}
-                                      <div className="tag bg-light-orange">{item && item.tag_name}</div>
+                                      <div className="tag bg-light-orange">{item && item.subject_tag}</div>
                                     </div>
                                   </div>
                                 </div>
@@ -126,14 +126,14 @@ const DemoVideos = ({ demoVideoListApi, demoListData, demoVideoDetailApi, videoD
                       </OwlCarousel>
                     </div>
                   ) : (
-                    <div className="tab-pane fade show active" id={`MT-tabPane-${activeTab}`} role="tabpanel" aria-labelledby={`Edu-tab-${activeTab}`} tabindex="0">
+                    <div className="tab-pane fade show active" id={`MT-tabPane-${activeTab}`} role="tabpanel" aria-labelledby={`Edu-tab-${activeTab}`} tabIndex="0">
                       {/* <!-- explore-lakshya --> */}
 
                       <OwlCarousel className="owl-theme MT-OwlDots" {...demoVideoConfig}>
                         {defaultVideoDetailData &&
                           defaultVideoDetailData.data &&
                           defaultVideoDetailData.data.map((item, index) => (
-                            <div className="item">
+                            <div className="item" key={index}>
                               <div className="articles">
                                 <div className="article">
                                   <div className="thumbnail">

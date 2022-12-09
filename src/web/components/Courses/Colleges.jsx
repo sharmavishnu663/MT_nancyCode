@@ -20,7 +20,6 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
   const [search, setSearch] = useState();
   const [indexData, setIndexData] = useState(0);
 
-
   useEffect(() => {
     demoVideoListApi();
     topperListAPI();
@@ -37,16 +36,34 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
     categoryDetailsApi(categoryActive);
   }, [categoryActive]);
 
-
   const handleSearch = (e) => {
-
     if (e) {
-      const data = { search: e }
+      const data = { search: e };
       courseSearchDetailAPI(data);
     } else {
-      setCourseSearch('');
+      setCourseSearch("");
     }
-  }
+  };
+
+  const CoursesWeOfferConfig = {
+    loop: false,
+    autoplay: false,
+    autoplayTimeout: 1000,
+    margin: 0,
+    dots: true,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      600: {
+        items: 2,
+      },
+      1000: {
+        items: 3,
+      },
+    },
+  };
+
   return (
     <>
       <section className="cards" id="courses">
@@ -63,7 +80,7 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
                   {categoryData &&
                     categoryData.data &&
                     categoryData.data.map((item, index) => (
-                      <li className="nav-item" role="presentation">
+                      <li className="nav-item" role="presentation" key={index}>
                         <button
                           className={`${item && item.id == categoryActive ? "nav-link active" : "nav-link"}`}
                           id={`Edu-tab-${categoryActive}`}
@@ -85,12 +102,12 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
                     ))}
                 </ul>
                 <form action="">
-                  <input type="text" class="search" placeholder="Search Course" value={search} onChange={(e) => handleSearch(e.target.value)} />
+                  <input type="text" className="search" placeholder="Search Course" value={search} onChange={(e) => handleSearch(e.target.value)} />
                 </form>
               </div>
 
               <div className="tab-content MT_TabContent" id="MT_TabContent">
-                <div className="tab-pane fade show active" id="MT-tabPane-1" role="tabpanel" aria-labelledby="Edu-tab-1" tabindex="0">
+                <div className="tab-pane fade show active" id="MT-tabPane-1" role="tabpanel" aria-labelledby="Edu-tab-1" tabIndex="0">
                   {indexData == 0 || indexData === "undefined" ? (
                     <div className="explore-lakshya bg-light-orange">
                       <div>
@@ -103,42 +120,39 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
                     </div>
                   ) : null}
                   {indexData && indexData == 2 ? (
-                    <div class="explore-lakshya bg-light-orange">
+                    <div className="explore-lakshya bg-light-orange">
                       <div>
                         <img src="../assets/imgs/mahesh-tutorials-school.png" alt="lakshya-logo" />
                         <p>For over three decades, Mahesh tutorials has been mentoring students for success, in academics and in life. </p>
                       </div>
-                      <a href="https://www.lakshyainstitute.com/" class="btn btn-lg" target="_blank">
+                      <a href="https://www.lakshyainstitute.com/" className="btn btn-lg" target="_blank">
                         Explore School
                       </a>
                     </div>
                   ) : null}
                   {indexData && indexData == 1 ? (
-                    <div class="explore-lakshya bg-light-orange">
+                    <div className="explore-lakshya bg-light-orange">
                       <div>
                         <img src="../assets/imgs/mahesh-tutorials.png" alt="lakshya-logo" />
                       </div>
                       <div>
-                        <a href="https://commerce.maheshtutorials.com/" class="btn btn-lg mr-3" style={{ marginRight: "22px" }} target="_blank">
+                        <a href="https://commerce.maheshtutorials.com/" className="btn btn-lg mr-3" style={{ marginRight: "22px" }} target="_blank">
                           Explore Commerce
                         </a>
-                        <a href="http://science.maheshtutorials.com/" class="btn btn-lg" target="_blank">
+                        <a href="http://science.maheshtutorials.com/" className="btn btn-lg" target="_blank">
                           Explore Science
                         </a>
                       </div>
                     </div>
                   ) : null}
                   {/* <!-- explore-lakshya --> */}
-                  <OwlCarousel>
-                    {/* {console.log(courseSearchDetailsData && 'vishnu' + courseSearchDetailsData.data.length)} */}
-
+                  <OwlCarousel className="owl-theme MT-OwlDots" {...CoursesWeOfferConfig}>
                     {courseSearch && courseSearchDetailsData.data ? (
-
                       <>
                         {courseSearchDetailsData &&
                           courseSearchDetailsData.data &&
-                          courseSearchDetailsData.data.map((item) => (
-                            <div className="item">
+                          courseSearchDetailsData.data.map((item, index) => (
+                            <div className="item" key={index}>
                               <div className="articles our-courses">
                                 <div className="article">
                                   <div className="thumbnail">
@@ -159,36 +173,33 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
                             </div>
                           ))}
                       </>
-                    )
-                      :
-                      (
-                        <>
-                          {categoryDetailsData &&
-                            categoryDetailsData.data &&
-                            categoryDetailsData.data.map((item) => (
-                              <div className="item">
-                                <div className="articles our-courses">
-                                  <div className="article">
-                                    <div className="thumbnail">
-                                      <img src={item && IMAGE_BASE_URL + "/" + item.image} alt="thumbnail" />
-                                    </div>
+                    ) : (
+                      <>
+                        {categoryDetailsData &&
+                          categoryDetailsData.data &&
+                          categoryDetailsData.data.map((item, index) => (
+                            <div className="item" key={index}>
+                              <div className="articles our-courses">
+                                <div className="article">
+                                  <div className="thumbnail">
+                                    <img src={item && IMAGE_BASE_URL + "/" + item.image} alt="thumbnail" />
+                                  </div>
 
-                                    <div className="detail">
-                                      <h5>{item && item.title}</h5>
-                                      <div className="description">
-                                        <p>{item && parseHtml(item.description.substring(0, 300))} </p>
-                                      </div>
-                                      <div className="tag-link">
-                                        <div className="tag">{item.tag_name}</div>
-                                      </div>
+                                  <div className="detail">
+                                    <h5>{item && item.title}</h5>
+                                    <div className="description">
+                                      <p>{item && parseHtml(item.description.substring(0, 300))} </p>
+                                    </div>
+                                    <div className="tag-link">
+                                      <div className="tag">{item.tag_name}</div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                            ))}
-                        </>
-                      )
-                    }
+                            </div>
+                          ))}
+                      </>
+                    )}
                   </OwlCarousel>
                 </div>
               </div>
@@ -196,16 +207,16 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
           </div>
         </div>
       </section>
-      <section class="cards provisions">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <h3 class="headline text-center mb-3">
-                Our <span class="text-blue">provisions</span>
+      <section className="cards provisions">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <h3 className="headline text-center mb-3">
+                Our <span className="text-blue">provisions</span>
               </h3>
-              <p class="sub-headline text-center">Our top-class facilities available for students at all times to ensure easy accessibility and outstanding results.</p>
+              <p className="sub-headline text-center">Our top-class facilities available for students at all times to ensure easy accessibility and outstanding results.</p>
 
-              <div class="provision-list">
+              <div className="provision-list">
                 <ul>
                   <li>
                     <img src="../assets/imgs/icon-hostel.svg" alt="icon" />
@@ -229,7 +240,7 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
                   </li>
                 </ul>
               </div>
-              <div class="shadow"></div>
+              <div className="shadow"></div>
             </div>
           </div>
         </div>

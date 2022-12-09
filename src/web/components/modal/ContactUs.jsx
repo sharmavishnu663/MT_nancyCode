@@ -5,7 +5,7 @@ import { categoryBaodStandardsListAPI, cityListAPI, AreaListAPI } from "../../..
 import { categoryListApi } from "../../../redux/action/category";
 import { userQueryApi } from "../../../redux/action/enquiry";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"
+import "react-toastify/dist/ReactToastify.css";
 
 import { Modal } from "react-bootstrap";
 const ContactUs = ({ openContact, handleCancel, categoryListApi, userQueryApi, categoryBaodStandardsListAPI, cityListAPI, AreaListAPI, categoryData, boardStandardsData }) => {
@@ -26,11 +26,11 @@ const ContactUs = ({ openContact, handleCancel, categoryListApi, userQueryApi, c
   const handleConnectSubmint = () => {
     const mobileData = queryMobile;
     if (isNaN(mobileData)) {
-      toast.error('Mobile number should be numeric value');
+      toast.error("Mobile number should be numeric value");
       return false;
     }
     if (!isNaN(queryname)) {
-      toast.error('Name  should be numeric value');
+      toast.error("Name  should be numeric value");
       return false;
     } else {
       const data = {
@@ -118,14 +118,14 @@ const ContactUs = ({ openContact, handleCancel, categoryListApi, userQueryApi, c
 
               <div className="form-controls">
                 <Form.Item label="Phone Number" name="mobile" className="form-label text-blue" rules={[{ required: true, message: "Please select your mobile!" }]}>
-                  <input type="text" className="allow_numeric" id="phone" pattern="^[0-9]*$" minlength="10" maxlength="10" placeholder="Mobile" value={queryMobile} onChange={(e) => setQueryMobile(e.target.value)} required />
+                  <input type="text" className="allow_numeric" id="phone" pattern="^[0-9]*$" minLength="10" maxlength="10" placeholder="Mobile" value={queryMobile} onChange={(e) => setQueryMobile(e.target.value)} required />
                 </Form.Item>
               </div>
 
               <div className="form-controls">
                 <Form.Item label="Category" name="category" className="form-label" rules={[{ required: true, message: "category!" }]}>
                   <select name="course" className="form-controls w-100" id="course" value={querycategory} onChange={(e) => setQueryCategory(e.target.value)} required>
-                    <option disabled selected>
+                    <option defaultValue selected>
                       Select Category
                     </option>
                     {categoryData && categoryData.data && categoryData.data.map((item) => <option value={item.id}>{item.name}</option>)}
@@ -136,7 +136,7 @@ const ContactUs = ({ openContact, handleCancel, categoryListApi, userQueryApi, c
               <div className="form-controls">
                 <Form.Item label="Baord" name="board" className="form-label" rules={[{ required: true, message: "board!" }]}>
                   <select name="boards" className="form-controls w-100" id="boards" value={queryboards} onChange={(e) => setQueryBoards(e.target.value)} required>
-                    <option disabled selected>
+                    <option defaultValue selected>
                       Select Board
                     </option>
                     {boardStandardsData && boardStandardsData.data && boardStandardsData.data.map((item) => <option value={item.board_name}>{item.board_name}</option>)}
@@ -147,7 +147,7 @@ const ContactUs = ({ openContact, handleCancel, categoryListApi, userQueryApi, c
               <div className="form-controls">
                 <Form.Item label="Standards" name="standards" className="form-label" rules={[{ required: true, message: "standard!" }]}>
                   <select name="standards" className="form-controls w-100" id="standards" value={queryStandards} onChange={(e) => setQueryStandards(e.target.value)} required>
-                    <option disabled selected>
+                    <option defaultValue selected>
                       Select Standards
                     </option>
                     {boardStandardsData && boardStandardsData.data && boardStandardsData.data.map((item) => <option value={item.name}>{item.name}</option>)}

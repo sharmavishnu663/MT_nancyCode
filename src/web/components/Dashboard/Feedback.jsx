@@ -1,7 +1,9 @@
 // import FeedbackCard from "../Cards/FeedbackCard";
 import OwlCarousel from "react-owl-carousel";
+import { IMAGE_BASE_URL } from "../../../redux/constants";
+import { parseHtml } from "../../../Utils/utils";
 
-function Feedback() {
+const Feedback = ({ studentHearData }) => {
   const OfferingsConfig = {
     loop: true,
     autoplay: false,
@@ -30,127 +32,33 @@ function Feedback() {
                 Hear it from our <span className="text-blue">students & parents</span>
               </h3>
               <p className="sub-headline text-center">Our alumni and their parents appreciate what we at MT Educare have to offer. Want to join the league? Signup now.</p>
+              <br />
               <OwlCarousel className="owl-theme MT-OwlDots" {...OfferingsConfig}>
-                <div className="item">
-                  <div className="articles">
-                    <div className="article">
-                      <div className="detail">
-                        <div className="description">
-                          <p>"This Course is amazing with the current version, I can’t imagine it, how cool will it be when you finish the all. This Course is amazing with the current version, I can’t imagine it.</p>
-                        </div>
+                {studentHearData && studentHearData.data && studentHearData.data.map((item) =>
 
-                        <div className="profile">
-                          <img src="../assets/imgs/img-profile-placeholder.png" alt="placeholder" />
+                  <div className="item">
+                    <div className="articles">
+                      <div className="article">
+                        <div className="detail">
+                          <div className="description">
+                            <p>{item && parseHtml(item.description)}</p>
+                          </div>
 
-                          <div className="user">
-                            <p className="name">Jeremy Bieber</p>
-                            <p className="role">Architect</p>
+                          <div className="profile">
+                            <img src={item && IMAGE_BASE_URL + '' + item.image} alt="placeholder" />
+
+                            <div className="user">
+                              <p className="name">{item && item.name}</p>
+                              <p className="role">{item && item.designation}</p>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="item">
-                  <div className="articles">
-                    <div className="article">
-                      <div className="detail">
-                        <div className="description">
-                          <p>"This Course is amazing with the current version, I can’t imagine it, how cool will it be when you finish the all. This Course is amazing with the current version, I can’t imagine it.</p>
-                        </div>
+                )}
 
-                        <div className="profile">
-                          <img src="../assets/imgs/img-profile-placeholder.png" alt="placeholder" />
 
-                          <div className="user">
-                            <p className="name">Jeremy Bieber</p>
-                            <p className="role">Architect</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="item">
-                  <div className="articles">
-                    <div className="article">
-                      <div className="detail">
-                        <div className="description">
-                          <p>"This Course is amazing with the current version, I can’t imagine it, how cool will it be when you finish the all. This Course is amazing with the current version, I can’t imagine it.</p>
-                        </div>
-
-                        <div className="profile">
-                          <img src="../assets/imgs/img-profile-placeholder.png" alt="placeholder" />
-
-                          <div className="user">
-                            <p className="name">Jeremy Bieber</p>
-                            <p className="role">Architect</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="item">
-                  <div className="articles">
-                    <div className="article">
-                      <div className="detail">
-                        <div className="description">
-                          <p>"This Course is amazing with the current version, I can’t imagine it, how cool will it be when you finish the all. This Course is amazing with the current version, I can’t imagine it.</p>
-                        </div>
-
-                        <div className="profile">
-                          <img src="../assets/imgs/img-profile-placeholder.png" alt="placeholder" />
-
-                          <div className="user">
-                            <p className="name">Jeremy Bieber</p>
-                            <p className="role">Architect</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="item">
-                  <div className="articles">
-                    <div className="article">
-                      <div className="detail">
-                        <div className="description">
-                          <p>"This Course is amazing with the current version, I can’t imagine it, how cool will it be when you finish the all. This Course is amazing with the current version, I can’t imagine it.</p>
-                        </div>
-
-                        <div className="profile">
-                          <img src="../assets/imgs/img-profile-placeholder.png" alt="placeholder" />
-
-                          <div className="user">
-                            <p className="name">Jeremy Bieber</p>
-                            <p className="role">Architect</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="item">
-                  <div className="articles">
-                    <div className="article">
-                      <div className="detail">
-                        <div className="description">
-                          <p>"This Course is amazing with the current version, I can’t imagine it, how cool will it be when you finish the all. This Course is amazing with the current version, I can’t imagine it.</p>
-                        </div>
-
-                        <div className="profile">
-                          <img src="../assets/imgs/img-profile-placeholder.png" alt="placeholder" />
-
-                          <div className="user">
-                            <p className="name">Jeremy Bieber</p>
-                            <p className="role">Architect</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </OwlCarousel>
             </div>
           </div>
