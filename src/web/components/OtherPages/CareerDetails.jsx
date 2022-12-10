@@ -4,10 +4,13 @@ import { connect } from "react-redux";
 import { jobDataAPI } from "../../../redux/action/jobs";
 import { WebRoutes } from "../../../routes";
 import { parseHtml } from "../../../Utils/utils";
+import ApplyNow from "../modal/ApplyNow";
 
 var jobId;
 
 const CareerDetails = ({ jobDataAPI, jobDetails }) => {
+  const [openModal, setOpenModal] = useState(false);
+
   const { id } = useParams();
   jobId = id;
   useEffect(() => {
@@ -94,7 +97,7 @@ const CareerDetails = ({ jobDataAPI, jobDetails }) => {
 
               <a href="mailto: hrd@mteducare.com">Kindly Mail your resume/Cv at hrd@mteducare.com</a>
 
-              <a href="#" className="btn-apply">
+              <a href="javascript:void();" className="btn-apply" onClick={() => setOpenModal(true)}>
                 Apply
               </a>
             </div>
@@ -106,6 +109,11 @@ const CareerDetails = ({ jobDataAPI, jobDetails }) => {
           </div>
         </div>
       </section>
+
+      {openModal ?
+        <ApplyNow openModal={openModal} handleCancel={(e) => setOpenModal(false)} />
+        : null
+      }
     </>
   );
 };

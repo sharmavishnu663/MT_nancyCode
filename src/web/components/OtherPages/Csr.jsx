@@ -4,25 +4,25 @@ import { connect } from "react-redux";
 import { CSRAPI } from "../../../redux/action/gallery";
 import { WebRoutes } from "../../../routes";
 import { parseHtml } from "../../../Utils/utils";
-import OwlCarousel from "react-owl-carousel";
 import { IMAGE_BASE_URL } from "../../../redux/constants";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+
 
 const Csr = ({ CSRAPI, CSRData }) => {
   useEffect(() => {
     CSRAPI();
   }, []);
   const toppersConfig = {
-    loop: true,
-    autoplay: true,
-    margin: 40,
     dots: true,
-    autoplayTimeout: 4000,
-    responsive: {
-      0: {
-        items: 1,
-      },
-    },
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1
   };
+
+  // console.log('vishnu Csr' + CSRData);
   return (
     <>
       {/* Header  */}
@@ -56,7 +56,7 @@ const Csr = ({ CSRAPI, CSRData }) => {
           <div className="row">
             <div className="col-md-12">
               <div className="csr-wrapper">
-                <OwlCarousel className="owl-theme MT-OwlDots" {...toppersConfig}>
+                <Slider {...toppersConfig}>
                   {CSRData &&
                     CSRData.data &&
                     CSRData.data.map((item) => (
@@ -74,7 +74,7 @@ const Csr = ({ CSRAPI, CSRData }) => {
                         </div>
                       </div>
                     ))}
-                </OwlCarousel>
+                </Slider>
               </div>
             </div>
           </div>

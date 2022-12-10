@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Connect from "./Connect";
 // import Courses from "./Courses";
@@ -13,7 +13,6 @@ import OwlCarousel from "react-owl-carousel";
 import Slider from "react-slick";
 import { Form, Input, Select } from "antd";
 import { connect } from "react-redux";
-import { useEffect } from "react";
 import { topperListAPI, achivementListAPI, categoryBaodStandardsListAPI, cityListAPI, AreaListAPI, studentHearApi, weOfferApi } from "../../../redux/action/home";
 import { categoryListApi, categoryDetailsApi, defaultCategoryListApi } from "../../../redux/action/category";
 import { WebRoutes } from "../../../routes";

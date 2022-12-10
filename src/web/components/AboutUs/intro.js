@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { parseHtml } from "../../../Utils/utils";
 import OwlCarousel from "react-owl-carousel";
@@ -8,17 +8,16 @@ import { introDataAPI } from "../../../redux/action/aboutUs";
 
 const keyValue = "";
 const Intro = ({ introData, activeYear, introDataAPI, introDataDetailData }) => {
-  const [aboutUs, setAboutUs] = useState();
   useEffect(() => {
     if (activeYear) {
       introDataAPI(activeYear)
     }
   }, [activeYear])
-  // const aboutUs =
-  //   introData.data &&
-  //   introData.data.filter((item) => {
-  //     return introData.data[0];
-  //   });
+  const aboutUs =
+    introData.data &&
+    introData.data.filter((item) => {
+      return introData.data[0];
+    });
 
   const toppersConfig = {
     loop: true,

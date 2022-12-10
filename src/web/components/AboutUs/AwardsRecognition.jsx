@@ -5,10 +5,10 @@ import { awardsAPI } from "../../../redux/action/aboutUs";
 import { WebRoutes } from "../../../routes";
 import { parseHtml } from "../../../Utils/utils";
 import Awards from "../Cards/Awards";
-import OwlCarousel from "react-owl-carousel";
 import { IMAGE_BASE_URL } from "../../../redux/constants";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const AwardsRecognition = ({ awardsAPI, awardsData }) => {
   const [imageData, setImageData] = useState();
@@ -19,22 +19,11 @@ const AwardsRecognition = ({ awardsAPI, awardsData }) => {
     localStorage.setItem("awardId", id);
   };
   const toppersConfig = {
-    loop: true,
-    autoplay: false,
-    margin: 40,
     dots: true,
-    autoplayTimeout: 4000,
-    responsive: {
-      0: {
-        items: 1,
-      },
-      600: {
-        items: 2,
-      },
-      1000: {
-        items: 2,
-      },
-    },
+    infinite: true,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 2
   };
   const imagesData = awardsData.data && awardsData.data[0] && awardsData.data[0].image;
   console.log(imagesData);
@@ -71,7 +60,7 @@ const AwardsRecognition = ({ awardsAPI, awardsData }) => {
           <div className="row">
             <div className="col-md-12 box-radius pt-0 awards">
               <div className="articles our-offerings mt-0">
-                <OwlCarousel className="owl-theme MT-OwlDots toppersCarousel" {...toppersConfig}>
+                <Slider className="owl-theme MT-OwlDots toppersCarousel" {...toppersConfig}>
                   {awardsData.data &&
                     awardsData.data.map((item) => (
                       <div className="item">
@@ -97,7 +86,7 @@ const AwardsRecognition = ({ awardsAPI, awardsData }) => {
                         </div>
                       </div>
                     ))}
-                </OwlCarousel>
+                </Slider>
               </div>
             </div>
           </div>

@@ -5,7 +5,9 @@ import { awardsDetailAPI } from "../../../redux/action/aboutUs";
 import { IMAGE_BASE_URL } from "../../../redux/constants";
 import { WebRoutes } from "../../../routes";
 import { parseHtml } from "../../../Utils/utils";
-import OwlCarousel from "react-owl-carousel";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const AwardDetails = ({ awardsDetailAPI, awardsDetails }) => {
   const awardId = localStorage.getItem("awardId");
@@ -13,17 +15,11 @@ const AwardDetails = ({ awardsDetailAPI, awardsDetails }) => {
     awardsDetailAPI(awardId);
   }, []);
   const heroToppersConfig = {
-    loop: true,
-    autoplay: true,
-    autoplayTimeout: 2000,
-    // autoplaySpeed: 2000,
-    margin: 0,
     dots: true,
-    responsive: {
-      0: {
-        items: 1,
-      },
-    },
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1
   };
   const imagesData = awardsDetails.data && awardsDetails.data.image;
   return (
@@ -40,14 +36,14 @@ const AwardDetails = ({ awardsDetailAPI, awardsDetails }) => {
 
                   <div className="col-md-6 shape-wrapper">
                     <div className="img-wrapper img-slider">
-                      <OwlCarousel className="owl-theme top-students top-students-a MT-OwlDots" {...heroToppersConfig}>
+                      <Slider className="owl-theme top-students top-students-a MT-OwlDots" {...heroToppersConfig}>
                         {imagesData &&
                           JSON.parse(imagesData).map((item) => (
                             <div className="item">
                               <img src={IMAGE_BASE_URL + "/awards/" + item} alt="image" />
                             </div>
                           ))}
-                      </OwlCarousel>
+                      </Slider>
                     </div>
 
                     <div className="shapes">
