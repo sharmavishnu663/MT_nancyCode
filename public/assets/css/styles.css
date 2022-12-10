@@ -763,7 +763,7 @@ section h3,
   gap: 20px;
 }
 
-.articles .article .detail *:last-child {
+.articles .article .detail .tag-link {
   margin-top: auto;
 }
 
@@ -808,11 +808,10 @@ section h3,
   font-weight: 700;
   font-size: 14px;
   line-height: 20px;
-  padding: 6px 16px;
+  padding: 5px 16px;
   color: var(--mt-orange);
   border: 1px solid var(--mt-orange);
   border-radius: 200px;
-  height: 32px;
   display: inline-block;
   margin-right: 5px;
   background-color: var(--creame);

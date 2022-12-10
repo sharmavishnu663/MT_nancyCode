@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -11,6 +11,10 @@ const Media = ({ mediaListApi, mediaData }) => {
   }, []);
 
   const colSize = [4, 8, 4, 4, 4, 8, 4];
+  const newColSize = [];
+  for (let x = 1; x <= Math.ceil(mediaData.data?.length / colSize?.length); x++) {
+    newColSize.push(...colSize);
+  }
 
   return (
     <>
@@ -39,7 +43,7 @@ const Media = ({ mediaListApi, mediaData }) => {
             {mediaData &&
               mediaData.data &&
               mediaData.data.map((item, index) => (
-                <div className={`col-md-${colSize[index]} coverage`} key={index}>
+                <div className={`coverage col-md-${newColSize[index]}`} key={index}>
                   <div className={index % 2 === 0 ? "media bg-light-orange" : "media bg-light-blue"}>
                     <h5>{item && item.title}</h5>
                     <p>{new Date(item && item.created_at).toLocaleDateString("en-us", { weekday: "long", year: "numeric", month: "short", day: "numeric" })}</p>
