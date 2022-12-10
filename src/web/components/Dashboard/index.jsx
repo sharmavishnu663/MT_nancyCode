@@ -232,7 +232,7 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
                   <div className="form-controls">
                     <Form.Item label="Category" name="category" className="form-label" rules={[{ required: true, message: "Please select your category!" }]}>
                       <select name="course" className="form-controls w-100" id="course" value={category} onChange={(e) => setCategory(e.target.value)} required>
-                        <option disabled defaultValue readonly>
+                        <option disabled defaultValue readOnly>
                           Select Category
                         </option>
                         {categoryData &&
@@ -249,7 +249,7 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
                   <div className="form-controls">
                     <Form.Item label="Baord" name="board" className="form-label" rules={[{ required: true, message: "Please select your board!" }]}>
                       <select name="boards" className="form-controls w-100" id="boards" value={boards} onChange={(e) => setBoards(e.target.value)} required>
-                        <option disabled defaultValue readonly>
+                        <option disabled defaultValue readOnly>
                           Select Board
                         </option>
                         {boardStandardsData &&
@@ -266,7 +266,7 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
                   <div className="form-controls">
                     <Form.Item label="Standards" name="standards" className="form-label" rules={[{ required: true, message: "Please select your standard!" }]}>
                       <select name="standards" id="standards" className="form-controls w-100" value={standards} onChange={(e) => setStandards(e.target.value)} required>
-                        <option disabled defaultValue readonly>
+                        <option disabled defaultValue readOnly>
                           Select Standard
                         </option>
                         {boardStandardsData &&
@@ -283,7 +283,7 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
                   <div className="form-controls">
                     <Form.Item label="City" name="city" className="form-label" rules={[{ required: true, message: "Please select your city!" }]}>
                       <select name="standards" id="standards" value={city} onChange={(e) => handleCityChange(e)} className="form-controls w-100" required>
-                        <option disabled defaultValue readonly>
+                        <option disabled defaultValue readOnly>
                           Select City
                         </option>
                         {cityData &&
@@ -300,7 +300,7 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
                   <div className="form-controls">
                     <Form.Item label="Area" name="area" className="form-label" rules={[{ required: true, message: "Please select your area!" }]}>
                       <select name="area" id="area" className="form-controls w-100" value={area} onChange={(e) => setArea(e.target.value)} required>
-                        <option disabled defaultValue readonly>
+                        <option disabled defaultValue readOnly>
                           Select Area
                         </option>
                         {areaData &&
@@ -432,7 +432,7 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
 
               <div className="tab-content MT_TabContent" id="MT_TabContent">
                 {categoryActive ? (
-                  <div className="tab-pane fade show active" id={`MT-tabPane-${categoryActive}`} role="tabpanel" aria-labelledby={`Edu-tab-${categoryActive}`} tabindex="0">
+                  <div className="tab-pane fade show active" id={`MT-tabPane-${categoryActive}`} role="tabpanel" aria-labelledby={`Edu-tab-${categoryActive}`} tabIndex="0">
                     {indexData == 0 ? (
                       <div className="explore-lakshya bg-light-orange">
                         <div>
@@ -513,7 +513,7 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
                     </OwlCarousel>
                   </div>
                 ) : (
-                  <div className="tab-pane fade show active" id="MT-tabPane-0" role="tabpanel" aria-labelledby="Edu-tab-0" tabindex="0">
+                  <div className="tab-pane fade show active" id="MT-tabPane-0" role="tabpanel" aria-labelledby="Edu-tab-0" tabIndex="0">
                     <div className="explore-lakshya bg-light-orange">
                       <div>
                         <img src="../assets/imgs/lakshya-logo.png" alt="lakshya-logo" />

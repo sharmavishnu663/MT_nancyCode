@@ -118,14 +118,14 @@ const ContactUs = ({ openContact, handleCancel, categoryListApi, userQueryApi, c
 
               <div className="form-controls">
                 <Form.Item label="Phone Number" name="mobile" className="form-label text-blue" rules={[{ required: true, message: "Please select your mobile!" }]}>
-                  <input type="text" className="allow_numeric" id="phone" pattern="^[0-9]*$" minLength="10" maxlength="10" placeholder="Mobile" value={queryMobile} onChange={(e) => setQueryMobile(e.target.value)} required />
+                  <input type="text" className="allow_numeric" id="phone" pattern="^[0-9]*$" minLength="10" maxLength="10" placeholder="Mobile" value={queryMobile} onChange={(e) => setQueryMobile(e.target.value)} required />
                 </Form.Item>
               </div>
 
               <div className="form-controls">
                 <Form.Item label="Category" name="category" className="form-label" rules={[{ required: true, message: "category!" }]}>
                   <select name="course" className="form-controls w-100" id="course" value={querycategory} onChange={(e) => setQueryCategory(e.target.value)} required>
-                    <option defaultValue selected>
+                    <option disabled defaultValue readonly>
                       Select Category
                     </option>
                     {categoryData && categoryData.data && categoryData.data.map((item) => <option value={item.id}>{item.name}</option>)}
@@ -136,7 +136,7 @@ const ContactUs = ({ openContact, handleCancel, categoryListApi, userQueryApi, c
               <div className="form-controls">
                 <Form.Item label="Baord" name="board" className="form-label" rules={[{ required: true, message: "board!" }]}>
                   <select name="boards" className="form-controls w-100" id="boards" value={queryboards} onChange={(e) => setQueryBoards(e.target.value)} required>
-                    <option defaultValue selected>
+                    <option disabled defaultValue readonly>
                       Select Board
                     </option>
                     {boardStandardsData && boardStandardsData.data && boardStandardsData.data.map((item) => <option value={item.board_name}>{item.board_name}</option>)}

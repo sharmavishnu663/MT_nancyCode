@@ -10,14 +10,13 @@ import { parseHtml } from "../../../Utils/utils";
 const DemoVideos = ({ demoVideoListApi, demoListData, demoVideoDetailApi, videoDetailData, defaultVideoDetailData, defaultDemoVideoListApi }) => {
   const [activeTab, setActiveTab] = useState(demoListData && demoListData.data && demoListData.data[0] && demoListData.data[0].id);
   const [activeTabDetail, setActiveTabDetail] = useState();
-  console.log(videoDetailData);
+  // console.log(videoDetailData);
   useEffect(() => {
     demoVideoListApi();
     defaultDemoVideoListApi();
   }, []);
   useEffect(() => {
-    console.log(demoListData && demoListData.data && demoListData.data[0] && demoListData.data[0].id);
-
+    // console.log(demoListData && demoListData.data && demoListData.data[0] && demoListData.data[0].id);
     demoVideoDetailApi(demoListData && demoListData.data && demoListData.data[0] && demoListData.data[0].id);
   }, [demoListData]);
   useEffect(() => {
@@ -47,7 +46,7 @@ const DemoVideos = ({ demoVideoListApi, demoListData, demoVideoDetailApi, videoD
     demoVideoDetailApi(activeTabDetail);
   };
 
-  console.log(defaultVideoDetailData);
+  // console.log(defaultVideoDetailData);
 
   return (
     <>
@@ -148,8 +147,8 @@ const DemoVideos = ({ demoVideoListApi, demoListData, demoVideoDetailApi, videoD
                                       <p>{item && parseHtml(item.description.substring(0, 300))}</p>
                                     </div>
                                     <div className="tag-link flex-none">
-                                      <div className="tag blue bg-light-blue">{item && item.title}</div>
-                                      <div className="tag bg-light-orange">{item && item.tag_name}</div>
+                                      <div className="tag blue bg-light-blue">{item && item.subject_tag}</div>
+                                      <div className="tag bg-light-orange">{item && item.standard_tag}</div>
                                     </div>
                                   </div>
                                 </div>
