@@ -8,6 +8,7 @@ const initState = {
     awardsDetails: [],
     centerSearchData: [],
     boardDetailData: [],
+    introDataDetailData: [],
     error: null
 };
 const AboutReducer = (state = initState, action) => {
@@ -61,6 +62,11 @@ const AboutReducer = (state = initState, action) => {
             return {
                 ...state,
                 boardDetailData: data,
+            }
+        case "INTRO_DATA_DETAIL_RESPONSE":
+            return {
+                ...state,
+                introDataDetailData: data,
             }
         case "ABOUT_ERROR":
             return {

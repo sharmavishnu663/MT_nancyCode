@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getCommonApiHeader } from "../../Utils/utils";
-import { CENTERS_LIST, COMMITTE_LIST, INTRO_LIST, DIRECTOR_LIST, KEY_MANAGEMENT_LIST, AWARDS_LIST, AWARDS_DETAIL_LIST, CENTER_SERACH, BOARD_DETAIL_LIST } from "../constants";
+import { CENTERS_LIST, COMMITTE_LIST, INTRO_LIST, DIRECTOR_LIST, KEY_MANAGEMENT_LIST, AWARDS_LIST, AWARDS_DETAIL_LIST, CENTER_SERACH, BOARD_DETAIL_LIST, INTRO_DATA } from "../constants";
 
 export const centerListAPI = (data) => {
     return (dispatch, getState) => {
@@ -139,6 +139,23 @@ export const awardsDetailAPI = (data) => {
     };
 }
 
+export const introDataAPI = (data) => {
+    return (dispatch, getState) => {
+        dispatch(getAboutRequest());
+        axios
+            .get(INTRO_DATA + '/' + data, {
+                headers: {
+                    ...getCommonApiHeader(),
+                },
+            })
+            .then((response) => {
+                dispatch(getIntroDetailDataRespond(response?.data));
+            }).catch(err => {
+                dispatch(handleError(err));
+            });
+    };
+}
+
 export const centerSearchAPI = (data) => {
     return (dispatch, getState) => {
         dispatch(getAboutRequest());
@@ -179,6 +196,13 @@ export const getCentersDataRespond = data => {
 export const getIntroDataRespond = data => {
     return {
         type: "INTRO_DATA_RESPONSE",
+        data: data,
+    };
+};
+
+export const getIntroDetailDataRespond = data => {
+    return {
+        type: "INTRO_DATA_DETAIL_RESPONSE",
         data: data,
     };
 };

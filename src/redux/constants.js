@@ -144,3 +144,6 @@ export const WE_OFFER = `${BASE_URL}/offer-list`;
 
 // student hear  api
 export const STUDENT_HEAR = `${BASE_URL}/student-hear-list`;
+
+// intro data  api
+export const INTRO_DATA = `${BASE_URL}/intro-data`;
