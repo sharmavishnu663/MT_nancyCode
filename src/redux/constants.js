@@ -1,8 +1,8 @@
-export const BASE_URL = "http://staging.mteducare.com/mt-educare-admin/public/api";
-// export const BASE_URL = "http://127.0.0.1:8000/api";
+// export const BASE_URL = "http://staging.mteducare.com/mt-educare-admin/public/api";
+export const BASE_URL = "http://127.0.0.1:8000/api";
 
-// export const IMAGE_BASE_URL = "http://127.0.0.1:8000/storage/";
-export const IMAGE_BASE_URL = "http://staging.mteducare.com/mt-educare-admin/public/storage/";
+export const IMAGE_BASE_URL = "http://127.0.0.1:8000/storage/";
+// export const IMAGE_BASE_URL = "http://staging.mteducare.com/mt-educare-admin/public/storage/";
 
 // Gallery List api
 export const Gallery_List = `${BASE_URL}/gallary-list`;

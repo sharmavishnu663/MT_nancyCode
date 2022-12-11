@@ -67,7 +67,7 @@ const ResearchReport = ({ reportDataAPI, reportData, reportSearchApi, reportSear
 
               <div className="row">
                 <div className="col-md-8">
-                  <h4 className="m-0">Quarterly Financial Report For Year 2021-2022</h4>
+                  <h4 className="m-0">Quarterly Financial Report For Year {yearSearch}</h4>
                 </div>
 
                 <div className="col-md-4">
