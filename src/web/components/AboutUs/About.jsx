@@ -8,7 +8,6 @@ import Intro from "./intro";
 // import OwlCarousel from "react-owl-carousel";
 
 const About = ({ introListAPI, introData, boardCommitteeAPI, commitesData, boardDirectorAPI, directorsData, keyManagementAPI, keyManagementData, boardDetailsAPI, boardDetailData }) => {
-  const [activeYear, setActiveYear] = useState(introData && introData.data ? introData.data[0].id : 0);
   const [visionSet, setVisionSet] = useState();
   useEffect(() => {
     introListAPI();
@@ -24,24 +23,29 @@ const About = ({ introListAPI, introData, boardCommitteeAPI, commitesData, board
   //   setActiveYear(introData.data[0].id);
   // }, 2000);
   // console.log(activeYear);
+  const [activeYear, setActiveYear] = useState(introData && introData.first_id);
 
-  const handleStepPrev = (activeYear) => {
-    console.log(`Prev Step:  (${activeYear})`);
-    setActiveYear(activeYear - 1);
+  const handleStepPrev = (prevYear) => {
+    console.log(`Prev Step:  (${prevYear})`);
+    if (prevYear >= introData.first_id) {
+      setActiveYear(prevYear - 1);
+    } else {
+      setActiveYear(undefined);
+    }
     console.log(`Prev Step:  (${activeYear})`);
     console.log("=========================================");
   };
 
-  const handleStepNext = (activeYear) => {
-    console.log(`Next Step:  (${activeYear})`);
-    setActiveYear(activeYear + 1);
+  const handleStepNext = (nextYear) => {
+    console.log(`Next Step:  (${nextYear})`);
+    setActiveYear(nextYear + 1);
     console.log(`Next Step:  (${activeYear})`);
     console.log("=========================================");
   };
 
-  const handleStepClick = (activeYear) => {
-    console.log(`Step Clicked:  (${activeYear})`);
-    setActiveYear(activeYear);
+  const handleStepClick = (selectYear) => {
+    console.log(`Step Clicked:  (${selectYear})`);
+    setActiveYear(selectYear);
     console.log(`Step Clicked:  (${activeYear})`);
     console.log("=========================================");
   };
@@ -93,13 +97,25 @@ const About = ({ introListAPI, introData, boardCommitteeAPI, commitesData, board
                 <div className="content">
                   <Intro introData={introData} activeYear={activeYear} />
                   <div className="btn-wrapper text-right">
-
-                    <Link to="#" className="btn btn-sm flip" title="prev" onClick={(e) => handleStepPrev(activeYear)}>
-                      <img src="../assets/imgs/icon-arrow-right.svg" alt="icon" />
-                    </Link>
-                    <Link to="#" className="btn btn-sm" title="next" onClick={(e) => handleStepNext(activeYear)}>
-                      <img src="../assets/imgs/icon-arrow-right.svg" alt="icon" />
-                    </Link>
+                    {console.log('firstID' + introData.first_id + 'active' + activeYear)}
+                    {introData && introData.first_id < activeYear && introData.first_id != activeYear ?
+                      <Link to="#" className="btn btn-sm flip" title="prev" onClick={(e) => handleStepPrev(activeYear)}>
+                        <img src="../assets/imgs/icon-arrow-right.svg" alt="icon" />
+                      </Link>
+                      : null
+                    }
+                    {activeYear !== undefined ?
+                      introData && introData.last_id > activeYear && introData.last_id != activeYear ?
+                        <Link to="#" className="btn btn-sm" title="next" onClick={(e) => handleStepNext(activeYear)}>
+                          <img src="../assets/imgs/icon-arrow-right.svg" alt="icon" />
+                        </Link>
+                        :
+                        null
+                      :
+                      <Link to="#" className="btn btn-sm" title="next" onClick={(e) => handleStepNext(activeYear)}>
+                        <img src="../assets/imgs/icon-arrow-right.svg" alt="icon" />
+                      </Link>
+                    }
                   </div>
                 </div>
               </div>

@@ -8,6 +8,7 @@ import { introDataAPI } from "../../../redux/action/aboutUs";
 
 const keyValue = "";
 const Intro = ({ introData, activeYear, introDataAPI, introDataDetailData }) => {
+  console.log(activeYear);
   useEffect(() => {
     if (activeYear) {
       introDataAPI(activeYear)
@@ -16,7 +17,7 @@ const Intro = ({ introData, activeYear, introDataAPI, introDataDetailData }) => 
   const aboutUs =
     introData.data &&
     introData.data.filter((item) => {
-      return activeYear ? item.id == activeYear : introData.data[0];
+      return activeYear !== undefined ? item.id == activeYear : introData.data[0];
     });
 
   const toppersConfig = {
@@ -36,7 +37,7 @@ const Intro = ({ introData, activeYear, introDataAPI, introDataDetailData }) => 
 
 
     <>
-      {introDataDetailData ? <OwlCarousel {...toppersConfig}>
+      {introDataDetailData && introDataDetailData.data ? <OwlCarousel {...toppersConfig}>
 
         {introDataDetailData &&
           // introDataDetailData.map((item) => (
@@ -44,7 +45,7 @@ const Intro = ({ introData, activeYear, introDataAPI, introDataDetailData }) => 
             <div className="row align-items-center">
               <div className="item col-md-6">
                 <h2 className="mb-4">
-                  <span className="text-orange">{introDataDetailData && introDataDetailData.data && introDataDetailData.data.title}</span>
+                  <span className="text-orange">{introDataDetailData && introDataDetailData.data && introDataDetailData.data.title} this ss</span>
                 </h2>
                 <p>{introDataDetailData && introDataDetailData.data && parseHtml(introDataDetailData.data.description)} </p>
                 {introDataDetailData && introDataDetailData.data && JSON.parse(introDataDetailData.data.key_highlights).center && (
@@ -84,7 +85,7 @@ const Intro = ({ introData, activeYear, introDataAPI, introDataDetailData }) => 
                 <div className="row align-items-center">
                   <div className="item col-md-6">
                     <h2 className="mb-4">
-                      <span className="text-orange">{item.title}</span>
+                      <span className="text-orange">{item.title} this sdf</span>
                     </h2>
                     <p>{parseHtml(item.description)} </p>
                     {JSON.parse(item.key_highlights).center && (
