@@ -64,7 +64,7 @@ const BaseDashboard = ({ toastType, toastData, resetToast, emailSubscriptionApi,
     //     })
 
 
-    const meta = metaData && {
+    const meta = metaData && metaData[0] && {
         title: metaData[0].title,
         description: metaData[0].mata_description,
         meta: {

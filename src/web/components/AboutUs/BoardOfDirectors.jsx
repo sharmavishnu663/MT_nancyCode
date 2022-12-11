@@ -32,24 +32,24 @@ const BoardOfDirectors = ({ boardCommitteeAPI, commitesData, boardDirectorAPI, d
             <div className="col-md-12 pills">
               <ul className="nav nav-tabs MT_Tab" id="MT_Tab" role="tablist">
                 <li className="nav-item" role="presentation">
-                  <button className={`nav-link ${(localStorage.getItem("vision") && localStorage.getItem("vision") == "management") || !localStorage.getItem("vision") ? "active" : ""}`} id="Edu-tab-1" data-bs-toggle="tab" data-bs-target="#MT-tabPane-1" type="button" role="tab" aria-controls="MT-tabPane-1" aria-selected="true">
+                  <button className={`nav-link`} id="Edu-tab-1" data-bs-toggle="tab" data-bs-target="#MT-tabPane-1" type="button" role="tab" aria-controls="MT-tabPane-1" aria-selected="true">
                     Key Management
                   </button>
                 </li>
                 <li className="nav-item" role="presentation">
-                  <button className={`nav-link ${localStorage.getItem("vision") == "Directors" ? "active" : ""}`} id="Edu-tab-2" data-bs-toggle="tab" data-bs-target="#MT-tabPane-2" type="button" role="tab" aria-controls="MT-tabPane-2" aria-selected="false">
+                  <button className={`nav-link active`} id="Edu-tab-2" data-bs-toggle="tab" data-bs-target="#MT-tabPane-2" type="button" role="tab" aria-controls="MT-tabPane-2" aria-selected="false">
                     Board of Directors
                   </button>
                 </li>
                 <li className="nav-item" role="presentation">
-                  <button className={`nav-link ${localStorage.getItem("vision") == "committe" ? "active" : ""}`} id="Edu-tab-3" data-bs-toggle="tab" data-bs-target="#MT-tabPane-3" type="button" role="tab" aria-controls="MT-tabPane-3" aria-selected="false">
+                  <button className={`nav-link`} id="Edu-tab-3" data-bs-toggle="tab" data-bs-target="#MT-tabPane-3" type="button" role="tab" aria-controls="MT-tabPane-3" aria-selected="false">
                     Board Committees
                   </button>
                 </li>
               </ul>
             </div>
             <div className="tab-content " id="MT_TabContent">
-              <div className="tab-pane fade show active" id="MT-tabPane-1" role="tabpanel" aria-labelledby="Edu-tab-1" tabIndex="0">
+              <div className="tab-pane fade" id="MT-tabPane-1" role="tabpanel" aria-labelledby="Edu-tab-1" tabIndex="0">
                 {/* <!-- explore-lakshya --> */}
 
                 <div className="row g-4">
@@ -71,7 +71,7 @@ const BoardOfDirectors = ({ boardCommitteeAPI, commitesData, boardDirectorAPI, d
                     ))}
                 </div>
               </div>
-              <div className="tab-pane fade" id="MT-tabPane-2" role="tabpanel" aria-labelledby="Edu-tab-2" tabIndex="0">
+              <div className="tab-pane fade show active" id="MT-tabPane-2" role="tabpanel" aria-labelledby="Edu-tab-2" tabIndex="0">
                 {/* <!-- explore-lakshya --> */}
 
                 <div className="row">
