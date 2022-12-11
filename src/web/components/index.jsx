@@ -52,7 +52,7 @@ const BaseDashboard = ({ toastType, toastData, resetToast, emailSubscriptionApi,
       return window.location.pathname == item.page_name;
     });
 
-  console.log(metaData);
+  //   console.log(metaData);
 
   // const meta =
   //     metaData && metaData.map((data, index) => {
@@ -64,19 +64,20 @@ const BaseDashboard = ({ toastType, toastData, resetToast, emailSubscriptionApi,
   //         </>
   //     })
 
-  // const meta = metaData && {
-  //     title: metaData[0].title,
-  //     description: metaData[0].mata_description,
-  //     meta: {
-  //         name: {
-  //             keywords: metaData[0].mata_keyboard,
-  //         },
-  //     },
-  // };
+  const meta = metaData &&
+    metaData[0] && {
+      title: metaData[0].title,
+      description: metaData[0].mata_description,
+      meta: {
+        name: {
+          keywords: metaData[0].mata_keyboard,
+        },
+      },
+    };
 
   return (
     <div>
-      {/* <DocumentMeta {...meta}></DocumentMeta> */}
+      <DocumentMeta {...meta}></DocumentMeta>
       <ToastContainer />
       <Header categoryListApi={categoryListApi} categoryData={categoryData} />
       <Outlet />

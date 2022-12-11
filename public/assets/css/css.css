@@ -118,6 +118,7 @@
 .ant-form-item-row:has(select.form-controls) label.ant-form-item-required {
   position: relative;
   width: fit-content;
+  color: var(--mt-blue);
 }
 
 .ant-form-item-row:has(select.form-controls) label.ant-form-item-required::before {
@@ -137,4 +138,10 @@
 .ant-form-item-required::after {
   content: "*";
   color: red;
+}
+
+.timeline-card img[alt=illustration] {
+  max-height: 600px;
+  object-fit: cover;
+  border-radius: 20px;
 }

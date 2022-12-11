@@ -9,7 +9,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
-
 const Csr = ({ CSRAPI, CSRData }) => {
   useEffect(() => {
     CSRAPI();
@@ -19,7 +18,7 @@ const Csr = ({ CSRAPI, CSRData }) => {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
   };
 
   // console.log('vishnu Csr' + CSRData);
@@ -60,7 +59,7 @@ const Csr = ({ CSRAPI, CSRData }) => {
                   {CSRData &&
                     CSRData.data &&
                     CSRData.data.map((item) => (
-                      <div className="item">
+                      <div className="item px-2">
                         <div className="timeline-card csr-card">
                           <div className="content">
                             <div className="row">

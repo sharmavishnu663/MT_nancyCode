@@ -51,14 +51,14 @@ const ContactUs = ({ openContact, handleCancel, categoryListApi, userQueryApi, c
   return (
     <>
       <ToastContainer />
-      <Modal show={openContact} onHide={handleCancel} className="modal fade modal-xl contact-us" id="contactUs" tabindex="-1" aria-labelledby="contactUsLabel" aria-hidden="true">
+      <Modal show={openContact} onHide={handleCancel} className="modal fade modal-xl contact-us" id="contactUs" tabindex="-1" aria-labelledby="contactUsLabel" aria-hidden="true" centered>
         <Modal.Header closeButton></Modal.Header>
 
-        <div className="modal-body">
+        <div className="modal-body pb-5">
           <h2 className="text-center mb-4">Contact Us</h2>
           <p className="text-center">MT Educare has its presence across 270+ coaching centres at 174 locations in Maharashtra, Gujarat, Tamil Nadu, Karnataka, Uttar Pradesh, Punjab, Haryana, Chandigarh,Assam, Odisha, Andhra Pradesh, Kerala,Telangana and internationally - Dubai</p>
 
-          <div className="container card-wrapper">
+          <div className="container card-wrapper mb-5">
             <div className="row">
               <div className="col">
                 <div className="info-card bg-light-blue">
@@ -103,7 +103,7 @@ const ContactUs = ({ openContact, handleCancel, categoryListApi, userQueryApi, c
             }}
             onFinish={handleConnectSubmint}
           >
-            <div className="floating-form">
+            <div className="floating-form mt-4">
               <div className="form-controls">
                 <Form.Item label="Name" name="name" className="form-label text-blue" rules={[{ required: true, message: "Please enter your name!" }]}>
                   <input type="text" id="name" placeholder="Name" pattern="[a-zA-Z_&-]+([ ]?[a-zA-Z_&-]+)*" value={queryname} onChange={(e) => setQueryName(e.target.value)} required />
@@ -111,21 +111,21 @@ const ContactUs = ({ openContact, handleCancel, categoryListApi, userQueryApi, c
               </div>
 
               <div className="form-controls">
-                <Form.Item label="Email" name="Email" className="form-label text-blue" rules={[{ required: true, message: "Please enter your email address!" }]}>
+                <Form.Item label="Email" name="email" className="form-label text-blue" rules={[{ required: true, message: "Please enter your email address!" }]}>
                   <input type="email" id="email" placeholder="Email" value={queryEmail} onChange={(e) => setQueryEmail(e.target.value)} required />
                 </Form.Item>
               </div>
 
               <div className="form-controls">
                 <Form.Item label="Phone Number" name="mobile" className="form-label text-blue" rules={[{ required: true, message: "Please select your mobile!" }]}>
-                  <input type="text" className="allow_numeric" id="phone" pattern="^[0-9]*$" minLength="10" maxLength="10" placeholder="Mobile" value={queryMobile} onChange={(e) => setQueryMobile(e.target.value)} required />
+                  <input type="text" className="allow_numeric" id="mobile" pattern="^[0-9]*$" minLength="10" maxLength="10" placeholder="Mobile" value={queryMobile} onChange={(e) => setQueryMobile(e.target.value)} required />
                 </Form.Item>
               </div>
 
               <div className="form-controls">
                 <Form.Item label="Category" name="category" className="form-label" rules={[{ required: true, message: "category!" }]}>
-                  <select name="course" className="form-controls w-100" id="course" value={querycategory} onChange={(e) => setQueryCategory(e.target.value)} required>
-                    <option disabled defaultValue readonly>
+                  <select name="course" className="form-controls w-100" id="category" value={querycategory} onChange={(e) => setQueryCategory(e.target.value)} required>
+                    <option defaultValue readonly hidden>
                       Select Category
                     </option>
                     {categoryData && categoryData.data && categoryData.data.map((item) => <option value={item.id}>{item.name}</option>)}
@@ -134,9 +134,9 @@ const ContactUs = ({ openContact, handleCancel, categoryListApi, userQueryApi, c
               </div>
 
               <div className="form-controls">
-                <Form.Item label="Baord" name="board" className="form-label" rules={[{ required: true, message: "board!" }]}>
+                <Form.Item label="Baord" name="boards" className="form-label" rules={[{ required: true, message: "board!" }]}>
                   <select name="boards" className="form-controls w-100" id="boards" value={queryboards} onChange={(e) => setQueryBoards(e.target.value)} required>
-                    <option disabled defaultValue readonly>
+                    <option defaultValue readonly hidden>
                       Select Board
                     </option>
                     {boardStandardsData && boardStandardsData.data && boardStandardsData.data.map((item) => <option value={item.board_name}>{item.board_name}</option>)}
@@ -147,7 +147,7 @@ const ContactUs = ({ openContact, handleCancel, categoryListApi, userQueryApi, c
               <div className="form-controls">
                 <Form.Item label="Standards" name="standards" className="form-label" rules={[{ required: true, message: "standard!" }]}>
                   <select name="standards" className="form-controls w-100" id="standards" value={queryStandards} onChange={(e) => setQueryStandards(e.target.value)} required>
-                    <option defaultValue selected>
+                    <option defaultValue readonly hidden>
                       Select Standards
                     </option>
                     {boardStandardsData && boardStandardsData.data && boardStandardsData.data.map((item) => <option value={item.name}>{item.name}</option>)}

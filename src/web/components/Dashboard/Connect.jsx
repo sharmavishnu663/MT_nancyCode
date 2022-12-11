@@ -76,20 +76,20 @@ const Connect = ({ categoryListApi, userQueryApi, categoryBaodStandardsListAPI, 
                   </div>
 
                   <div className="form-controls">
-                    <Form.Item label="Email" name="Email" className="form-label text-blue" rules={[{ required: true, message: "email address!" }]}>
+                    <Form.Item label="Email" name="email" className="form-label text-blue" rules={[{ required: true, message: "email address!" }]}>
                       <input type="email" id="email" placeholder="Email" value={queryEmail} onChange={(e) => setQueryEmail(e.target.value)} required />
                     </Form.Item>
                   </div>
 
                   <div className="form-controls">
                     <Form.Item label="Mobile Number" name="mobile" className="form-label text-blue" rules={[{ required: true, message: "Mobile!" }]}>
-                      <input type="text" id="phone" pattern="^[0-9]*$" minLength="10" maxlength="10" placeholder="Mobile" value={queryMobile} onChange={(e) => setQueryMobile(e.target.value)} required />
+                      <input type="text" id="mobile" pattern="^[0-9]*$" minLength="10" maxlength="10" placeholder="Mobile" value={queryMobile} onChange={(e) => setQueryMobile(e.target.value)} required />
                     </Form.Item>
                   </div>
 
                   <div className="form-controls">
                     <Form.Item label="Category" name="category" className="form-label" rules={[{ required: true, message: "category!" }]}>
-                      <select name="course" className="form-controls w-100" id="course" value={querycategory} onChange={(e) => setQueryCategory(e.target.value)} required>
+                      <select name="course" className="form-controls w-100" id="category" value={querycategory} onChange={(e) => setQueryCategory(e.target.value)} required>
                         <option defaultValue selected>
                           Select category
                         </option>
@@ -105,7 +105,7 @@ const Connect = ({ categoryListApi, userQueryApi, categoryBaodStandardsListAPI, 
                   </div>
 
                   <div className="form-controls">
-                    <Form.Item label="Baord" name="board" className="form-label" rules={[{ required: true, message: "board!" }]}>
+                    <Form.Item label="Baord" name="boards" className="form-label" rules={[{ required: true, message: "board!" }]}>
                       <select name="boards" className="form-controls w-100" id="boards" value={queryboards} onChange={(e) => setQueryBoards(e.target.value)} required>
                         <option defaultValue selected>
                           Select board

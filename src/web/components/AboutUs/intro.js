@@ -5,14 +5,13 @@ import OwlCarousel from "react-owl-carousel";
 import { IMAGE_BASE_URL } from "../../../redux/constants";
 import { introDataAPI } from "../../../redux/action/aboutUs";
 
-
 const keyValue = "";
 const Intro = ({ introData, activeYear, introDataAPI, introDataDetailData }) => {
   useEffect(() => {
     if (activeYear) {
-      introDataAPI(activeYear)
+      introDataAPI(activeYear);
     }
-  }, [activeYear])
+  }, [activeYear]);
   const aboutUs =
     introData.data &&
     introData.data.filter((item) => {
@@ -33,56 +32,54 @@ const Intro = ({ introData, activeYear, introDataAPI, introDataDetailData }) => 
   };
 
   return (
-
-
     <>
-      {introDataDetailData ? <OwlCarousel {...toppersConfig}>
-
-        {introDataDetailData &&
-          // introDataDetailData.map((item) => (
-          <>
-            <div className="row align-items-center">
-              <div className="item col-md-6">
-                <h2 className="mb-4">
-                  <span className="text-orange">{introDataDetailData && introDataDetailData.data && introDataDetailData.data.title}</span>
-                </h2>
-                <p>{introDataDetailData && introDataDetailData.data && parseHtml(introDataDetailData.data.description)} </p>
-                {introDataDetailData && introDataDetailData.data && JSON.parse(introDataDetailData.data.key_highlights).center && (
-                  <>
-                    <p className="big">Key Highlights</p>
-
-                    <ul className="highlights">
-                      <li>
-                        <span>Number of centers </span>
-                        <span>: {introDataDetailData && introDataDetailData.data && JSON.parse(introDataDetailData.data.key_highlights).center}</span>
-                      </li>
-                      <li>
-                        <span>Revenue</span>
-                        <span>: Rs.{introDataDetailData && introDataDetailData.data && JSON.parse(introDataDetailData.data.key_highlights).revenue} Crores</span>
-                      </li>
-                      <li>
-                        <span>Number of students</span>
-                        <span>: {introDataDetailData && introDataDetailData.data && JSON.parse(introDataDetailData.data.key_highlights).students}+</span>
-                      </li>
-                    </ul>
-                  </>
-                )}
-              </div>
-
-              <div className="col-md-6 text-center">
-                <img src={introDataDetailData && introDataDetailData.data && IMAGE_BASE_URL + "/" + introDataDetailData.data.image} alt="illustration" />
-              </div>
-            </div>
-          </>
-        }
-      </OwlCarousel> :
+      {introDataDetailData ? (
         <OwlCarousel {...toppersConfig}>
+          {introDataDetailData && (
+            // introDataDetailData.map((item) => (
+            <>
+              <div className="row align-items-center">
+                <div className="item col-md-6">
+                  <h2 className="mb-4">
+                    <span className="text-orange">{introDataDetailData && introDataDetailData.data && introDataDetailData.data.title}</span>
+                  </h2>
+                  <p>{introDataDetailData && introDataDetailData.data && parseHtml(introDataDetailData.data.description)} </p>
+                  {introDataDetailData && introDataDetailData.data && JSON.parse(introDataDetailData.data.key_highlights).center && (
+                    <>
+                      <p className="big">Key Highlights</p>
 
+                      <ul className="highlights">
+                        <li>
+                          <span>Number of centers </span>
+                          <span>: {introDataDetailData && introDataDetailData.data && JSON.parse(introDataDetailData.data.key_highlights).center}</span>
+                        </li>
+                        <li>
+                          <span>Revenue</span>
+                          <span>: Rs.{introDataDetailData && introDataDetailData.data && JSON.parse(introDataDetailData.data.key_highlights).revenue} Crores</span>
+                        </li>
+                        <li>
+                          <span>Number of students</span>
+                          <span>: {introDataDetailData && introDataDetailData.data && JSON.parse(introDataDetailData.data.key_highlights).students}+</span>
+                        </li>
+                      </ul>
+                    </>
+                  )}
+                </div>
+
+                <div className="col-md-6 text-center">
+                  <img src={introDataDetailData && introDataDetailData.data && IMAGE_BASE_URL + "/" + introDataDetailData.data.image} alt="illustration" />
+                </div>
+              </div>
+            </>
+          )}
+        </OwlCarousel>
+      ) : (
+        <OwlCarousel {...toppersConfig}>
           {aboutUs &&
             aboutUs.map((item) => (
               <>
                 <div className="row align-items-center">
-                  <div className="item col-md-6">
+                  <div className="col-md-6">
                     <h2 className="mb-4">
                       <span className="text-orange">{item.title}</span>
                     </h2>
@@ -116,7 +113,7 @@ const Intro = ({ introData, activeYear, introDataAPI, introDataDetailData }) => 
               </>
             ))}
         </OwlCarousel>
-      }
+      )}
     </>
   );
 };
@@ -136,4 +133,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Intro);
-
