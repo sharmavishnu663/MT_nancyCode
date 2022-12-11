@@ -43,10 +43,12 @@ const GallaryGrid = ({ galleryAllDataAPI, galleryAllData }) => {
           {galleryAllData &&
             galleryAllData.data &&
             galleryAllData.data.map((item) => (
-              <div className="col-md-3 gallery-img">
-                <a href={item && IMAGE_BASE_URL + "/" + item.image} data-fancybox="gallery" data-caption="Optional caption">
-                  <img src={item && IMAGE_BASE_URL + "/" + item.image} alt="gallery-data" />
-                </a>
+              <div className="col-md-3">
+                <div className="gallery-img">
+                  <a href={item && IMAGE_BASE_URL + "/" + item.image} data-fancybox="gallery" data-caption="Optional caption">
+                    <img src={item && IMAGE_BASE_URL + "/" + item.image} alt="gallery-data" />
+                  </a>
+                </div>
               </div>
             ))}
         </div>
