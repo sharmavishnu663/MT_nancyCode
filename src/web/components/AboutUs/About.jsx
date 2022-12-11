@@ -23,7 +23,7 @@ const About = ({ introListAPI, introData, boardCommitteeAPI, commitesData, board
   //   setActiveYear(introData.data[0].id);
   // }, 2000);
   // console.log(activeYear);
-  const [activeYear, setActiveYear] = useState(introData && introData.first_id);
+  const [activeYear, setActiveYear] = useState(introData && introData.first_id ? introData.first_id : 0);
 
   const handleStepPrev = (prevYear) => {
     console.log(`Prev Step:  (${prevYear})`);
@@ -38,7 +38,11 @@ const About = ({ introListAPI, introData, boardCommitteeAPI, commitesData, board
 
   const handleStepNext = (nextYear) => {
     console.log(`Next Step:  (${nextYear})`);
-    setActiveYear(nextYear + 1);
+    if (nextYear == 0) {
+      setActiveYear(introData.first_id + 1);
+    } else {
+      setActiveYear(nextYear + 1);
+    }
     console.log(`Next Step:  (${activeYear})`);
     console.log("=========================================");
   };
