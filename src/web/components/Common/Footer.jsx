@@ -4,11 +4,12 @@ import { WebRoutes } from "../../../routes";
 import { connect } from "react-redux";
 import ContactUs from "../modal/ContactUs";
 import { Form, Input } from "antd";
+import { IMAGE_BASE_URL } from "../../../redux/constants";
 
-const Footer = ({ emailSubscriptionApi, categoryData }) => {
+const Footer = ({ emailSubscriptionApi, categoryData, socialLinkData }) => {
   const [openContact, setOpenContact] = useState(false);
   const [email, setEmail] = useState();
-
+  console.log(socialLinkData);
   const onFinish = () => {
     const data = { email: email };
     emailSubscriptionApi(data);
@@ -83,17 +84,17 @@ const Footer = ({ emailSubscriptionApi, categoryData }) => {
                     <Link to={WebRoutes.ABOUT_US}>Vision and Mission</Link>
                   </li>
                   <li>
-                    <Link to={WebRoutes.ABOUT_US} onClick={(e) => handleVision("Directors")}>
+                    <Link to={WebRoutes.BOARD_DIRECTORS} onClick={(e) => handleVision("Directors")}>
                       Board of Directors
                     </Link>
                   </li>
                   <li>
-                    <Link to={WebRoutes.ABOUT_US} onClick={(e) => handleVision("management")}>
+                    <Link to={WebRoutes.KEY_MANAGEMENT} onClick={(e) => handleVision("management")}>
                       Key Management
                     </Link>
                   </li>
                   <li>
-                    <Link to={WebRoutes.ABOUT_US} onClick={(e) => handleVision("committe")}>
+                    <Link to={WebRoutes.BOARD_COMMITTEE} onClick={(e) => handleVision("committe")}>
                       Board Committees
                     </Link>
                   </li>
@@ -188,15 +189,18 @@ const Footer = ({ emailSubscriptionApi, categoryData }) => {
             <div className="col-md-12 social-bookmarks">
               <h5 className="text-center mb-3">Follow Us</h5>
               <div className="social-icons">
-                <a href="https://www.facebook.com/mteducareltd" target="_blank">
-                  <img src="../assets/imgs/icon-facebook.svg" alt="icon" />
-                </a>
-                <a href="https://twitter.com/mt_education" target="_blank">
+                {socialLinkData && socialLinkData.data && socialLinkData.data.map((item, index) =>
+                  <a href={item && item.link} target="_blank">
+                    <img src={item && IMAGE_BASE_URL + '/' + item.image} alt="icon" />
+                  </a>
+                )}
+
+                {/* <a href="https://twitter.com/mt_education" target="_blank">
                   <img src="../assets/imgs/icon-twitter.svg" alt="icon" />
                 </a>
                 <a href="https://www.youtube.com/c/mteducarecachennai/videos" target="_blank">
                   <img src="../assets/imgs/icon-youtube.svg" alt="icon" />
-                </a>
+                </a> */}
               </div>
 
               <div className="terms-policies">

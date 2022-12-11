@@ -6,6 +6,8 @@ const initState = {
     areaData: [],
     studentHearData: [],
     weOfferData: [],
+    socialLinkData: [],
+    metaTagsData: [],
     error: null
 };
 const HomeReducer = (state = initState, action) => {
@@ -49,6 +51,16 @@ const HomeReducer = (state = initState, action) => {
             return {
                 ...state,
                 weOfferData: data,
+            };
+        case "SOCIAL_LINK_DATA_RESPONSE":
+            return {
+                ...state,
+                socialLinkData: data,
+            };
+        case "META_TAGS_DATA_RESPONSE":
+            return {
+                ...state,
+                metaTagsData: data,
             };
         case "HOME_ERROR":
             return {

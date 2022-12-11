@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getCommonApiHeader } from "../../Utils/utils";
-import { TOPPER_LIST, ACHIVEMENTS, CATEGORY_BOARD_STANDARDS, CITY_LIST, AREA_LIST, WE_OFFER, STUDENT_HEAR } from "../constants";
+import { TOPPER_LIST, ACHIVEMENTS, CATEGORY_BOARD_STANDARDS, CITY_LIST, AREA_LIST, WE_OFFER, STUDENT_HEAR, SOCIAL_LINK, META_TAGS } from "../constants";
 
 export const topperListAPI = (data) => {
     return (dispatch, getState) => {
@@ -125,6 +125,41 @@ export const weOfferApi = (data) => {
 }
 
 
+export const socialLinkApi = (data) => {
+    return (dispatch, getState) => {
+        dispatch(getHomeRequest());
+        axios
+            .get(SOCIAL_LINK, {
+                headers: {
+                    ...getCommonApiHeader(),
+                },
+            })
+            .then((response) => {
+                dispatch(getSocialLinkRespond(response?.data));
+            }).catch(err => {
+                dispatch(handleError(err));
+            });
+    };
+}
+
+export const metaTagsApi = (data) => {
+    return (dispatch, getState) => {
+        dispatch(getHomeRequest());
+        axios
+            .get(META_TAGS, {
+                headers: {
+                    ...getCommonApiHeader(),
+                },
+            })
+            .then((response) => {
+                dispatch(getMetaTagsRespond(response?.data));
+            }).catch(err => {
+                dispatch(handleError(err));
+            });
+    };
+}
+
+
 
 export const getHomeRequest = data => {
     return {
@@ -139,9 +174,23 @@ export const getTopperDataRespond = data => {
     };
 };
 
+export const getMetaTagsRespond = data => {
+    return {
+        type: "META_TAGS_DATA_RESPONSE",
+        data: data,
+    };
+};
+
 export const getBaordStandarsDataRespond = data => {
     return {
         type: "BOARDS_STANDARDS_DATA_RESPONSE",
+        data: data,
+    };
+};
+
+export const getSocialLinkRespond = data => {
+    return {
+        type: "SOCIAL_LINK_DATA_RESPONSE",
         data: data,
     };
 };

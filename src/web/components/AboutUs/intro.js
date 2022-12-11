@@ -16,7 +16,7 @@ const Intro = ({ introData, activeYear, introDataAPI, introDataDetailData }) => 
   const aboutUs =
     introData.data &&
     introData.data.filter((item) => {
-      return introData.data[0];
+      return activeYear ? item.id == activeYear : introData.data[0];
     });
 
   const toppersConfig = {
