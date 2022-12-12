@@ -8,6 +8,7 @@ const initState = {
     weOfferData: [],
     socialLinkData: [],
     metaTagsData: [],
+    defaultIntroData: [],
     error: null
 };
 const HomeReducer = (state = initState, action) => {
@@ -61,6 +62,11 @@ const HomeReducer = (state = initState, action) => {
             return {
                 ...state,
                 metaTagsData: data,
+            };
+        case "DEFAULT_INTRO_DATA_RESPONSE":
+            return {
+                ...state,
+                defaultIntroData: data,
             };
         case "HOME_ERROR":
             return {

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getCommonApiHeader } from "../../Utils/utils";
-import { TOPPER_LIST, ACHIVEMENTS, CATEGORY_BOARD_STANDARDS, CITY_LIST, AREA_LIST, WE_OFFER, STUDENT_HEAR, SOCIAL_LINK, META_TAGS } from "../constants";
+import { TOPPER_LIST, ACHIVEMENTS, CATEGORY_BOARD_STANDARDS, CITY_LIST, AREA_LIST, WE_OFFER, STUDENT_HEAR, SOCIAL_LINK, META_TAGS, DEFAULT_INTRO } from "../constants";
 
 export const topperListAPI = (data) => {
     return (dispatch, getState) => {
@@ -160,12 +160,38 @@ export const metaTagsApi = (data) => {
 }
 
 
+export const defaultIntroApi = (data) => {
+    return (dispatch, getState) => {
+        dispatch(getHomeRequest());
+        axios
+            .get(DEFAULT_INTRO, {
+                headers: {
+                    ...getCommonApiHeader(),
+                },
+            })
+            .then((response) => {
+                dispatch(getDefaultIntroRespond(response?.data));
+            }).catch(err => {
+                dispatch(handleError(err));
+            });
+    };
+}
+
+
 
 export const getHomeRequest = data => {
     return {
         type: "HOME_Data_REQUESTED",
     };
 };
+
+export const getDefaultIntroRespond = data => {
+    return {
+        type: "DEFAULT_INTRO_DATA_RESPONSE",
+        data: data,
+    };
+};
+
 
 export const getTopperDataRespond = data => {
     return {

@@ -7,9 +7,9 @@ import { parseHtml } from "../../../Utils/utils";
 import Awards from "../Cards/Awards";
 import { IMAGE_BASE_URL } from "../../../redux/constants";
 import OwlCarousel from "react-owl-carousel";
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
-// import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const AwardsRecognition = ({ awardsAPI, awardsData }) => {
   const [imageData, setImageData] = useState();
@@ -20,22 +20,11 @@ const AwardsRecognition = ({ awardsAPI, awardsData }) => {
     localStorage.setItem("awardId", id);
   };
   const toppersConfig = {
-    loop: false,
-    autoplay: false,
-    autoplayTimeout: 1000,
-    margin: 0,
     dots: true,
-    responsive: {
-      0: {
-        items: 1,
-      },
-      600: {
-        items: 2,
-      },
-      1000: {
-        items: 3,
-      },
-    },
+    infinite: true,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 2
   };
   const imagesData = awardsData.data && awardsData.data[0] && awardsData.data[0].image;
   console.log(imagesData);
@@ -72,7 +61,7 @@ const AwardsRecognition = ({ awardsAPI, awardsData }) => {
           <div className="row">
             <div className="col-md-12 box-radius pt-0 awards">
               <div className="articles our-offerings mt-0">
-                <OwlCarousel className="owl-theme MT-OwlDots toppersCarousel" {...toppersConfig}>
+                <Slider className="owl-theme MT-OwlDots toppersCarousel" {...toppersConfig}>
                   {awardsData.data &&
                     awardsData.data.map((item) => (
                       <div className="item px-3 pb-5">
@@ -98,7 +87,7 @@ const AwardsRecognition = ({ awardsAPI, awardsData }) => {
                         </div>
                       </div>
                     ))}
-                </OwlCarousel>
+                </Slider>
               </div>
             </div>
           </div>

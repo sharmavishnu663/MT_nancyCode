@@ -153,3 +153,6 @@ export const SOCIAL_LINK = `${BASE_URL}/social-link`;
 
 // meta tag data  api
 export const META_TAGS = `${BASE_URL}/meta-tag-list`;
+
+// meta tag data  api
+export const DEFAULT_INTRO = `${BASE_URL}/default-intro-list`;
