@@ -207,6 +207,20 @@
 /* @media (min-width: 768px) and (max-width: 991.98px) {} */
 
 /* ========== Large devices (desktops, 992px and up) ========== */
+@media (max-width: 992px) and (min-width: 768px) {
+    h3.achivements {
+        font-size: 34px;
+    }
+
+    .records h4 {
+        margin-top: 15px;
+    }
+
+    .records {
+        margin-bottom: 60px;
+    }
+}
+
 @media (max-width: 992px) {}
 
 @media (min-width: 992px) {}
@@ -609,7 +623,7 @@
         border-radius: 4px;
         box-shadow: none;
         padding: 5px;
-        MARGIN-TOP: -1px;
+        margin-top: 5px;
     }
 
     .navbar .nav-link {
@@ -871,6 +885,16 @@
         margin-bottom: 16px;
         display: flex;
         overflow: auto;
+
+    }
+
+    .terms .pills::-webkit-scrollbar {
+        display: none;
+    }
+
+    .terms .pills {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
     }
 
     .terms .pills a {
@@ -879,6 +903,7 @@
 
     .terms .stories .col-md-4 {
         padding: 0;
+        margin-block: 10px;
     }
 
     .terms .reports .col-md-4 {

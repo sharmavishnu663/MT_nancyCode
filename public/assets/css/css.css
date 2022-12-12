@@ -113,23 +113,62 @@
   opacity: 1;
 }
 
+/* ========== Header Customization Start ========== */
+.mt-subheader.dropdown-item {
+  background: #fff !important;
+
+}
+
+.mt-subheader.dropdown-item .dropdown-toggle {
+  text-decoration: none;
+  color: inherit !important;
+}
+
+.mt-subheader.dropdown-item :is(.dropdown-menu) {
+  transition: 600ms;
+}
+
+.mt-subheader.dropdown-item :is(.dropdown-toggle:hover~.dropdown-menu, .dropdown-menu:hover) {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+  position: absolute;
+  top: -25px;
+  transform: translateX(45%);
+  transition: 600ms;
+}
+
+/* ========== Header Customization End ========== */
+
 /* ========== Owl Carousel Config End ========== */
 
-.ant-form-item-row:has(select.form-controls) label.ant-form-item-required {
+.ant-form-item-row:has(select.form-controls) label.ant-form-item-required,
+.ant-form-item-row:has(select.form-controls) .ant-form-item-label label {
   position: relative;
   width: fit-content;
   color: var(--mt-blue);
 }
 
-.ant-form-item-row:has(select.form-controls) label.ant-form-item-required::before {
+/* .ant-form-item-row:has(select.form-controls) label.ant-form-item-required::before, */
+.ant-form-item-row .ant-form-item-control-input-content {
+  position: relative;
+}
+
+.ant-form-item-row .ant-form-item-control-input-content:has(select)::after {
   content: "";
   position: absolute;
   background: url(../imgs/icon-down-arrow-grey.svg) no-repeat;
   background-position: center;
   height: 20px;
   width: 20px;
-  right: -68px;
-  top: 28px;
+
+  top: 0;
+  right: 5px;
+  pointer-events: none;
+}
+
+.EnquireNowWrp .ant-form-item-row .ant-form-item-control-input-content:has(select)::after {
+  display: none;
 }
 
 .ant-form-item-explain-error {
@@ -145,4 +184,8 @@
   max-height: 600px;
   object-fit: cover;
   border-radius: 20px;
+}
+
+.timeline-card .btn-wrapper {
+  margin-top: 40px;
 }

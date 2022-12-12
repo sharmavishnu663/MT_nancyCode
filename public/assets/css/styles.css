@@ -1786,11 +1786,13 @@ nav[aria-label="breadcrumb"] {
 }
 
 .management .member .member-img img {
-  width: 100%;
-  max-width: 245px;
   display: block;
   margin-top: -68%;
   margin-left: -16px;
+  height: 250px;
+  width: 250px;
+  border-radius: 250px;
+  object-fit: cover;
 }
 
 .management .member .name {
