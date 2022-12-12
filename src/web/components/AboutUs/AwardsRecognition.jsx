@@ -6,6 +6,7 @@ import { WebRoutes } from "../../../routes";
 import { parseHtml } from "../../../Utils/utils";
 import Awards from "../Cards/Awards";
 import { IMAGE_BASE_URL } from "../../../redux/constants";
+import OwlCarousel from "react-owl-carousel";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -63,7 +64,7 @@ const AwardsRecognition = ({ awardsAPI, awardsData }) => {
                 <Slider className="owl-theme MT-OwlDots toppersCarousel" {...toppersConfig}>
                   {awardsData.data &&
                     awardsData.data.map((item) => (
-                      <div className="item">
+                      <div className="item px-3 pb-5">
                         <div className="article">
                           <div className="thumbnail">
                             {imagesData &&

@@ -60,7 +60,7 @@ const Career = ({ jobListAPI, jobData }) => {
             </div>
           </div>
 
-          <div className="row">
+          <div className="row g-4">
             <div className="col-md-4">
               <div className="mt-card bg-light-blue">
                 <img src="../assets/imgs/icon-mentoring.svg" alt="icon" />
