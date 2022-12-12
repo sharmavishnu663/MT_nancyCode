@@ -35,9 +35,12 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
         items: 1,
       },
       600: {
-        items: 2,
+        items: 1,
       },
       1000: {
+        items: 1,
+      },
+      1100: {
         items: 2,
       },
     },
@@ -333,14 +336,14 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
       <section>
         <div className="container records">
           <div className="row">
-            <div className="col-md-4">
+            <div className="col-md-5 col-lg-4">
               <h3 className="achivements">
                 Our <br />
                 <span className="text-orange">30+ years</span> of achievements
               </h3>
             </div>
 
-            <div className="col-md-4">
+            <div className="col-md-6 col-lg-4">
               <div className="record-grid">
                 <div className="students row-span bg-g-orange">
                   <span className="record">{achivementsData && achivementsData.data && achivementsData.data.student_ratio}+</span>
@@ -371,7 +374,7 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
             </div>
 
             {/* APP LINK TO DOWNLOAD */}
-            <div className="col-md-4">
+            <div className="col-md-6 mx-md-auto col-lg-4">
               <h4>Robomate+ is now Available Download it for Free</h4>
               <div className="download-app">
                 <a href="https://apps.apple.com/in/app/robomate-std-8-12-iit-neet-ca/id1133076165" target="_blank">

@@ -7,7 +7,6 @@ import { parseHtml } from "../../../Utils/utils";
 import { IMAGE_BASE_URL } from "../../../redux/constants";
 import About from "./About";
 
-
 const BoardOfDirectors = ({ boardCommitteeAPI, commitesData, boardDirectorAPI, directorsData, keyManagementAPI, keyManagementData, boardDetailsAPI, boardDetailData }) => {
   useEffect(() => {
     boardCommitteeAPI();
@@ -57,13 +56,12 @@ const BoardOfDirectors = ({ boardCommitteeAPI, commitesData, boardDirectorAPI, d
                     boardDetailData.data.map((item, index) => (
                       <div className="col-md-4" key={index}>
                         <div className="member">
-                          {item && item.image ?
+                          {item && item.image ? (
                             <div className="member-img">
                               <div className="bg"></div>
                               <img src={IMAGE_BASE_URL + "/" + item.image} alt="board_directors" />
                             </div>
-                            : null
-                          }
+                          ) : null}
                           <p className="name">{item.name}</p>
                           <p className="designation">{item.designation}</p>
                         </div>
@@ -115,27 +113,25 @@ const BoardOfDirectors = ({ boardCommitteeAPI, commitesData, boardDirectorAPI, d
               <div className="tab-pane fade" id="MT-tabPane-3" role="tabpanel" aria-labelledby="Edu-tab-3" tabIndex="0">
                 {/* <!-- explore-lakshya --> */}
 
-                <div className="row">
+                <div className="row g-4">
                   {commitesData.data &&
                     commitesData.data.map((item, index) => (
-
-
                       <div className="col-md-4" key={index}>
                         <div className="card-address">
                           <h5>{item && item[index] && item[index].title}</h5>
                           <div className="detail">
                             <ul>
-                              {item && item.map((record) => <li>
-                                <span>{record.name}</span>
-                                <span>{record.designation}</span>
-                              </li>)}
-
+                              {item &&
+                                item.map((record) => (
+                                  <li>
+                                    <span>{record.name}</span>
+                                    <span>{record.designation}</span>
+                                  </li>
+                                ))}
                             </ul>
                           </div>
                         </div>
                       </div>
-
-
                     ))}
                 </div>
               </div>
