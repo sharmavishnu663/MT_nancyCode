@@ -64,8 +64,29 @@ const Footer = ({ emailSubscriptionApi, categoryData, socialLinkData }) => {
                   {categoryData &&
                     categoryData.data &&
                     categoryData.data.map((item, index) => (
-                      <li onClick={(e) => handleCategory(item && item.id)} key={index}>
-                        <Link to={WebRoutes.COLLEGE}>{item && item.name}</Link>
+                      <li key={index}>
+                        {item && item.name == 'School' ?
+                          <Link to={WebRoutes.SCHOOL} className="dropdown-item" onClick={(e) => handleCategory(item && item.id)}>
+                            {item && item.name}
+                          </Link>
+                          :
+                          null
+                        }
+                        {item && item.name == 'Science' ?
+                          <Link to={WebRoutes.COLLEGE} className="dropdown-item" onClick={(e) => handleCategory(item && item.id)}>
+                            {item && item.name}
+                          </Link>
+                          :
+                          null
+                        }
+                        {
+                          item && item.name != 'School' && item.name != 'Science' ?
+                            <Link to={WebRoutes.COMPETATIVE_EXAM} className="dropdown-item" onClick={(e) => handleCategory(item && item.id)}>
+                              {item && item.name}
+                            </Link>
+                            :
+                            null
+                        }
                       </li>
                     ))}
 

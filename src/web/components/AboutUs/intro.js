@@ -10,7 +10,6 @@ import { defaultIntroApi } from "../../../redux/action/home";
 
 const keyValue = "";
 const Intro = ({ introData, activeYear, introDataAPI, introDataDetailData, defaultIntroApi, defaultIntroData }) => {
-  console.log(activeYear);
   useEffect(() => {
     if (activeYear) {
       introDataAPI(activeYear)

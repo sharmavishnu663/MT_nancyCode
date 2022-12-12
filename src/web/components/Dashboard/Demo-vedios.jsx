@@ -103,7 +103,17 @@ const DemoVideos = ({ demoVideoListApi, demoListData, demoVideoDetailApi, videoD
                                 <div className="article">
                                   <div className="thumbnail">
                                     <a href={item && item.video_url} data-fancybox>
-                                      <video src={item && item.video_url}></video>
+                                      {/* <video src={item && item.video_url}></video> */}
+                                      <iframe
+                                        width="100%"
+                                        height="200"
+                                        src={item && item.video_url}
+                                        frameBorder="50"
+                                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                        title="Embedded youtube"
+                                        style={{ borderRadius: "30px" }}
+                                      />
                                     </a>
                                   </div>
 
@@ -137,7 +147,16 @@ const DemoVideos = ({ demoVideoListApi, demoListData, demoVideoDetailApi, videoD
                                 <div className="article">
                                   <div className="thumbnail">
                                     <a href={item && item.video_url} data-fancybox>
-                                      <video src={item && item.video_url}></video>
+                                      <iframe
+                                        width="100%"
+                                        height="200"
+                                        src={item && item.video_url}
+                                        frameBorder="50"
+                                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                        title="Embedded youtube"
+                                        style={{ borderRadius: "30px" }}
+                                      />
                                     </a>
                                   </div>
 
@@ -159,6 +178,7 @@ const DemoVideos = ({ demoVideoListApi, demoListData, demoVideoDetailApi, videoD
                     </div>
                   )}
                 </div>
+
               </div>
             </div>
           </div>

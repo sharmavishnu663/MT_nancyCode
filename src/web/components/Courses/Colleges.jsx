@@ -108,7 +108,7 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
 
               <div className="tab-content MT_TabContent" id="MT_TabContent">
                 <div className="tab-pane fade show active" id="MT-tabPane-1" role="tabpanel" aria-labelledby="Edu-tab-1" tabIndex="0">
-                  {indexData == 0 || indexData === "undefined" ? (
+                  {indexData == 0 || indexData === undefined ? (
                     <div className="explore-lakshya bg-light-orange">
                       <div>
                         <img src="../assets/imgs/lakshya-logo.png" alt="lakshya-logo" />

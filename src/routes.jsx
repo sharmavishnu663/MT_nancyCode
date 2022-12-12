@@ -1,8 +1,8 @@
 export const WebRoutes = {
   DASHBOARD: "/",
-  COMPETATIVE_EXAM: "/courses/competativeExams",
-  COLLEGE: "/category",
-  SCHOOL: "/courses/school",
+  COMPETATIVE_EXAM: "/competative-exam",
+  COLLEGE: "/college",
+  SCHOOL: "/school",
   CENTERS: "/our-centers",
   ABOUT_US: "/about-Us",
   CONTACT_US: "/contact-us",
