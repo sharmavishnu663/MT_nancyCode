@@ -131,22 +131,22 @@ const Header = ({ categoryListApi, categoryData }) => {
                   <li>
                     <div className="dropdown-item mt-subheader">
                       <div className="dropdown">
-                        <a className="dropdown-toggle" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a className="dropdown-toggle" href="https://admission.mteducare.com/school" target="_blank" data-bs-toggle="dropdown" aria-expanded="false">
                           School
                         </a>
                         <ul className="dropdown-menu">
                           <li>
-                            <a className="dropdown-item" href="#">
+                            <a className="dropdown-item" href="https://admission.mteducare.com/state-board" target="_blank">
                               State Board
                             </a>
                           </li>
                           <li>
-                            <a className="dropdown-item" href="#">
+                            <a className="dropdown-item" href="https://admission.mteducare.com/cbse" target="_blank">
                               CBSE
                             </a>
                           </li>
                           <li>
-                            <a className="dropdown-item" href="#">
+                            <a className="dropdown-item" href="https://admission.mteducare.com/icse" target="_blank">
                               ICSE
                             </a>
                           </li>

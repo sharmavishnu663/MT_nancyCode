@@ -15,7 +15,7 @@ function WhyMtEducare() {
           </div>
 
           <div className="row g-4">
-            <div className="col-md-4">
+            <div className="col-lg-4 col-md-6">
               <div className="mt-card bg-light-orange">
                 <img src="../assets/imgs/icon-experience.svg" alt="icon" />
                 <h5>Experienced Faculty with industry knowledge</h5>
@@ -23,7 +23,7 @@ function WhyMtEducare() {
               </div>
             </div>
 
-            <div className="col-md-4">
+            <div className="col-lg-4 col-md-6">
               <div className="mt-card bg-light-blue">
                 <img src="../assets/imgs/icon-comprehensive-study.svg" alt="icon" />
                 <h5>Comprehensive Study Materials</h5>
@@ -31,7 +31,7 @@ function WhyMtEducare() {
               </div>
             </div>
 
-            <div className="col-md-4">
+            <div className="col-lg-4 col-md-6">
               <div className="mt-card bg-light-orange">
                 <img src="../assets/imgs/icon-technology.svg" alt="icon" />
                 <h5>Technology Added Teaching (TAT)</h5>
@@ -39,7 +39,7 @@ function WhyMtEducare() {
               </div>
             </div>
 
-            <div className="col-md-4">
+            <div className="col-lg-4 col-md-6">
               <div className="mt-card bg-light-blue">
                 <img src="../assets/imgs/icon-mapped-content.svg" alt="icon" />
                 <h5>Curriculum Mapped Audio-Visual Content</h5>
@@ -47,7 +47,7 @@ function WhyMtEducare() {
               </div>
             </div>
 
-            <div className="col-md-4">
+            <div className="col-lg-4 col-md-6">
               <div className="mt-card bg-light-orange">
                 <img src="../assets/imgs/icon-assessments.png" alt="icon" />
                 <h5>Assessments & Analytics for Growth</h5>
@@ -55,7 +55,7 @@ function WhyMtEducare() {
               </div>
             </div>
 
-            <div className="col-md-4">
+            <div className="col-lg-4 col-md-6">
               <div className="mt-card bg-light-blue">
                 <img src="../assets/imgs/icon-customer-delight.svg" alt="icon" />
                 <h5>Customer Delight & People-Centric Approach</h5>

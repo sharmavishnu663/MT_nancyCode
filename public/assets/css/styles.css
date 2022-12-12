@@ -763,10 +763,6 @@ section h3,
   gap: 20px;
 }
 
-.articles .article .detail .tag-link {
-  margin-top: auto;
-}
-
 .articles .article .detail h5 {
   font-family: "Manrope", sans-serif;
   font-weight: 700;
