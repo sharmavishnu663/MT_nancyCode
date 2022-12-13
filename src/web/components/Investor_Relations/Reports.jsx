@@ -16,8 +16,14 @@ const Reports = ({ reportDataAPI, reportData, reportSearchApi, reportSearchData 
   const years = reportData && reportData.data && [...new Set(reportData.data.map((q) => q.report_year))];
 
   const handlesearch = (event) => {
-    setYearSearch(event);
-    reportSearchApi({ year: event, reportId: currentReportId });
+    if (event !== 'Select year all') {
+      setYearSearch(event);
+      reportSearchApi({ year: event, reportId: 1 });
+    }
+    else {
+      setYearSearch('All');
+      window.location.reload();
+    }
   };
   return (
     <>
@@ -75,9 +81,9 @@ const Reports = ({ reportDataAPI, reportData, reportSearchApi, reportSearchData 
                   <div className="filter-dropdown">
                     <label for="dropdown">Year</label>
                     <select name="year" id="dropdown" value={yearSearch} onChange={(e) => handlesearch(e.target.value)}>
-                      <option disabled defaultValue>
-                        {" "}
-                        select year
+                      <option defaultValue selected>
+
+                        Select year all
                       </option>
                       {years && years.map((item) => <option value={item}>{item}</option>)}
                     </select>

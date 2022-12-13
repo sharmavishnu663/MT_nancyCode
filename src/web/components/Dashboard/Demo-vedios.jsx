@@ -11,10 +11,10 @@ const DemoVideos = ({ demoVideoListApi, demoListData, demoVideoDetailApi, videoD
   const [activeTab, setActiveTab] = useState(demoListData && demoListData.data && demoListData.data[0] && demoListData.data[0].id);
   const [activeTabDetail, setActiveTabDetail] = useState();
   // console.log(videoDetailData);
-  useEffect(() => {
-    demoVideoListApi();
-    defaultDemoVideoListApi();
-  }, []);
+  // useEffect(() => {
+  demoVideoListApi();
+  defaultDemoVideoListApi();
+  // }, []);
   useEffect(() => {
     // console.log(demoListData && demoListData.data && demoListData.data[0] && demoListData.data[0].id);
     demoVideoDetailApi(demoListData && demoListData.data && demoListData.data[0] && demoListData.data[0].id);

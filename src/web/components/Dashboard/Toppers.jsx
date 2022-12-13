@@ -4,11 +4,11 @@ import { IMAGE_BASE_URL } from "../../../redux/constants";
 
 const TopperDetails = ({ toppersData }) => {
   const toppersConfig = {
-    loop: false,
-    autoplay: false,
+    loop: true,
+    autoplay: true,
     margin: 40,
     dots: true,
-    autoplayTimeout: 4000,
+    autoplayTimeout: 1000,
     responsive: {
       0: {
         items: 1,

@@ -24,9 +24,9 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
   const [categoryActive, setCategoryActive] = useState(0);
 
   const heroToppersConfig = {
-    loop: false,
-    autoplay: false,
-    autoplayTimeout: 2000,
+    loop: true,
+    autoplay: true,
+    autoplayTimeout: 1000,
     // autoplaySpeed: 2000,
     margin: 0,
     dots: true,
@@ -76,10 +76,10 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
 
   const demoVideoConfig = {
     loop: false,
-    autoplay: false,
+    autoplay: true,
     margin: 0,
     dots: true,
-    autoplayTimeout: 4000,
+    autoplayTimeout: 1000,
     responsive: {
       0: {
         items: 1,
@@ -149,6 +149,13 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
   useEffect(() => {
     categoryDetailsApi(categoryActive);
   }, [categoryActive]);
+
+  const boardfilter = boardStandardsData && boardStandardsData.data && [
+    ...new Set(boardStandardsData.data.map((q) => q.board_name)),
+  ];
+  const standardfilter = boardStandardsData && boardStandardsData.data && [
+    ...new Set(boardStandardsData.data.map((q) => q.name)),
+  ];
 
   return (
     <>
@@ -254,13 +261,8 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
                         <option defaultValue selected>
                           Select Board
                         </option>
-                        {boardStandardsData &&
-                          boardStandardsData.data &&
-                          boardStandardsData.data.map((item, index) => (
-                            <option value={item.board_name} key={index}>
-                              {item.board_name}
-                            </option>
-                          ))}
+                        {boardfilter && boardfilter.map((item) => <option value={item}>{item}</option>)}
+
                       </select>
                     </Form.Item>
                   </div>
@@ -271,13 +273,8 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
                         <option defaultValue selected>
                           Select Standard
                         </option>
-                        {boardStandardsData &&
-                          boardStandardsData.data &&
-                          boardStandardsData.data.map((item, index) => (
-                            <option value={item.id} key={index}>
-                              {item.name}
-                            </option>
-                          ))}
+                        {standardfilter && standardfilter.map((item) => <option value={item}>{item}</option>)}
+
                       </select>
                     </Form.Item>
                   </div>

@@ -8,13 +8,13 @@ import { connect } from "react-redux";
 import OwlCarousel from "react-owl-carousel";
 import { demoVideoListApi, demoVideoDetailApi } from "../../../redux/action/demoVideo";
 import { useEffect } from "react";
-import { topperListAPI, achivementListAPI, categoryBaodStandardsListAPI, cityListAPI, AreaListAPI } from "../../../redux/action/home";
+import { topperListAPI, achivementListAPI, categoryBaodStandardsListAPI, cityListAPI, AreaListAPI, studentHearApi } from "../../../redux/action/home";
 import { categoryListApi, categoryDetailsApi, courseSearchDetailAPI } from "../../../redux/action/category";
 import Connect from "../Dashboard/Connect";
 import { parseHtml } from "../../../Utils/utils";
 import { IMAGE_BASE_URL } from "../../../redux/constants";
 
-const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, demoVideoListApi, topperListAPI, toppersData, achivementListAPI, categoryData, cityListAPI, courseSearchDetailAPI, courseSearchDetailsData }) => {
+const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, demoVideoListApi, topperListAPI, toppersData, achivementListAPI, categoryData, cityListAPI, courseSearchDetailAPI, courseSearchDetailsData, studentHearApi, studentHearData }) => {
   const [categoryActive, setCategoryActive] = useState(localStorage.getItem("categorySelectedId"));
   const [courseSearch, setCourseSearch] = useState(courseSearchDetailsData);
   const [search, setSearch] = useState();
@@ -254,6 +254,8 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
       <TopperDetails toppersData={toppersData} />
       {/* ================ OUR TOPPERS ENDS ======================= */}
 
+      <Feedback studentHearData={studentHearData} />
+
       {/* =========================== CONNECT SECTION STARTS HERE =============*/}
       {/* =========================== CONNECT SECTION ENDS HERE ================ */}
       <Connect />
@@ -275,6 +277,7 @@ const mapStateToProps = (state) => {
     cityData: HomeReducer.cityData,
     areaData: HomeReducer.areaData,
     categoryData: CategoryReducer.categoryData,
+    studentHearData: HomeReducer.studentHearData,
     categoryDetailsData: CategoryReducer.categoryDetailsData,
     courseSearchDetailsData: CategoryReducer.courseSearchDetailsData,
   };
@@ -289,6 +292,7 @@ const mapDispatchToProps = (dispatch) => {
     categoryBaodStandardsListAPI: (data) => dispatch(categoryBaodStandardsListAPI(data)),
     categoryListApi: () => dispatch(categoryListApi()),
     cityListAPI: () => dispatch(cityListAPI()),
+    studentHearApi: () => dispatch(studentHearApi()),
     AreaListAPI: (data) => dispatch(AreaListAPI(data)),
     categoryDetailsApi: (data) => dispatch(categoryDetailsApi(data)),
     courseSearchDetailAPI: (data) => dispatch(courseSearchDetailAPI(data)),

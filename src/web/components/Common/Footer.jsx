@@ -195,7 +195,7 @@ const Footer = ({ emailSubscriptionApi, categoryData, socialLinkData }) => {
                 >
                   <label htmlFor="subscribe">Subsribe Our News Letter</label>
                   <div>
-                    <input type="email" id="subscribe" value={email} placeholder="example@mail.com" onChange={(e) => setEmail(e.target.value)} required />
+                    <input type="email" id="subscribe" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.]{1}[a-zA-Z]{2,}$" value={email} placeholder="example@mail.com" onChange={(e) => setEmail(e.target.value)} required />
                     <button type="submit">
                       <img src="../assets/imgs/button-submit.svg" alt="button-img" />
                     </button>

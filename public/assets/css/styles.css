@@ -284,7 +284,7 @@ p {
 .floating-form .form-controls input,
 .floating-form .form-controls select {
   display: block;
-  width: 120px;
+  width: 100%;
   background: none;
   border: none;
   appearance: none;

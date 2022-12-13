@@ -48,6 +48,13 @@ const ContactUs = ({ openContact, handleCancel, categoryListApi, userQueryApi, c
       }, 1000 * 5);
     }
   };
+
+  const boards = boardStandardsData && boardStandardsData.data && [
+    ...new Set(boardStandardsData.data.map((q) => q.board_name)),
+  ];
+  const standards = boardStandardsData && boardStandardsData.data && [
+    ...new Set(boardStandardsData.data.map((q) => q.name)),
+  ];
   return (
     <>
       <ToastContainer />
@@ -112,13 +119,13 @@ const ContactUs = ({ openContact, handleCancel, categoryListApi, userQueryApi, c
 
               <div className="form-controls">
                 <Form.Item label="Email" name="email" className="form-label text-blue" rules={[{ required: true, message: "Please enter your email address!" }]}>
-                  <input type="email" id="email" placeholder="Email" value={queryEmail} onChange={(e) => setQueryEmail(e.target.value)} required />
+                  <input type="email" id="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.]{1}[a-zA-Z]{2,}$" placeholder="Email" value={queryEmail} onChange={(e) => setQueryEmail(e.target.value)} required />
                 </Form.Item>
               </div>
 
               <div className="form-controls">
                 <Form.Item label="Phone Number" name="mobile" className="form-label text-blue" rules={[{ required: true, message: "Please select your mobile!" }]}>
-                  <input type="text" className="allow_numeric" id="mobile" pattern="^[0-9]*$" minLength="10" maxLength="10" placeholder="Mobile" value={queryMobile} onChange={(e) => setQueryMobile(e.target.value)} required />
+                  <input type="text" className="allow_numeric" id="mobile" pattern="^[0-9\b]+$" minLength="10" maxLength="10" placeholder="Mobile" value={queryMobile} onChange={(e) => setQueryMobile(e.target.value)} required />
                 </Form.Item>
               </div>
 
@@ -139,7 +146,7 @@ const ContactUs = ({ openContact, handleCancel, categoryListApi, userQueryApi, c
                     <option defaultValue readonly hidden>
                       Select Board
                     </option>
-                    {boardStandardsData && boardStandardsData.data && boardStandardsData.data.map((item) => <option value={item.board_name}>{item.board_name}</option>)}
+                    {boards && boards.map((item) => <option value={item}>{item}</option>)}
                   </select>
                 </Form.Item>
               </div>
@@ -150,7 +157,7 @@ const ContactUs = ({ openContact, handleCancel, categoryListApi, userQueryApi, c
                     <option defaultValue readonly hidden>
                       Select Standards
                     </option>
-                    {boardStandardsData && boardStandardsData.data && boardStandardsData.data.map((item) => <option value={item.name}>{item.name}</option>)}
+                    {standards && standards.map((item) => <option value={item}>{item}</option>)}
                   </select>
                 </Form.Item>
               </div>

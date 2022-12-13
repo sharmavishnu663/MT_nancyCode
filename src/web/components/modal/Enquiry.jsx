@@ -50,6 +50,13 @@ const Enquiry = ({ openEnquiry, handleCancel, enquiryForm, userQueryApi, categor
     }
   };
 
+  const boards = boardStandardsData && boardStandardsData.data && [
+    ...new Set(boardStandardsData.data.map((q) => q.board_name)),
+  ];
+  const standards = boardStandardsData && boardStandardsData.data && [
+    ...new Set(boardStandardsData.data.map((q) => q.name)),
+  ];
+
   return (
     <>
       <ToastContainer />
@@ -82,13 +89,13 @@ const Enquiry = ({ openEnquiry, handleCancel, enquiryForm, userQueryApi, categor
 
                 <div className="col-md-4 form-controls">
                   <Form.Item label="Email" name="email" className="form-label" rules={[{ required: true, message: "Please input your email!" }]}>
-                    <Input required type="email" className="form-control" placeholder="@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <Input required type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.]{1}[a-zA-Z]{2,}$" className="form-control" placeholder="@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
                   </Form.Item>
                 </div>
 
                 <div className="col-md-4 form-controls">
                   <Form.Item label="Mobile Number" name="mobile" className="form-label" rules={[{ required: true, message: "Please input your Mobile number!" }]}>
-                    <Input type="text" className="form-control" pattern="^[0-9]*$" maxLength={10} placeholder="+91" value={mobile} onChange={(e) => setMobile(e.target.value)} required />
+                    <Input type="text" className="form-control" pattern="^[0-9\b]+$" maxLength={10} placeholder="+91" value={mobile} onChange={(e) => setMobile(e.target.value)} required />
                   </Form.Item>
                 </div>
 
@@ -109,7 +116,7 @@ const Enquiry = ({ openEnquiry, handleCancel, enquiryForm, userQueryApi, categor
                       <option selected>
                         Please select board
                       </option>
-                      {boardStandardsData && boardStandardsData.data && boardStandardsData.data.map((item) => <option value={item.board_name}>{item.board_name}</option>)}
+                      {boards && boards.map((item) => <option value={item}>{item}</option>)}
                     </select>
                   </Form.Item>
                 </div>
@@ -120,7 +127,7 @@ const Enquiry = ({ openEnquiry, handleCancel, enquiryForm, userQueryApi, categor
                       <option selected>
                         Please select Standards
                       </option>
-                      {boardStandardsData && boardStandardsData.data && boardStandardsData.data.map((item) => <option value={item.name}>{item.name}</option>)}
+                      {standards && standards.map((item) => <option value={item}>{item}</option>)}
                     </select>
                   </Form.Item>
                 </div>

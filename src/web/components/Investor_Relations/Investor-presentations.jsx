@@ -14,8 +14,14 @@ const InvestorPresentations = ({ investorDataAPI, investorData, investorSearchAp
   const years = investorData.data && [...new Set(investorData.data.map((q) => q.invest_year))];
 
   const handlesearch = (event) => {
-    setYearSearch(event);
-    investorSearchApi({ year: event });
+    if (event !== 'Select year all') {
+      setYearSearch(event);
+      investorSearchApi({ year: event });
+    }
+    else {
+      setYearSearch('All');
+      window.location.reload();
+    }
   };
 
   return (
@@ -27,9 +33,9 @@ const InvestorPresentations = ({ investorDataAPI, investorData, investorSearchAp
               <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
                   <li className="breadcrumb-item">
-                    <a href="index.html">
+                    <Link to="/">
                       <img src="../assets/imgs/icon-back.svg" alt="icon" /> Home
-                    </a>
+                    </Link>
                   </li>
                   <li className="breadcrumb-item active" aria-current="page">
                     Investor Presentations
@@ -65,8 +71,8 @@ const InvestorPresentations = ({ investorDataAPI, investorData, investorSearchAp
                   <div className="filter-dropdown">
                     <label for="dropdown">Year</label>
                     <select name="year" id="dropdown" value={yearSearch} onChange={(e) => handlesearch(e.target.value)}>
-                      <option disabled defaultValue>
-                        Select year
+                      <option selected>
+                        Select year all
                       </option>
                       {years && years.map((item) => <option value={item}>{item}</option>)}
                     </select>
