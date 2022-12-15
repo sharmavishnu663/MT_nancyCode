@@ -838,11 +838,11 @@ section h3,
 }
 
 .articles .article .profile img {
-  width: 44px;
-  height: 44px;
+  width: 45px;
+  height: 45px;
   display: inline-block;
   border-radius: 50%;
-  overflow: hidden;
+  object-fit: cover;
   margin-right: 16px;
   min-width: auto;
 }
@@ -1349,7 +1349,7 @@ nav[aria-label="breadcrumb"] {
   overflow: hidden;
   max-height: 400px;
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .filter-dropdown {

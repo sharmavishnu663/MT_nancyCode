@@ -9,7 +9,6 @@ import { IMAGE_BASE_URL } from "../../../redux/constants";
 const Footer = ({ emailSubscriptionApi, categoryData, socialLinkData }) => {
   const [openContact, setOpenContact] = useState(false);
   const [email, setEmail] = useState();
-  console.log(socialLinkData);
   const onFinish = () => {
     const data = { email: email };
     emailSubscriptionApi(data);

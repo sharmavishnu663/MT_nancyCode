@@ -46,19 +46,22 @@ const VideoGallary = ({ galleryVideoAPI, galleryVideoData }) => {
                     {galleryVideoData &&
                       galleryVideoData.data &&
                       galleryVideoData.data.map((item) => (
-                        <div className="article">
-                          <div className="thumbnail">
-                            <a href={item.video_url} data-fancybox>
-                              <iframe
-                                width="853"
-                                height="480"
-                                src={item && item.video_url}
-                                frameBorder="0"
-                                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                                title="Embedded youtube"
-                              />
-                            </a>
+                        <div className="col-md-4" style={{ display: "inline-block" }}>
+                          <div className="article">
+                            <div className="thumbnail">
+                              <a href={item.video_url} data-fancybox>
+                                <iframe
+                                  width="100%"
+                                  height="200"
+                                  src={item && item.video_url}
+                                  frameBorder="0"
+                                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                  allowFullScreen
+                                  title="Embedded youtube"
+                                  style={{ borderRadius: "36px" }}
+                                />
+                              </a>
+                            </div>
                           </div>
                         </div>
                       ))}

@@ -33,14 +33,10 @@ const Center = ({ categoryListApi, categoryBaodStandardsListAPI, boardStandardsD
     categoryBaodStandardsListAPI(category);
   }, [category]);
 
-  useEffect(() => {
-    if (city) {
-      AreaListAPI(localStorage.getItem("cityId"));
-    }
-  }, [city]);
 
   const handleCityChange = (e) => {
     setCity(e.target.value);
+    AreaListAPI(e.target.value);
     localStorage.setItem("cityId", city);
   };
 
@@ -52,6 +48,15 @@ const Center = ({ categoryListApi, categoryBaodStandardsListAPI, boardStandardsD
     centerSearchAPI(data);
   };
 
+  const boardsFilter = boardStandardsData && boardStandardsData.data && [
+    ...new Set(boardStandardsData.data.map((q) => q.board_name)),
+  ];
+  const standardsFilter = boardStandardsData && boardStandardsData.data && [
+    ...new Set(boardStandardsData.data.map((q) => q.name)),
+  ];
+  const areaFilter = areaData && areaData.data && [
+    ...new Set(areaData.data.map((q) => q.area)),
+  ];
   return (
     <>
       {/*====================== MANAGEMENT ================== */}
@@ -95,7 +100,7 @@ const Center = ({ categoryListApi, categoryBaodStandardsListAPI, boardStandardsD
                         <option selected >
                           Select Board
                         </option>
-                        {boardStandardsData && boardStandardsData.data && boardStandardsData.data.map((item) => <option value={item.board_name}>{item.board_name}</option>)}
+                        {boardsFilter && boardsFilter.map((item) => <option value={item}>{item}</option>)}
                       </select>
                     </Form.Item>
                   </div>
@@ -106,7 +111,7 @@ const Center = ({ categoryListApi, categoryBaodStandardsListAPI, boardStandardsD
                         <option selected>
                           Select Standards
                         </option>
-                        {boardStandardsData && boardStandardsData.data && boardStandardsData.data.map((item) => <option value={item.id}>{item.name}</option>)}
+                        {standardsFilter && standardsFilter.map((item) => <option value={item}>{item}</option>)}
                       </select>
                     </Form.Item>
                   </div>
@@ -128,7 +133,7 @@ const Center = ({ categoryListApi, categoryBaodStandardsListAPI, boardStandardsD
                         <option selected >
                           Select Area
                         </option>
-                        {areaData && areaData.data && areaData.data.map((item) => <option value={item.id}>{item.name}</option>)}
+                        {areaFilter && areaFilter.map((item) => <option value={item}>{item}</option>)}
                       </select>
                     </Form.Item>
                   </div>

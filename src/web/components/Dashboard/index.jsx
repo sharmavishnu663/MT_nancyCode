@@ -18,38 +18,44 @@ import { categoryListApi, categoryDetailsApi, defaultCategoryListApi } from "../
 import { WebRoutes } from "../../../routes";
 import { parseHtml } from "../../../Utils/utils";
 import { IMAGE_BASE_URL } from "../../../redux/constants";
+import { defaultDemoVideoListApi, demoVideoListApi } from "../../../redux/action/demoVideo";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi, topperListAPI, toppersData, achivementListAPI, achivementsData, categoryBaodStandardsListAPI, boardStandardsData, categoryData, cityListAPI, AreaListAPI, cityData, areaData, categoryDetailsData, defaultCategoryDetailsData, studentHearApi, studentHearData, weOfferApi, weOfferData }) => {
+const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDetailsApi, topperListAPI, toppersData, achivementListAPI, achivementsData, categoryBaodStandardsListAPI, boardStandardsData, categoryData, cityListAPI, AreaListAPI, cityData, areaData, categoryDetailsData,
+  defaultCategoryDetailsData, studentHearApi, studentHearData, weOfferApi, weOfferData, defaultVideoDetailData, demoVideoListApi, demoListData }) => {
   // console.log(categoryData && categoryData.data && categoryData.data[0].id);
   const [categoryActive, setCategoryActive] = useState(0);
 
   const heroToppersConfig = {
-    loop: true,
-    autoplay: true,
-    autoplayTimeout: 1000,
-    // autoplaySpeed: 2000,
-    margin: 0,
     dots: true,
-    responsive: {
-      0: {
-        items: 1,
-      },
-      600: {
-        items: 1,
-      },
-      1000: {
-        items: 1,
-      },
-      1100: {
-        items: 2,
-      },
-    },
+    infinite: true,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 2,
+    autoplay: true,
+    // autoplaySpeed: 2000,
+    cssEase: "linear"
+    // responsive: {
+    //   0: {
+    //     items: 1,
+    //   },
+    //   600: {
+    //     items: 1,
+    //   },
+    //   1000: {
+    //     items: 1,
+    //   },
+    //   1100: {
+    //     items: 2,
+    //   },
+    // },
   };
 
   const CoursesWeOfferConfig = {
     loop: false,
     autoplay: false,
-    autoplayTimeout: 1000,
+    autoplayTimeout: 3000,
     margin: 0,
     dots: true,
     responsive: {
@@ -75,22 +81,14 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
   };
 
   const demoVideoConfig = {
-    loop: false,
-    autoplay: true,
-    margin: 0,
     dots: true,
-    autoplayTimeout: 1000,
-    responsive: {
-      0: {
-        items: 1,
-      },
-      600: {
-        items: 2,
-      },
-      1000: {
-        items: 3,
-      },
-    },
+    infinite: true,
+    slidesToShow: 2,
+    slidesToScroll: 2,
+    autoplay: true,
+    speed: 2000,
+    // autoplaySpeed: 2000,
+    cssEase: "linear"
   };
 
   const [category, setCategory] = useState();
@@ -99,6 +97,7 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
   const [city, setCity] = useState();
   const [area, setArea] = useState();
   const [indexData, setIndexData] = useState();
+  const [activeTab, setActiveTab] = useState(1)
 
   useEffect(() => {
     topperListAPI();
@@ -107,6 +106,8 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
     studentHearApi();
     cityListAPI();
     weOfferApi();
+    defaultDemoVideoListApi();
+    demoVideoListApi();
   }, []);
 
   useEffect(() => {
@@ -202,7 +203,7 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
                           </div>
 
                           <div className="col-md-5 col-sm-12 sub-slider">
-                            <OwlCarousel className="owl-theme top-students top-students-a MT-OwlDots" {...heroToppersConfig}>
+                            <Slider className="owl-theme top-students top-students-a MT-OwlDots" {...heroToppersConfig}>
                               {toppersData &&
                                 toppersData.data &&
                                 toppersData.data.slice(0, 5).map((item1, index) => (
@@ -220,7 +221,7 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
                                     </div>
                                   </div>
                                 ))}
-                            </OwlCarousel>
+                            </Slider>
                           </div>
                         </div>
                       </div>
@@ -239,8 +240,8 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
               >
                 <div className="floating-form in-banner">
                   <div className="form-controls">
-                    <Form.Item label="Category" name="category" className="form-label" rules={[{ required: true, message: "Please select your category!" }]}>
-                      <select name="course" className="form-controls w-100" id="course" value={category} onChange={(e) => setCategory(e.target.value)} required>
+                    <Form.Item label="Category" name="category" className="form-label" >
+                      <select name="course" className="form-controls w-100" id="course" value={category} onChange={(e) => setCategory(e.target.value)}>
                         <option defaultValue selected>
                           Select Category
                         </option>
@@ -256,8 +257,8 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
                   </div>
 
                   <div className="form-controls">
-                    <Form.Item label="Baord" name="board" className="form-label" rules={[{ required: true, message: "Please select your board!" }]}>
-                      <select name="boards" className="form-controls w-100" id="boards" value={boards} onChange={(e) => setBoards(e.target.value)} required>
+                    <Form.Item label="Baord" name="board" className="form-label" >
+                      <select name="boards" className="form-controls w-100" id="boards" value={boards} onChange={(e) => setBoards(e.target.value)}>
                         <option defaultValue selected>
                           Select Board
                         </option>
@@ -268,8 +269,8 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
                   </div>
 
                   <div className="form-controls">
-                    <Form.Item label="Standards" name="standards" className="form-label" rules={[{ required: true, message: "Please select your standard!" }]}>
-                      <select name="standards" id="standards" className="form-controls w-100" value={standards} onChange={(e) => setStandards(e.target.value)} required>
+                    <Form.Item label="Standards" name="standards" className="form-label" >
+                      <select name="standards" id="standards" className="form-controls w-100" value={standards} onChange={(e) => setStandards(e.target.value)}>
                         <option defaultValue selected>
                           Select Standard
                         </option>
@@ -280,8 +281,8 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
                   </div>
 
                   <div className="form-controls">
-                    <Form.Item label="City" name="city" className="form-label" rules={[{ required: true, message: "Please select your city!" }]}>
-                      <select name="standards" id="standards" value={city} onChange={(e) => handleCityChange(e)} className="form-controls w-100" required>
+                    <Form.Item label="City" name="city" className="form-label">
+                      <select name="standards" id="standards" value={city} onChange={(e) => handleCityChange(e)} className="form-controls w-100" >
                         <option defaultValue selected>
                           Select City
                         </option>
@@ -297,8 +298,8 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
                   </div>
 
                   <div className="form-controls">
-                    <Form.Item label="Area" name="area" className="form-label" rules={[{ required: true, message: "Please select your area!" }]}>
-                      <select name="area" id="area" className="form-controls w-100" value={area} onChange={(e) => setArea(e.target.value)} required>
+                    <Form.Item label="Area" name="area" className="form-label" >
+                      <select name="area" id="area" className="form-controls w-100" value={area} onChange={(e) => setArea(e.target.value)} >
                         <option defaultValue selected>
                           Select Area
                         </option>
@@ -576,7 +577,112 @@ const Dashboard = ({ categoryListApi, defaultCategoryListApi, categoryDetailsApi
       <WhyMtEducare />
 
       {/* DEMO VIDEOS */}
-      <DemoVideos />
+
+      <section class="cards" id="demo-videos">
+
+        <div class="container">
+          <div class="row">
+            <div className="col-md-12 box-radius">
+              <h3 className="headline text-center mb-3">
+                Watch our <span className="text-blue">Demo Videos</span>
+              </h3>
+              <p className="sub-headline text-center">Take a look at some of our demo sessions to get an idea for what we stand for in educating our student.</p>
+            </div>
+            <div className="col-md-12">
+              <div className="pills">
+                <ul className="nav nav-tabs MT_Tab" id="MT_Tab" role="tablist">
+                  {demoListData &&
+                    demoListData.data &&
+                    demoListData.data.map((item, index) => (
+                      <li className="nav-item" role="presentation" key={index}>
+                        <button
+                          className={`${(item && item.id == activeTab) || index === 0 ? "nav-link active" : `nav-link`}`}
+                          id={`Edu-tab-${activeTab}`}
+                          data-bs-toggle="tab"
+                          data-bs-target={`#MT-tabPane-${activeTab}`}
+                          type="button"
+                          role="tab"
+                          aria-controls={`MT-tabPane-${activeTab}`}
+                          aria-selected="true"
+                          onClick={() => {
+                            setActiveTab(item && item.id);
+                            setActiveTabDetail(item && item.class_id);
+                            apiHit();
+                          }}
+                        >
+                          {item && item.class_category && item.class_category.name}
+                        </button>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+              <div className="tab-content " id="MT_TabContent">
+                <div class="tab-pane fade show active" id={`MT-tabPane-1`} role="tabpanel" aria-labelledby={`Edu-tab-1`} tabIndex="0">
+
+                  <Slider  {...demoVideoConfig}>
+                    {defaultVideoDetailData &&
+                      defaultVideoDetailData.data &&
+                      defaultVideoDetailData.data.map((item, index) => (
+                        <div className="articles">
+                          <div className="article">
+                            <div className="thumbnail">
+                              {/* <a href={item && item.video_url} data-fancybox> */}
+                              {/* <video src={item && item.video_url}></video> */}
+                              <iframe
+                                width="100%"
+                                height="200"
+                                src={item && item.video_url}
+                                frameBorder="50"
+                                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                                title="Embedded youtube"
+                                style={{ borderRadius: "30px" }}
+                              />
+                              {/* </a> */}
+                            </div>
+
+                            <div className="detail">
+                              <h5>{item && item.title}</h5>
+                              <div className="description">
+                                <p>{item && parseHtml(item.description.substring(0, 150))}</p>
+                                {item && item.description.length > 150 ? (
+                                  <span
+                                    onClick={() => {
+                                      readMoreModal(item.title, item.description);
+                                    }}
+                                    role="button"
+                                  >
+                                    Read more...
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </div>
+                              <div className="tag-link flex-none">
+                                <div className="tag blue bg-light-blue">{item && item.standard_tag}</div>
+                                {/* <div className="tag bg-light-orange">{item && item.title}</div> */}
+                                <div className="tag bg-light-orange">{item && item.subject_tag}</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                  </Slider>
+
+
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+
+
+      {/* <DemoVideos /> */}
 
       {/* OFFERINGS */}
       <Offerings weOfferData={weOfferData} />
@@ -605,6 +711,8 @@ const mapStateToProps = (state) => {
     categoryData: CategoryReducer.categoryData,
     categoryDetailsData: CategoryReducer.categoryDetailsData,
     defaultCategoryDetailsData: CategoryReducer.defaultCategoryDetailsData,
+    defaultVideoDetailData: DemoVideoReducer.defaultVideoDetailData,
+    demoListData: DemoVideoReducer.demoListData,
   };
 };
 
@@ -620,6 +728,8 @@ const mapDispatchToProps = (dispatch) => {
     defaultCategoryListApi: () => dispatch(defaultCategoryListApi()),
     AreaListAPI: (data) => dispatch(AreaListAPI(data)),
     categoryDetailsApi: (data) => dispatch(categoryDetailsApi(data)),
+    defaultDemoVideoListApi: () => dispatch(defaultDemoVideoListApi()),
+    demoVideoListApi: () => dispatch(demoVideoListApi()),
   };
 };
 

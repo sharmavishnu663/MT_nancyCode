@@ -8,7 +8,7 @@ const TopperDetails = ({ toppersData }) => {
     autoplay: true,
     margin: 40,
     dots: true,
-    autoplayTimeout: 1000,
+    autoplayTimeout: 3000,
     responsive: {
       0: {
         items: 1,

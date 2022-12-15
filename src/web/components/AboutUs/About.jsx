@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { introListAPI, boardDirectorAPI, boardCommitteeAPI, keyManagementAPI, boardDetailsAPI } from "../../../redux/action/aboutUs";
+import { introListAPI, introDataAPI } from "../../../redux/action/aboutUs";
+import { defaultIntroApi } from "../../../redux/action/home";
 import { IMAGE_BASE_URL } from "../../../redux/constants";
-// import { parseHtml } from "../../../Utils/utils";
+import { parseHtml } from "../../../Utils/utils";
 import Intro from "./intro";
 // import OwlCarousel from "react-owl-carousel";
 
-const About = ({ introListAPI, introData, boardCommitteeAPI, commitesData, boardDirectorAPI, directorsData, keyManagementAPI, keyManagementData, boardDetailsAPI, boardDetailData }) => {
-  const [visionSet, setVisionSet] = useState();
+
+const About = ({ introListAPI, introData, defaultIntroApi, defaultIntroData, introDataAPI, introDataDetailData }) => {
+  const [defaultData, setDefaultData] = useState(true);
   useEffect(() => {
     introListAPI();
-
-    // setActiveYear(introData.data && introData.data && introData.data[0].id)
-    setTimeout(() => {
-      setActiveYear(introData.data[0].id);
-    }, 2000);
+    defaultIntroApi();
   }, []);
 
   // setTimeout(() => {
@@ -26,32 +24,32 @@ const About = ({ introListAPI, introData, boardCommitteeAPI, commitesData, board
   const [activeYear, setActiveYear] = useState(introData && introData.first_id ? introData.first_id : 0);
 
   const handleStepPrev = (prevYear) => {
-    console.log(`Prev Step:  (${prevYear})`);
+    setDefaultData(false);
     if (prevYear >= introData.first_id) {
       setActiveYear(prevYear - 1);
+      introDataAPI(prevYear - 1);
     } else {
       setActiveYear(undefined);
     }
-    console.log(`Prev Step:  (${activeYear})`);
-    console.log("=========================================");
+
   };
 
   const handleStepNext = (nextYear) => {
-    console.log(`Next Step:  (${nextYear})`);
+    setDefaultData(false);
     if (nextYear == 0) {
       setActiveYear(introData.first_id + 1);
+      introDataAPI(introData.first_id + 1);
     } else {
       setActiveYear(nextYear + 1);
+      introDataAPI(nextYear + 1);
     }
-    console.log(`Next Step:  (${activeYear})`);
-    console.log("=========================================");
   };
 
   const handleStepClick = (selectYear) => {
     console.log(`Step Clicked:  (${selectYear})`);
     setActiveYear(selectYear);
-    console.log(`Step Clicked:  (${activeYear})`);
-    console.log("=========================================");
+    setDefaultData(false);
+    introDataAPI(selectYear);
   };
 
   return (
@@ -99,7 +97,47 @@ const About = ({ introListAPI, introData, boardCommitteeAPI, commitesData, board
 
               <div className="timeline-card">
                 <div className="content">
-                  <Intro introData={introData} activeYear={activeYear} />
+                  {defaultData ?
+                    <div className="row align-items-center">
+                      <div className="item col-md-6">
+                        <h2 className="mb-4">
+                          <span className="text-orange">{defaultIntroData && defaultIntroData.data && defaultIntroData.data.title}</span>
+                        </h2>
+                        <p>{defaultIntroData && defaultIntroData.data && parseHtml(defaultIntroData.data.description)} </p>
+                        {defaultIntroData && defaultIntroData.data && JSON.parse(defaultIntroData.data.key_highlights).center && (
+                          <>
+                            <p className="big">Key Highlights</p>
+
+                            <ul className="highlights">
+                              <li>
+                                <span>Number of centers </span>
+                                <span>: {defaultIntroData && defaultIntroData.data && JSON.parse(defaultIntroData.data.key_highlights).center}</span>
+                              </li>
+                              <li>
+                                <span>Revenue</span>
+                                <span>: Rs.{defaultIntroData && defaultIntroData.data && JSON.parse(defaultIntroData.data.key_highlights).revenue} Crores</span>
+                              </li>
+                              <li>
+                                <span>Number of students</span>
+                                <span>: {JSON.parse(defaultIntroData && defaultIntroData.data && defaultIntroData.data.key_highlights).students}+</span>
+                              </li>
+                            </ul>
+                          </>
+                        )}
+                      </div>
+
+                      <div className="col-md-6 text-center">
+                        <img src={defaultIntroData && defaultIntroData.data && IMAGE_BASE_URL + "/" + defaultIntroData.data.image} alt="illustration" />
+                      </div>
+                    </div>
+                    :
+                    <Intro activeYear={activeYear} introDataDetailData={introDataDetailData} />
+
+                  }
+
+
+
+                  {/* <Intro introData={introData} activeYear={activeYear} /> */}
                   <div className="btn-wrapper text-right">
                     {console.log('firstID' + introData.first_id + 'active' + activeYear)}
                     {introData && introData.first_id < activeYear && introData.first_id != activeYear ?
@@ -137,16 +175,22 @@ const About = ({ introListAPI, introData, boardCommitteeAPI, commitesData, board
 };
 
 const mapStateToProps = (state) => {
-  const { AboutReducer } = state;
-  const { introData, commitesData, directorsData, keyManagementData } = AboutReducer;
+  const { AboutReducer, HomeReducer } = state;
+  const { introDataDetailData } = AboutReducer;
   return {
     introData: AboutReducer.introData,
+    defaultIntroData: HomeReducer.defaultIntroData,
+    introDataDetailData: AboutReducer.introDataDetailData,
+
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     introListAPI: () => dispatch(introListAPI()),
+    defaultIntroApi: () => dispatch(defaultIntroApi()),
+    introDataAPI: (data) => dispatch(introDataAPI(data)),
+
   };
 };
 

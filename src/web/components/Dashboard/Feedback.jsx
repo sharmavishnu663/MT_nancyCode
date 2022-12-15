@@ -1,13 +1,14 @@
-// import FeedbackCard from "../Cards/FeedbackCard";
+import React, { useState } from "react";
 import OwlCarousel from "react-owl-carousel";
 import { IMAGE_BASE_URL } from "../../../redux/constants";
 import { parseHtml } from "../../../Utils/utils";
+import Modal from "react-bootstrap/Modal";
 
 const Feedback = ({ studentHearData }) => {
   const OfferingsConfig = {
-    loop: false,
-    autoplay: false,
-    autoplayTimeout: 2000,
+    loop: true,
+    autoplay: true,
+    autoplayTimeout: 3000,
     margin: 0,
     dots: true,
     responsive: {
@@ -22,8 +23,31 @@ const Feedback = ({ studentHearData }) => {
       },
     },
   };
+  const [show, setShow] = useState(false);
+  const [ReadMoreCWETitle, setReadMoreCWETitle] = useState("");
+  const [ReadMoreCWEDescription, setReadMoreCWEDescription] = useState("");
+  const readMoreModal = (title, description) => {
+    setShow(true);
+    setReadMoreCWETitle(title);
+    setReadMoreCWEDescription(description);
+  };
   return (
     <>
+
+      <Modal show={show} onHide={() => setShow(false)} centered size="md">
+        <Modal.Body>
+          <div className="articles our-courses p-0">
+            <div className="article border-0">
+              <div className="detail p-2">
+                <h5>{ReadMoreCWETitle}</h5>
+                <div className="description">
+                  <p>{ReadMoreCWEDescription}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
       <section className="cards" id="feedbacks">
         <div className="container">
           <div className="row">
@@ -42,7 +66,19 @@ const Feedback = ({ studentHearData }) => {
                         <div className="article">
                           <div className="detail">
                             <div className="description">
-                              <p>{item && parseHtml(item.description)}</p>
+                              <p>{item && parseHtml(item.description.substring(0, 150))}</p>
+                              {item && item.description.length > 150 ? (
+                                <span
+                                  onClick={() => {
+                                    readMoreModal(item.title, item.description);
+                                  }}
+                                  role="button"
+                                >
+                                  Read more...
+                                </span>
+                              ) : (
+                                ""
+                              )}
                             </div>
 
                             <div className="profile">

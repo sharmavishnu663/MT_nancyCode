@@ -181,8 +181,8 @@
 }
 
 .timeline-card img[alt=illustration] {
-  max-height: 600px;
-  object-fit: cover;
+  max-height: 350px;
+  object-fit: contain;
   border-radius: 20px;
 }
 

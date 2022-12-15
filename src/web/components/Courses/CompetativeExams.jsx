@@ -13,6 +13,8 @@ import Connect from "../Dashboard/Connect";
 import { parseHtml } from "../../../Utils/utils";
 import { IMAGE_BASE_URL } from "../../../redux/constants";
 import DemoVedios from "../Dashboard/Demo-vedios";
+import Modal from "react-bootstrap/Modal";
+
 
 const CompetativeExam = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, demoVideoListApi, topperListAPI, toppersData, achivementListAPI, categoryData, cityListAPI, courseSearchDetailAPI, courseSearchDetailsData }) => {
   const [categoryActive, setCategoryActive] = useState(localStorage.getItem("categorySelectedId"));
@@ -45,6 +47,15 @@ const CompetativeExam = ({ categoryListApi, categoryDetailsApi, categoryDetailsD
     }
   };
 
+  const [show, setShow] = useState(false);
+  const [ReadMoreCWETitle, setReadMoreCWETitle] = useState("");
+  const [ReadMoreCWEDescription, setReadMoreCWEDescription] = useState("");
+  const readMoreModal = (title, description) => {
+    setShow(true);
+    setReadMoreCWETitle(title);
+    setReadMoreCWEDescription(description);
+  };
+
   const CoursesWeOfferConfig = {
     loop: false,
     autoplay: false,
@@ -66,6 +77,22 @@ const CompetativeExam = ({ categoryListApi, categoryDetailsApi, categoryDetailsD
 
   return (
     <>
+
+      <Modal show={show} onHide={() => setShow(false)} centered size="md">
+        <Modal.Body>
+          <div className="articles our-courses p-0">
+            <div className="article border-0">
+              <div className="detail p-2">
+                <h5>{ReadMoreCWETitle}</h5>
+                <div className="description">
+                  <p>{ReadMoreCWEDescription}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
+
       <section className="cards" id="courses">
         <div className="container">
           <div className="row">
@@ -162,7 +189,19 @@ const CompetativeExam = ({ categoryListApi, categoryDetailsApi, categoryDetailsD
                                   <div className="detail">
                                     <h5>{item && item.title}</h5>
                                     <div className="description">
-                                      <p>{item && parseHtml(item.description.substring(0, 300))} sdssd</p>
+                                      <p>{item && parseHtml(item.description.substring(0, 150))}</p>
+                                      {item && item.description.length > 150 ? (
+                                        <span
+                                          onClick={() => {
+                                            readMoreModal(item.title, item.description);
+                                          }}
+                                          role="button"
+                                        >
+                                          Read more...
+                                        </span>
+                                      ) : (
+                                        ""
+                                      )}
                                     </div>
                                     <div className="tag-link">
                                       <div className="tag">{item.tag_name}</div>
@@ -188,7 +227,19 @@ const CompetativeExam = ({ categoryListApi, categoryDetailsApi, categoryDetailsD
                                   <div className="detail">
                                     <h5>{item && item.title}</h5>
                                     <div className="description">
-                                      <p>{item && parseHtml(item.description.substring(0, 300))} </p>
+                                      <p>{item && parseHtml(item.description.substring(0, 150))} </p>
+                                      {item && item.description.length > 150 ? (
+                                        <span
+                                          onClick={() => {
+                                            readMoreModal(item.title, item.description);
+                                          }}
+                                          role="button"
+                                        >
+                                          Read more...
+                                        </span>
+                                      ) : (
+                                        ""
+                                      )}
                                     </div>
                                     <div className="tag-link">
                                       <div className="tag">{item.tag_name}</div>

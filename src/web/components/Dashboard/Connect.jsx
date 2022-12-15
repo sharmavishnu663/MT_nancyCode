@@ -70,13 +70,13 @@ const Connect = ({ categoryListApi, userQueryApi, categoryBaodStandardsListAPI, 
               >
                 <div className="floating-form">
                   <div className="form-controls">
-                    <Form.Item label="Name" name="name" className="form-label text-blue" rules={[{ required: true, message: " name!" }]}>
+                    <Form.Item label="Name" name="name" className="form-label text-blue" rules={[{ required: true, message: " Name!" }]}>
                       <input type="text" id="name" placeholder="Name" pattern="[a-zA-Z_&-]+([ ]?[a-zA-Z_&-]+)*" value={queryname} onChange={(e) => setQueryName(e.target.value)} required />
                     </Form.Item>
                   </div>
 
                   <div className="form-controls">
-                    <Form.Item label="Email" name="email" className="form-label text-blue" rules={[{ required: true, message: "email address!" }]}>
+                    <Form.Item label="Email" name="email" className="form-label text-blue" rules={[{ required: true, message: "Email address!" }]}>
                       <input type="email" id="email" placeholder="Email" value={queryEmail} onChange={(e) => setQueryEmail(e.target.value)} required />
                     </Form.Item>
                   </div>

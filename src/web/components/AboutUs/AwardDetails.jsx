@@ -55,7 +55,10 @@ const AwardDetails = ({ awardsDetailAPI, awardsDetails }) => {
                         {imagesData &&
                           JSON.parse(imagesData).map((item) => (
                             <div className="item">
-                              <img src={IMAGE_BASE_URL + "/awards/" + item} alt="image" />
+                              <a href={item && IMAGE_BASE_URL + "/awards/" + item} data-fancybox="gallery" data-caption="Optional caption">
+                                <img src={item && IMAGE_BASE_URL + "/awards/" + item} alt="award-data" />
+                              </a>
+                              {/* <img src={IMAGE_BASE_URL + "/awards/" + item} alt="image" /> */}
                             </div>
                           ))}
                       </Slider>
