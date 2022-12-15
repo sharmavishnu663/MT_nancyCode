@@ -18,14 +18,15 @@ import { categoryListApi, categoryDetailsApi, defaultCategoryListApi } from "../
 import { WebRoutes } from "../../../routes";
 import { parseHtml } from "../../../Utils/utils";
 import { IMAGE_BASE_URL } from "../../../redux/constants";
-import { defaultDemoVideoListApi, demoVideoListApi } from "../../../redux/action/demoVideo";
+import { defaultDemoVideoListApi, demoVideoListApi, demoVideoDetailApi } from "../../../redux/action/demoVideo";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDetailsApi, topperListAPI, toppersData, achivementListAPI, achivementsData, categoryBaodStandardsListAPI, boardStandardsData, categoryData, cityListAPI, AreaListAPI, cityData, areaData, categoryDetailsData,
-  defaultCategoryDetailsData, studentHearApi, studentHearData, weOfferApi, weOfferData, defaultVideoDetailData, demoVideoListApi, demoListData }) => {
+  defaultCategoryDetailsData, studentHearApi, studentHearData, weOfferApi, weOfferData, defaultVideoDetailData, demoVideoListApi, demoListData, demoVideoDetailApi, videoDetailData }) => {
   // console.log(categoryData && categoryData.data && categoryData.data[0].id);
   const [categoryActive, setCategoryActive] = useState(0);
+  const [demoVideoCheck, setDemoVideoCheck] = useState(true);
 
   const heroToppersConfig = {
     dots: true,
@@ -110,15 +111,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
     demoVideoListApi();
   }, []);
 
-  useEffect(() => {
-    categoryBaodStandardsListAPI(category);
-  }, [category]);
 
-  useEffect(() => {
-    if (city) {
-      AreaListAPI(localStorage.getItem("cityId"));
-    }
-  }, [city]);
 
   const [show, setShow] = useState(false);
   const [ReadMoreCWETitle, setReadMoreCWETitle] = useState("");
@@ -131,8 +124,8 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
 
   const handleCityChange = (e) => {
     setCity(e.target.value);
-    localStorage.setItem("cityId", city);
-  };
+    AreaListAPI(e.target.value);
+  }
 
   const onFinish = (event) => {
     const data = {
@@ -143,13 +136,9 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
   };
 
   const handleCategoryId = (id) => {
-    localStorage.setItem("categorySelectedId", id);
+    setCategoryActive(id);
     categoryDetailsApi(id);
   };
-
-  useEffect(() => {
-    categoryDetailsApi(categoryActive);
-  }, [categoryActive]);
 
   const boardfilter = boardStandardsData && boardStandardsData.data && [
     ...new Set(boardStandardsData.data.map((q) => q.board_name)),
@@ -157,6 +146,16 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
   const standardfilter = boardStandardsData && boardStandardsData.data && [
     ...new Set(boardStandardsData.data.map((q) => q.name)),
   ];
+
+  const apiHit = (detailID) => {
+    setDemoVideoCheck(false);
+    demoVideoDetailApi(detailID);
+  };
+
+  const handleBoardStandars = (e) => {
+    setCategory(e.target.value);
+    categoryBaodStandardsListAPI(e.target.value);
+  }
 
   return (
     <>
@@ -241,7 +240,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
                 <div className="floating-form in-banner">
                   <div className="form-controls">
                     <Form.Item label="Category" name="category" className="form-label" >
-                      <select name="course" className="form-controls w-100" id="course" value={category} onChange={(e) => setCategory(e.target.value)}>
+                      <select name="course" className="form-controls w-100" id="course" value={category} onChange={(e) => handleBoardStandars(e)}>
                         <option defaultValue selected>
                           Select Category
                         </option>
@@ -415,7 +414,6 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
                           aria-controls={`MT-tabPane-${categoryActive}`}
                           aria-selected="true"
                           onClick={(e) => {
-                            setCategoryActive(item && item.id);
                             handleCategoryId(item && item.id);
                             setIndexData(item && item.name);
                           }}
@@ -605,9 +603,9 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
                           aria-controls={`MT-tabPane-${activeTab}`}
                           aria-selected="true"
                           onClick={() => {
-                            setActiveTab(item && item.id);
-                            setActiveTabDetail(item && item.class_id);
-                            apiHit();
+                            //   setActiveTab(item && item.id);
+                            //   setActiveTabDetail(item && item.class_id);
+                            apiHit(item && item.class_id);
                           }}
                         >
                           {item && item.class_category && item.class_category.name}
@@ -618,56 +616,60 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
               </div>
               <div className="tab-content " id="MT_TabContent">
                 <div class="tab-pane fade show active" id={`MT-tabPane-1`} role="tabpanel" aria-labelledby={`Edu-tab-1`} tabIndex="0">
-
-                  <Slider  {...demoVideoConfig}>
-                    {defaultVideoDetailData &&
-                      defaultVideoDetailData.data &&
-                      defaultVideoDetailData.data.map((item, index) => (
-                        <div className="articles">
-                          <div className="article">
-                            <div className="thumbnail">
-                              {/* <a href={item && item.video_url} data-fancybox> */}
-                              {/* <video src={item && item.video_url}></video> */}
-                              <iframe
-                                width="100%"
-                                height="200"
-                                src={item && item.video_url}
-                                frameBorder="50"
-                                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                                title="Embedded youtube"
-                                style={{ borderRadius: "30px" }}
-                              />
-                              {/* </a> */}
-                            </div>
-
-                            <div className="detail">
-                              <h5>{item && item.title}</h5>
-                              <div className="description">
-                                <p>{item && parseHtml(item.description.substring(0, 150))}</p>
-                                {item && item.description.length > 150 ? (
-                                  <span
-                                    onClick={() => {
-                                      readMoreModal(item.title, item.description);
-                                    }}
-                                    role="button"
-                                  >
-                                    Read more...
-                                  </span>
-                                ) : (
-                                  ""
-                                )}
+                  {demoVideoCheck ?
+                    <Slider  {...demoVideoConfig}>
+                      {defaultVideoDetailData &&
+                        defaultVideoDetailData.data &&
+                        defaultVideoDetailData.data.map((item, index) => (
+                          <div className="articles">
+                            <div className="article">
+                              <div className="thumbnail">
+                                {/* <a href={item && item.video_url} data-fancybox> */}
+                                {/* <video src={item && item.video_url}></video> */}
+                                <iframe
+                                  width="100%"
+                                  height="200"
+                                  src={item && item.video_url}
+                                  frameBorder="50"
+                                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                  allowFullScreen
+                                  title="Embedded youtube"
+                                  style={{ borderRadius: "30px" }}
+                                />
+                                {/* </a> */}
                               </div>
-                              <div className="tag-link flex-none">
-                                <div className="tag blue bg-light-blue">{item && item.standard_tag}</div>
-                                {/* <div className="tag bg-light-orange">{item && item.title}</div> */}
-                                <div className="tag bg-light-orange">{item && item.subject_tag}</div>
+
+                              <div className="detail">
+                                <h5>{item && item.title}</h5>
+                                <div className="description">
+                                  <p>{item && parseHtml(item.description.substring(0, 150))}</p>
+                                  {item && item.description.length > 150 ? (
+                                    <span
+                                      onClick={() => {
+                                        readMoreModal(item.title, item.description);
+                                      }}
+                                      role="button"
+                                    >
+                                      Read more...
+                                    </span>
+                                  ) : (
+                                    ""
+                                  )}
+                                </div>
+                                <div className="tag-link flex-none">
+                                  <div className="tag blue bg-light-blue">{item && item.standard_tag}</div>
+                                  {/* <div className="tag bg-light-orange">{item && item.title}</div> */}
+                                  <div className="tag bg-light-orange">{item && item.subject_tag}</div>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      ))}
-                  </Slider>
+                        ))}
+                    </Slider>
+                    :
+                    <DemoVideos videoDetailData={videoDetailData} />
+
+                  }
 
 
 
@@ -730,6 +732,8 @@ const mapDispatchToProps = (dispatch) => {
     categoryDetailsApi: (data) => dispatch(categoryDetailsApi(data)),
     defaultDemoVideoListApi: () => dispatch(defaultDemoVideoListApi()),
     demoVideoListApi: () => dispatch(demoVideoListApi()),
+    demoVideoDetailApi: (data) => dispatch(demoVideoDetailApi(data)),
+
   };
 };
 
