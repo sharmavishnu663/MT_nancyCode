@@ -27,7 +27,6 @@ const AwardsRecognition = ({ awardsAPI, awardsData }) => {
     slidesToScroll: 2
   };
   const imagesData = awardsData.data && awardsData.data[0] && awardsData.data[0].image;
-  console.log(imagesData);
   return (
     <>
       {/* ======== Header =============== */}

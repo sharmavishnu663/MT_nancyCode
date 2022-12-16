@@ -30,13 +30,13 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
     cityListAPI();
     categoryDetailsApi(localStorage.getItem("categorySelectedId"));
   }, []);
+
   const handleCategoryId = (id) => {
+    setCategoryActive(id);
     localStorage.setItem("categorySelectedId", id);
     categoryDetailsApi(id);
+
   };
-  useEffect(() => {
-    categoryDetailsApi(categoryActive);
-  }, [categoryActive]);
 
   const handleSearch = (e) => {
     if (e) {
@@ -117,7 +117,6 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
                           aria-controls={`MT-tabPane-${categoryActive}`}
                           aria-selected="true"
                           onClick={(e) => {
-                            setCategoryActive(item && item.id);
                             handleCategoryId(item && item.id);
                             setIndexData(index);
                           }}

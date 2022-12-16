@@ -58,8 +58,8 @@ const Csr = ({ CSRAPI, CSRData }) => {
                 <Slider {...toppersConfig}>
                   {CSRData &&
                     CSRData.data &&
-                    CSRData.data.map((item) => (
-                      <div className="item px-2">
+                    CSRData.data.map((item, index) => (
+                      <div className="item px-2" key={index}>
                         <div className="timeline-card csr-card">
                           <div className="content">
                             <div className="row">

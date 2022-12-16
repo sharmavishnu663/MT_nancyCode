@@ -13,12 +13,7 @@ const Intro = ({ activeYear, introDataDetailData }) => {
     if (activeYear) {
       introDataAPI(activeYear)
     }
-  }, [activeYear])
-  // const aboutUs =
-  //   introData.data &&
-  //   introData.data.filter((item) => {
-  //     return activeYear !== undefined ? item.id == activeYear : introData.data[0];
-  //   });
+  }, [activeYear]);
 
   const toppersConfig = {
     loop: true,

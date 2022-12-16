@@ -15,10 +15,6 @@ const Header = ({ categoryListApi, categoryData }) => {
   const [toastType, setToastType] = useState(localStorage.getItem("postData"));
 
   useEffect(() => {
-    // categoryListApi()
-  }, []);
-
-  useEffect(() => {
     if (toastType) {
       showToast();
     }
@@ -178,7 +174,7 @@ const Header = ({ categoryListApi, categoryData }) => {
 
         {openEnquiry ? <Enquiry openEnquiry={openEnquiry} handleCancel={(e) => setOpenEnquiry(false)} categoryData={categoryData} /> : null}
 
-        {openContact ? <ContactUs openContact={openContact} handleCancel={(e) => setOpenContact(false)} /> : null}
+        {openContact ? <ContactUs openContact={openContact} handleCancel={(e) => setOpenContact(false)} categoryData={categoryData} /> : null}
 
         {/* ============= ENQUIRY MODAL ENDS ============= */}
 

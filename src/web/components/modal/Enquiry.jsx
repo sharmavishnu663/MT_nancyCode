@@ -24,9 +24,6 @@ const Enquiry = ({ openEnquiry, handleCancel, enquiryForm, userQueryApi, categor
     // categoryListApi();
     cityListAPI();
   }, []);
-  useEffect(() => {
-    categoryBaodStandardsListAPI(category);
-  }, [category]);
 
   const onFinish = (event) => {
     if (!isNaN(mobile)) {
@@ -56,6 +53,11 @@ const Enquiry = ({ openEnquiry, handleCancel, enquiryForm, userQueryApi, categor
   const standards = boardStandardsData && boardStandardsData.data && [
     ...new Set(boardStandardsData.data.map((q) => q.name)),
   ];
+
+  const handleCategory = (e) => {
+    setCategory(e.target.value);
+    categoryBaodStandardsListAPI(category);
+  }
 
   return (
     <>
@@ -101,11 +103,11 @@ const Enquiry = ({ openEnquiry, handleCancel, enquiryForm, userQueryApi, categor
 
                 <div className="col-md-4 form-controls">
                   <Form.Item label="Category" name="category" className="form-label" rules={[{ required: true, message: "Category!" }]}>
-                    <select name="course" className="custom-select form-select" id="course" value={category} onChange={(e) => setCategory(e.target.value)} required>
+                    <select name="course" className="custom-select form-select" id="course" value={category} onChange={(e) => handleCategory(e)} required>
                       <option selected>
                         Please select category
                       </option>
-                      {categoryData && categoryData.data && categoryData.data.map((item) => <option value={item.id}>{item.name}</option>)}
+                      {categoryData && categoryData.data && categoryData.data.map((item, index) => <option key={index} value={item.id}>{item.name}</option>)}
                     </select>
                   </Form.Item>
                 </div>
@@ -116,7 +118,7 @@ const Enquiry = ({ openEnquiry, handleCancel, enquiryForm, userQueryApi, categor
                       <option selected>
                         Please select board
                       </option>
-                      {boards && boards.map((item) => <option value={item}>{item}</option>)}
+                      {boards && boards.map((item, index) => <option key={index} value={item}>{item}</option>)}
                     </select>
                   </Form.Item>
                 </div>
@@ -127,7 +129,7 @@ const Enquiry = ({ openEnquiry, handleCancel, enquiryForm, userQueryApi, categor
                       <option selected>
                         Please select Standards
                       </option>
-                      {standards && standards.map((item) => <option value={item}>{item}</option>)}
+                      {standards && standards.map((item, index) => <option key={index} value={item}>{item}</option>)}
                     </select>
                   </Form.Item>
                 </div>
@@ -156,7 +158,7 @@ const Enquiry = ({ openEnquiry, handleCancel, enquiryForm, userQueryApi, categor
                       <option selected>
                         Please select city
                       </option>
-                      {cityData && cityData.data && cityData.data.map((item) => <option value={item.id}>{item.name}</option>)}
+                      {cityData && cityData.data && cityData.data.map((item, index) => <option key={index} value={item.id}>{item.name}</option>)}
                     </select>
                   </Form.Item>
                 </div>

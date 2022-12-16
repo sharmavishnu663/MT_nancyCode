@@ -22,16 +22,13 @@ const Center = ({ categoryListApi, categoryBaodStandardsListAPI, boardStandardsD
     cityListAPI();
   }, []);
 
-  useEffect(() => {
-    if (searchData) {
-      centerSearchAPI(searchData);
-      centersData = centerSearchData;
-    }
-  }, [searchData]);
+  // useEffect(() => {
+  //   if (searchData) {
+  //     centerSearchAPI(searchData);
+  //     centersData = centerSearchData;
+  //   }
+  // }, [searchData]);
 
-  useEffect(() => {
-    categoryBaodStandardsListAPI(category);
-  }, [category]);
 
 
   const handleCityChange = (e) => {
@@ -57,6 +54,12 @@ const Center = ({ categoryListApi, categoryBaodStandardsListAPI, boardStandardsD
   const areaFilter = areaData && areaData.data && [
     ...new Set(areaData.data.map((q) => q.area)),
   ];
+
+
+  const handleCategory = (e) => {
+    setCategory(e.target.value);
+    categoryBaodStandardsListAPI(e.target.value);
+  }
   return (
     <>
       {/*====================== MANAGEMENT ================== */}
@@ -85,7 +88,7 @@ const Center = ({ categoryListApi, categoryBaodStandardsListAPI, boardStandardsD
                 <div className="floating-form in-banner">
                   <div className="form-controls">
                     <Form.Item label="Category" name="category" className="form-label">
-                      <select name="course" className="form-controls w-100" id="course" value={category} onChange={(e) => setCategory(e.target.value)}>
+                      <select name="course" className="form-controls w-100" id="course" value={category} onChange={(e) => handleCategory(e)}>
                         <option selected >
                           Select Category
                         </option>

@@ -78,13 +78,13 @@ const ResearchReport = ({ reportDataAPI, reportData, reportSearchApi, reportSear
 
                 <div className="col-md-4">
                   <div className="filter-dropdown">
-                    <label for="dropdown">Year</label>
+                    <label >Year</label>
                     <select name="year" id="dropdown" value={yearSearch} onChange={(e) => handlesearch(e.target.value)}>
                       <option defaultValue selected>
 
                         Select year all
                       </option>
-                      {years && years.map((item) => <option value={item}>{item}</option>)}
+                      {years && years.map((item, index) => <option key={index} value={item}>{item}</option>)}
                     </select>
                   </div>
                 </div>
@@ -97,8 +97,8 @@ const ResearchReport = ({ reportDataAPI, reportData, reportSearchApi, reportSear
               <>
                 {reportSearchData &&
                   reportSearchData.data &&
-                  reportSearchData.data.map((item) => (
-                    <div className="col-md-4">
+                  reportSearchData.data.map((item, index) => (
+                    <div className="col-md-4" key={index}>
                       <div className="story report">
                         <div className="download">
                           <div className="file-type">
@@ -123,8 +123,8 @@ const ResearchReport = ({ reportDataAPI, reportData, reportSearchApi, reportSear
               <>
                 {reportData &&
                   reportData.data &&
-                  reportData.data.map((item) => (
-                    <div className="col-md-4">
+                  reportData.data.map((item, index) => (
+                    <div className="col-md-4" key={index}>
                       <div className="story report">
                         <div className="download">
                           <div className="file-type">

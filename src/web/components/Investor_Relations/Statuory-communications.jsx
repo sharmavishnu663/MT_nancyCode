@@ -44,8 +44,8 @@ const StatuoryCommunication = ({ releaseDataAPI, releaseData }) => {
           <div className="row stories">
             {releaseData &&
               releaseData.data &&
-              releaseData.data.map((item) => (
-                <div className="col-md-4">
+              releaseData.data.map((item, index) => (
+                <div className="col-md-4" key={index}>
                   <div className="story">
                     <div className="download">
                       <div className="file-type">

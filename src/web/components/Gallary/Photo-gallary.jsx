@@ -49,8 +49,8 @@ const PhotoGallary = ({ galleryDataAPI, galleryData }) => {
                   <div className="row">
                     {galleryData &&
                       galleryData.data &&
-                      galleryData.data.map((item) => (
-                        <div className="col-md-4">
+                      galleryData.data.map((item, index) => (
+                        <div className="col-md-4" key={index}>
                           <div className="article">
                             <div className="thumbnail">
                               <a>

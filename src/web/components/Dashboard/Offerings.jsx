@@ -62,8 +62,8 @@ const Offerings = ({ weOfferData }) => {
               <OwlCarousel {...OfferingsConfig} className="owl-theme MT-OwlDots">
                 {weOfferData &&
                   weOfferData.data &&
-                  weOfferData.data.map((item) => (
-                    <div className="item">
+                  weOfferData.data.map((item, index) => (
+                    <div className="item" key={index}>
                       <div className="articles">
                         <div className="article">
                           <div className="thumbnail">

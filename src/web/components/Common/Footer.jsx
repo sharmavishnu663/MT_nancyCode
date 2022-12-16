@@ -210,7 +210,7 @@ const Footer = ({ emailSubscriptionApi, categoryData, socialLinkData }) => {
               <h5 className="text-center mb-3">Follow Us</h5>
               <div className="social-icons">
                 {socialLinkData && socialLinkData.data && socialLinkData.data.map((item, index) =>
-                  <a href={item && item.link} target="_blank">
+                  <a href={item && item.link} target="_blank" key={index}>
                     <img src={item && IMAGE_BASE_URL + '/' + item.image} alt="icon" />
                   </a>
                 )}

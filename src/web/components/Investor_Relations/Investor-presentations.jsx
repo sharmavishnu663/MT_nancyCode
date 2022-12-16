@@ -69,12 +69,12 @@ const InvestorPresentations = ({ investorDataAPI, investorData, investorSearchAp
 
                 <div className="col-md-4">
                   <div className="filter-dropdown">
-                    <label for="dropdown">Year</label>
+                    <label >Year</label>
                     <select name="year" id="dropdown" value={yearSearch} onChange={(e) => handlesearch(e.target.value)}>
                       <option selected>
                         Select year all
                       </option>
-                      {years && years.map((item) => <option value={item}>{item}</option>)}
+                      {years && years.map((item, index) => <option key={index} value={item}>{item}</option>)}
                     </select>
                   </div>
                 </div>
@@ -86,8 +86,8 @@ const InvestorPresentations = ({ investorDataAPI, investorData, investorSearchAp
             {investorSearchData && investorSearchData.data ? (
               <>
                 {investorSearchData &&
-                  investorSearchData.data.map((item) => (
-                    <div className="col-md-4">
+                  investorSearchData.data.map((item, index) => (
+                    <div className="col-md-4" key={index}>
                       <div className="story report">
                         <div className="download">
                           <div className="file-type">
@@ -111,8 +111,8 @@ const InvestorPresentations = ({ investorDataAPI, investorData, investorSearchAp
             ) : (
               <>
                 {investorData.data &&
-                  investorData.data.map((item) => (
-                    <div className="col-md-4">
+                  investorData.data.map((item, index) => (
+                    <div className="col-md-4" key={index}>
                       <div className="story report">
                         <div className="download">
                           <div className="file-type">

@@ -18,9 +18,6 @@ const Connect = ({ categoryListApi, userQueryApi, categoryBaodStandardsListAPI, 
     categoryListApi();
     cityListAPI();
   }, []);
-  useEffect(() => {
-    categoryBaodStandardsListAPI(querycategory);
-  }, [querycategory]);
 
   const handleConnectSubmint = () => {
     const mobileData = queryMobile;
@@ -43,11 +40,24 @@ const Connect = ({ categoryListApi, userQueryApi, categoryBaodStandardsListAPI, 
       return false;
     }
   };
+
+  const handleCategory = (e) => {
+    setQueryCategory(e.target.value);
+    categoryBaodStandardsListAPI(e.target.value);
+  }
   // const handleContact = (event) => {
   //   const result = event.target.value.replace(/\D/g, '');
 
   //   setQueryMobile(result);
   // }
+
+  const boardfilter = boardStandardsData && boardStandardsData.data && [
+    ...new Set(boardStandardsData.data.map((q) => q.board_name)),
+  ];
+  const standardfilter = boardStandardsData && boardStandardsData.data && [
+    ...new Set(boardStandardsData.data.map((q) => q.name)),
+  ];
+
   return (
     <>
       <ToastContainer />
@@ -89,7 +99,7 @@ const Connect = ({ categoryListApi, userQueryApi, categoryBaodStandardsListAPI, 
 
                   <div className="form-controls">
                     <Form.Item label="Category" name="category" className="form-label" rules={[{ required: true, message: "Category!" }]}>
-                      <select name="course" className="form-controls w-100" id="category" value={querycategory} onChange={(e) => setQueryCategory(e.target.value)} required>
+                      <select name="course" className="form-controls w-100" id="category" value={querycategory} onChange={(e) => handleCategory(e)} required>
                         <option defaultValue selected>
                           Select category
                         </option>
@@ -110,13 +120,8 @@ const Connect = ({ categoryListApi, userQueryApi, categoryBaodStandardsListAPI, 
                         <option defaultValue selected>
                           Select board
                         </option>
-                        {boardStandardsData &&
-                          boardStandardsData.data &&
-                          boardStandardsData.data.map((item, index) => (
-                            <option value={item.board_name} key={index}>
-                              {item.board_name}
-                            </option>
-                          ))}
+                        {boardfilter && boardfilter.map((item) => <option value={item}>{item}</option>)}
+
                       </select>
                     </Form.Item>
                   </div>
@@ -127,13 +132,7 @@ const Connect = ({ categoryListApi, userQueryApi, categoryBaodStandardsListAPI, 
                         <option defaultValue selected>
                           Select Standards
                         </option>
-                        {boardStandardsData &&
-                          boardStandardsData.data &&
-                          boardStandardsData.data.map((item, index) => (
-                            <option value={item.name} key={index}>
-                              {item.name}
-                            </option>
-                          ))}
+                        {standardfilter && standardfilter.map((item) => <option value={item}>{item}</option>)}
                       </select>
                     </Form.Item>
                   </div>

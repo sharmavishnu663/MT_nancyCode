@@ -16,12 +16,17 @@ const ContactUs = ({ openContact, handleCancel, categoryListApi, userQueryApi, c
   const [queryboards, setQueryBoards] = useState();
   const [queryStandards, setQueryStandards] = useState();
   useEffect(() => {
-    categoryListApi();
     cityListAPI();
   }, []);
+
   useEffect(() => {
     categoryBaodStandardsListAPI(querycategory);
   }, [querycategory]);
+
+  const handleCategory = (e) => {
+    setQueryCategory(e.target.value)
+    categoryBaodStandardsListAPI(e.target.value);
+  }
 
   const handleConnectSubmint = () => {
     const mobileData = queryMobile;
@@ -131,11 +136,11 @@ const ContactUs = ({ openContact, handleCancel, categoryListApi, userQueryApi, c
 
               <div className="form-controls">
                 <Form.Item label="Category" name="category" className="form-label" rules={[{ required: true, message: "category!" }]}>
-                  <select name="course" className="form-controls w-100" id="category" value={querycategory} onChange={(e) => setQueryCategory(e.target.value)} required>
-                    <option defaultValue readonly hidden>
+                  <select name="course" className="form-controls w-100" id="category" value={querycategory} onChange={(e) => handleCategory(e)} required>
+                    <option selected >
                       Select Category
                     </option>
-                    {categoryData && categoryData.data && categoryData.data.map((item) => <option value={item.id}>{item.name}</option>)}
+                    {categoryData && categoryData.data && categoryData.data.map((item, index) => <option key={index} value={item.id}>{item.name}</option>)}
                   </select>
                 </Form.Item>
               </div>
@@ -143,10 +148,10 @@ const ContactUs = ({ openContact, handleCancel, categoryListApi, userQueryApi, c
               <div className="form-controls">
                 <Form.Item label="Baord" name="boards" className="form-label" rules={[{ required: true, message: "board!" }]}>
                   <select name="boards" className="form-controls w-100" id="boards" value={queryboards} onChange={(e) => setQueryBoards(e.target.value)} required>
-                    <option defaultValue readonly hidden>
+                    <option selected>
                       Select Board
                     </option>
-                    {boards && boards.map((item) => <option value={item}>{item}</option>)}
+                    {boards && boards.map((item, index) => <option key={index} value={item}>{item}</option>)}
                   </select>
                 </Form.Item>
               </div>
@@ -154,10 +159,10 @@ const ContactUs = ({ openContact, handleCancel, categoryListApi, userQueryApi, c
               <div className="form-controls">
                 <Form.Item label="Standards" name="standards" className="form-label" rules={[{ required: true, message: "standard!" }]}>
                   <select name="standards" className="form-controls w-100" id="standards" value={queryStandards} onChange={(e) => setQueryStandards(e.target.value)} required>
-                    <option defaultValue readonly hidden>
+                    <option selected>
                       Select Standards
                     </option>
-                    {standards && standards.map((item) => <option value={item}>{item}</option>)}
+                    {standards && standards.map((item, index) => <option key={index} value={item}>{item}</option>)}
                   </select>
                 </Form.Item>
               </div>

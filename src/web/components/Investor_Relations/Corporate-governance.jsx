@@ -53,8 +53,8 @@ const CorporateGovernance = ({ CorporateDataAPI, corporateData }) => {
 
           <div className="row stories reports">
             {corporateData.data &&
-              corporateData.data.map((item) => (
-                <div className="col-md-4">
+              corporateData.data.map((item, index) => (
+                <div className="col-md-4" key={index}>
                   <div className="story report">
                     <div className="download">
                       <div className="file-type">

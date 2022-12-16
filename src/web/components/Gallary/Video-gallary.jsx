@@ -45,8 +45,8 @@ const VideoGallary = ({ galleryVideoAPI, galleryVideoData }) => {
                   <div className="articles gallery-cards">
                     {galleryVideoData &&
                       galleryVideoData.data &&
-                      galleryVideoData.data.map((item) => (
-                        <div className="col-md-4" style={{ display: "inline-block" }}>
+                      galleryVideoData.data.map((item, index) => (
+                        <div className="col-md-4" key={index} style={{ display: "inline-block" }}>
                           <div className="article">
                             <div className="thumbnail">
                               <a href={item.video_url} data-fancybox>

@@ -16,11 +16,6 @@ const About = ({ introListAPI, introData, defaultIntroApi, defaultIntroData, int
     defaultIntroApi();
   }, []);
 
-  // setTimeout(() => {
-  //   console.log(introData.data[0].id);
-  //   setActiveYear(introData.data[0].id);
-  // }, 2000);
-  // console.log(activeYear);
   const [activeYear, setActiveYear] = useState(introData && introData.first_id ? introData.first_id : 0);
 
   const handleStepPrev = (prevYear) => {
@@ -46,7 +41,6 @@ const About = ({ introListAPI, introData, defaultIntroApi, defaultIntroData, int
   };
 
   const handleStepClick = (selectYear) => {
-    console.log(`Step Clicked:  (${selectYear})`);
     setActiveYear(selectYear);
     setDefaultData(false);
     introDataAPI(selectYear);
@@ -139,7 +133,6 @@ const About = ({ introListAPI, introData, defaultIntroApi, defaultIntroData, int
 
                   {/* <Intro introData={introData} activeYear={activeYear} /> */}
                   <div className="btn-wrapper text-right">
-                    {console.log('firstID' + introData.first_id + 'active' + activeYear)}
                     {introData && introData.first_id < activeYear && introData.first_id != activeYear ?
                       <Link to="#" className="btn btn-sm flip" title="prev" onClick={(e) => handleStepPrev(activeYear)}>
                         <img src="../assets/imgs/icon-arrow-right.svg" alt="icon" />

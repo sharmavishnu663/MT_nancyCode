@@ -286,7 +286,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
                         <option selected>
                           Select Board
                         </option>
-                        {boardfilter && boardfilter.map((item) => <option value={item}>{item}</option>)}
+                        {boardfilter && boardfilter.map((item, index) => <option key={index} value={item}>{item}</option>)}
 
                       </select>
                     </Form.Item>
@@ -298,7 +298,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
                         <option selected>
                           Select Standard
                         </option>
-                        {standardfilter && standardfilter.map((item) => <option value={item}>{item}</option>)}
+                        {standardfilter && standardfilter.map((item, index) => <option key={index} value={item}>{item}</option>)}
 
                       </select>
                     </Form.Item>
