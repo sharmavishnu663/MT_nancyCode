@@ -607,19 +607,21 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
                               <div className="detail">
                                 <h5>{item && item.title}</h5>
                                 <div className="description">
-                                  <p>{item && parseHtml(item.description.substring(0, 150))}</p>
-                                  {item && item.description.length > 150 ? (
-                                    <span
-                                      onClick={() => {
-                                        readMoreModal(item.title, item.description);
-                                      }}
-                                      role="button"
-                                    >
-                                      Read more...
-                                    </span>
-                                  ) : (
-                                    ""
-                                  )}
+                                  <p>
+                                    {item && parseHtml(item.description.substring(0, 150))}
+                                    {item && item.description.length > 150 ? (
+                                      <span
+                                        onClick={() => {
+                                          readMoreModal(item.title, item.description);
+                                        }}
+                                        role="button"
+                                      >
+                                        Read more...
+                                      </span>
+                                    ) : (
+                                      ""
+                                    )}
+                                  </p>
                                 </div>
                                 <div className="tag-link flex-none">
                                   <div className="tag blue bg-light-blue">{item && item.standard_tag}</div>

@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import { useEffect } from "react";
-import ReactDOM from "react-dom";
 import VideoCard from "../Cards/VideoCard";
-import OwlCarousel from "react-owl-carousel";
 import { connect } from "react-redux";
 import { demoVideoListApi, demoVideoDetailApi, defaultDemoVideoListApi } from "../../../redux/action/demoVideo";
 import { parseHtml } from "../../../Utils/utils";
@@ -11,9 +8,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const DemoVideos = ({ videoDetailData, readMoreModal }) => {
-  const demoVideoConfig = {
-    dots: false,
-    infinite: false,
+  const demoVideoConfig2 = {
+    dots: true,
+    infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -21,12 +18,11 @@ const DemoVideos = ({ videoDetailData, readMoreModal }) => {
 
   return (
     <>
-      <Slider className="owl-theme MT-OwlDots" {...demoVideoConfig}>
+      <Slider {...demoVideoConfig2}>
         {videoDetailData &&
           videoDetailData.data &&
           videoDetailData.data.map((item, index) => (
-            // <div className="item" key={index}>
-            <div className="articles">
+            <div className="articles" key={index}>
               <div className="article">
                 <div className="thumbnail">
                   <a href={item && item.video_url} data-fancybox>
@@ -38,19 +34,21 @@ const DemoVideos = ({ videoDetailData, readMoreModal }) => {
                 <div className="detail">
                   <h5>{item && item.title}</h5>
                   <div className="description">
-                    <p>{item && parseHtml(item.description.substring(0, 150))}</p>
-                    {item && item.description.length > 150 ? (
-                      <span
-                        onClick={() => {
-                          readMoreModal(item.title, item.description);
-                        }}
-                        role="button"
-                      >
-                        Read more...
-                      </span>
-                    ) : (
-                      ""
-                    )}
+                    <p>
+                      {item && parseHtml(item.description.substring(0, 150))}
+                      {item && item.description.length > 150 ? (
+                        <span
+                          onClick={() => {
+                            readMoreModal(item.title, item.description);
+                          }}
+                          role="button"
+                        >
+                          Read more...
+                        </span>
+                      ) : (
+                        ""
+                      )}
+                    </p>
                   </div>
                   <div className="tag-link flex-none">
                     <div className="tag blue bg-light-blue">{item && item.standard_tag}</div>
@@ -60,7 +58,6 @@ const DemoVideos = ({ videoDetailData, readMoreModal }) => {
                 </div>
               </div>
             </div>
-            // </div>
           ))}
       </Slider>
     </>
