@@ -189,3 +189,18 @@
 .timeline-card .btn-wrapper {
   margin-top: 40px;
 }
+
+.slick-track {
+  display: flex !important;
+  align-items: stretch;
+}
+
+.slick-track .slick-slide {
+  height: 100%;
+  display: flex !important;
+  align-items: stretch;
+}
+
+.slick-track .slick-slide div {
+  height: 100%;
+}
