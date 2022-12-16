@@ -84,12 +84,37 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
   const demoVideoConfig = {
     dots: true,
     infinite: true,
-    slidesToShow: 2,
-    slidesToScroll: 2,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    initialSlide: 0,
     autoplay: true,
-    speed: 2000,
-    // autoplaySpeed: 2000,
-    cssEase: "linear"
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
   };
 
   const [category, setCategory] = useState();
@@ -241,7 +266,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
                   <div className="form-controls">
                     <Form.Item label="Category" name="category" className="form-label" >
                       <select name="course" className="form-controls w-100" id="course" value={category} onChange={(e) => handleBoardStandars(e)}>
-                        <option defaultValue selected>
+                        <option selected>
                           Select Category
                         </option>
                         {categoryData &&
@@ -258,7 +283,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
                   <div className="form-controls">
                     <Form.Item label="Baord" name="board" className="form-label" >
                       <select name="boards" className="form-controls w-100" id="boards" value={boards} onChange={(e) => setBoards(e.target.value)}>
-                        <option defaultValue selected>
+                        <option selected>
                           Select Board
                         </option>
                         {boardfilter && boardfilter.map((item) => <option value={item}>{item}</option>)}
@@ -270,7 +295,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
                   <div className="form-controls">
                     <Form.Item label="Standards" name="standards" className="form-label" >
                       <select name="standards" id="standards" className="form-controls w-100" value={standards} onChange={(e) => setStandards(e.target.value)}>
-                        <option defaultValue selected>
+                        <option selected>
                           Select Standard
                         </option>
                         {standardfilter && standardfilter.map((item) => <option value={item}>{item}</option>)}
@@ -282,7 +307,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
                   <div className="form-controls">
                     <Form.Item label="City" name="city" className="form-label">
                       <select name="standards" id="standards" value={city} onChange={(e) => handleCityChange(e)} className="form-controls w-100" >
-                        <option defaultValue selected>
+                        <option selected>
                           Select City
                         </option>
                         {cityData &&
@@ -299,7 +324,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
                   <div className="form-controls">
                     <Form.Item label="Area" name="area" className="form-label" >
                       <select name="area" id="area" className="form-controls w-100" value={area} onChange={(e) => setArea(e.target.value)} >
-                        <option defaultValue selected>
+                        <option selected>
                           Select Area
                         </option>
                         {areaData &&
@@ -576,10 +601,10 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
 
       {/* DEMO VIDEOS */}
 
-      <section class="cards" id="demo-videos">
+      <section className="cards" id="demo-videos">
 
-        <div class="container">
-          <div class="row">
+        <div className="container">
+          <div className="row">
             <div className="col-md-12 box-radius">
               <h3 className="headline text-center mb-3">
                 Watch our <span className="text-blue">Demo Videos</span>
@@ -615,7 +640,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
                 </ul>
               </div>
               <div className="tab-content " id="MT_TabContent">
-                <div class="tab-pane fade show active" id={`MT-tabPane-1`} role="tabpanel" aria-labelledby={`Edu-tab-1`} tabIndex="0">
+                <div className="tab-pane fade show active" id={`MT-tabPane-1`} role="tabpanel" aria-labelledby={`Edu-tab-1`} tabIndex="0">
                   {demoVideoCheck ?
                     <Slider  {...demoVideoConfig}>
                       {defaultVideoDetailData &&
@@ -667,7 +692,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
                         ))}
                     </Slider>
                     :
-                    <DemoVideos videoDetailData={videoDetailData} />
+                    <DemoVideos videoDetailData={videoDetailData} readMoreModal={readMoreModal} />
 
                   }
 

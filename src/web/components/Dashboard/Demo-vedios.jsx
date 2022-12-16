@@ -1,30 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
+import ReactDOM from "react-dom";
+import VideoCard from "../Cards/VideoCard";
 import OwlCarousel from "react-owl-carousel";
+import { connect } from "react-redux";
+import { demoVideoListApi, demoVideoDetailApi, defaultDemoVideoListApi } from "../../../redux/action/demoVideo";
 import { parseHtml } from "../../../Utils/utils";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-const DemoVideos = ({ videoDetailData }) => {
+const DemoVideos = ({ videoDetailData, readMoreModal }) => {
+
   const demoVideoConfig = {
-    loop: true,
-    autoplay: true,
-    autoplayTimeout: 2000,
-    margin: 0,
     dots: true,
-    responsive: {
-      0: {
-        items: 1,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
       },
-      600: {
-        items: 2,
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
       },
-      1000: {
-        items: 3,
-      },
-    },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
   };
 
   return (
     <>
-      <OwlCarousel className="owl-theme MT-OwlDots" {...demoVideoConfig}>
+      <Slider className="owl-theme MT-OwlDots" {...demoVideoConfig}>
 
         {videoDetailData &&
           videoDetailData.data &&
@@ -51,7 +76,19 @@ const DemoVideos = ({ videoDetailData }) => {
                 <div className="detail">
                   <h5>{item && item.title}</h5>
                   <div className="description">
-                    <p>{item && parseHtml(item.description.substring(0, 300))}</p>
+                    <p>{item && parseHtml(item.description.substring(0, 150))}</p>
+                    {item && item.description.length > 150 ? (
+                      <span
+                        onClick={() => {
+                          readMoreModal(item.title, item.description);
+                        }}
+                        role="button"
+                      >
+                        Read more...
+                      </span>
+                    ) : (
+                      ""
+                    )}
                   </div>
                   <div className="tag-link flex-none">
                     <div className="tag blue bg-light-blue">{item && item.standard_tag}</div>
@@ -63,10 +100,27 @@ const DemoVideos = ({ videoDetailData }) => {
             </div>
             // </div>
           ))}
-      </OwlCarousel>
+      </Slider>
     </>
   )
 };
 
+const mapStateToProps = (state) => {
+  const { DemoVideoReducer } = state;
+  const { demoListData, videoDetailData, defaultVideoDetailData } = DemoVideoReducer;
+  return {
+    demoListData: DemoVideoReducer.demoListData,
+    videoDetailData: DemoVideoReducer.videoDetailData,
+    defaultVideoDetailData: DemoVideoReducer.defaultVideoDetailData,
+  };
+};
 
-export default DemoVideos;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    demoVideoListApi: () => dispatch(demoVideoListApi()),
+    defaultDemoVideoListApi: () => dispatch(defaultDemoVideoListApi()),
+    demoVideoDetailApi: (data) => dispatch(demoVideoDetailApi(data)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DemoVideos);
