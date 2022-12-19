@@ -33,7 +33,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
     speed: 500,
     slidesToShow: 2,
     slidesToScroll: 2,
-    autoplay: true,
+    autoplay: false,
     // autoplaySpeed: 2000,
     cssEase: "linear",
     // responsive: {
@@ -86,8 +86,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    autoplay: true
-
+    autoplay: true,
   };
 
   const [category, setCategory] = useState();
@@ -194,7 +193,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
                           </div>
 
                           <div className="col-md-5 col-sm-12 sub-slider">
-                            <Slider className="owl-theme top-students top-students-a MT-OwlDots" {...heroToppersConfig}>
+                            <Slider className="MT-SlickDots top-students top-students-a" {...heroToppersConfig}>
                               {toppersData &&
                                 toppersData.data &&
                                 toppersData.data.slice(0, 5).map((item1, index) => (
@@ -248,11 +247,13 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
                   <div className="form-controls">
                     <Form.Item label="Baord" name="board" className="form-label">
                       <select name="boards" className="form-controls w-100" id="boards" value={boards} onChange={(e) => setBoards(e.target.value)}>
-                        <option selected>
-                          Select Board
-                        </option>
-                        {boardfilter && boardfilter.map((item, index) => <option key={index} value={item}>{item}</option>)}
-
+                        <option selected>Select Board</option>
+                        {boardfilter &&
+                          boardfilter.map((item, index) => (
+                            <option key={index} value={item}>
+                              {item}
+                            </option>
+                          ))}
                       </select>
                     </Form.Item>
                   </div>
@@ -260,11 +261,13 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
                   <div className="form-controls">
                     <Form.Item label="Standards" name="standards" className="form-label">
                       <select name="standards" id="standards" className="form-controls w-100" value={standards} onChange={(e) => setStandards(e.target.value)}>
-                        <option selected>
-                          Select Standard
-                        </option>
-                        {standardfilter && standardfilter.map((item, index) => <option key={index} value={item}>{item}</option>)}
-
+                        <option selected>Select Standard</option>
+                        {standardfilter &&
+                          standardfilter.map((item, index) => (
+                            <option key={index} value={item}>
+                              {item}
+                            </option>
+                          ))}
                       </select>
                     </Form.Item>
                   </div>
@@ -602,7 +605,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
               <div className="tab-content " id="MT_TabContent">
                 <div className="tab-pane fade show active" id={`MT-tabPane-1`} role="tabpanel" aria-labelledby={`Edu-tab-1`} tabIndex="0">
                   {demoVideoCheck ? (
-                    <Slider {...demoVideoConfig}>
+                    <Slider {...demoVideoConfig} className="MT-SlickDots">
                       {defaultVideoDetailData &&
                         defaultVideoDetailData.data &&
                         defaultVideoDetailData.data.map((item, index) => (

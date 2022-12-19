@@ -56,28 +56,21 @@ const Header = ({ categoryListApi, categoryData }) => {
                     categoryData.data &&
                     categoryData.data.map((item, index) => (
                       <li key={index}>
-                        {item && item.name == 'School' ?
+                        {item && item.name == "School" ? (
                           <Link to={WebRoutes.SCHOOL} className="dropdown-item" onClick={(e) => handleCategory(item && item.id)}>
                             {item && item.name}
                           </Link>
-                          :
-                          null
-                        }
-                        {item && item.name == 'Science' ?
+                        ) : null}
+                        {item && item.name == "Science" ? (
                           <Link to={WebRoutes.COLLEGE} className="dropdown-item" onClick={(e) => handleCategory(item && item.id)}>
                             {item && item.name}
                           </Link>
-                          :
-                          null
-                        }
-                        {
-                          item && item.name != 'School' && item.name != 'Science' ?
-                            <Link to={WebRoutes.COMPETATIVE_EXAM} className="dropdown-item" onClick={(e) => handleCategory(item && item.id)}>
-                              {item && item.name}
-                            </Link>
-                            :
-                            null
-                        }
+                        ) : null}
+                        {item && item.name != "School" && item.name != "Science" ? (
+                          <Link to={WebRoutes.COMPETATIVE_EXAM} className="dropdown-item" onClick={(e) => handleCategory(item && item.id)}>
+                            {item && item.name}
+                          </Link>
+                        ) : null}
                       </li>
                     ))}
                 </ul>
@@ -130,7 +123,7 @@ const Header = ({ categoryListApi, categoryData }) => {
                         <a className="dropdown-toggle" href="https://admission.mteducare.com/school" target="_blank" data-bs-toggle="dropdown" aria-expanded="false">
                           School
                         </a>
-                        <ul className="dropdown-menu">
+                        <ul className="dropdown-menu dropleft">
                           <li>
                             <a className="dropdown-item" href="https://admission.mteducare.com/state-board" target="_blank">
                               State Board
