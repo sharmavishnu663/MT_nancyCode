@@ -1514,6 +1514,11 @@ nav[aria-label="breadcrumb"] {
   transition: all 0.3s ease;
 }
 
+.social-icons a img {
+  height: 26px;
+  width: 26px;
+}
+
 .social-icons a:hover,
 .terms-policies a:hover {
   opacity: 0.75;

@@ -6,7 +6,7 @@ import Feedback from "../Dashboard/Feedback";
 import TopperDetails from "../Dashboard/Toppers";
 import { connect } from "react-redux";
 import OwlCarousel from "react-owl-carousel";
-import { demoVideoListApi, demoVideoDetailApi } from "../../../redux/action/demoVideo";
+import { demoVideoListApi, demoVideoDetailApi, defaultDemoVideoListApi } from "../../../redux/action/demoVideo";
 import { useEffect } from "react";
 import { topperListAPI, achivementListAPI, categoryBaodStandardsListAPI, cityListAPI, AreaListAPI, studentHearApi } from "../../../redux/action/home";
 import { categoryListApi, categoryDetailsApi, courseSearchDetailAPI } from "../../../redux/action/category";
@@ -14,15 +14,21 @@ import Connect from "../Dashboard/Connect";
 import { parseHtml } from "../../../Utils/utils";
 import { IMAGE_BASE_URL } from "../../../redux/constants";
 import Modal from "react-bootstrap/Modal";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
 
 
-const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, demoVideoListApi, topperListAPI, toppersData, achivementListAPI, categoryData, cityListAPI, courseSearchDetailAPI, courseSearchDetailsData, studentHearApi, studentHearData }) => {
+const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, demoVideoListApi, demoListData, topperListAPI, toppersData, achivementListAPI, categoryData, cityListAPI, courseSearchDetailAPI, courseSearchDetailsData, studentHearApi, studentHearData, demoVideoDetailApi, defaultDemoVideoListApi, defaultVideoDetailData, videoDetailData }) => {
   const [categoryActive, setCategoryActive] = useState(localStorage.getItem("categorySelectedId"));
   const [courseSearch, setCourseSearch] = useState(courseSearchDetailsData);
   const [search, setSearch] = useState();
   const [indexData, setIndexData] = useState(0);
+  const [demoVideoCheck, setDemoVideoCheck] = useState(true);
+  const [activeTab, setActiveTab] = useState(1);
+
 
   useEffect(() => {
+    defaultDemoVideoListApi();
     demoVideoListApi();
     topperListAPI();
     achivementListAPI();
@@ -39,11 +45,12 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
   };
 
   const handleSearch = (e) => {
+    const data = { search: e };
     if (e) {
-      const data = { search: e };
+
       courseSearchDetailAPI(data);
     } else {
-      setCourseSearch("");
+      setCourseSearch(data);
     }
   };
 
@@ -73,6 +80,20 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
         items: 3,
       },
     },
+  };
+
+  const demoVideoConfig = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true
+
+  };
+  const apiHit = (detailID) => {
+    setDemoVideoCheck(false);
+    demoVideoDetailApi(detailID);
   };
 
   return (
@@ -295,7 +316,93 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
         </div>
       </section>
       {/* ===================== DEMO VIDEO SECTION STARTS ==================== */}
-      <DemoVideos />
+      <section className="cards" id="demo-videos">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12 box-radius">
+              <h3 className="headline text-center mb-3">
+                Watch our <span className="text-blue">Demo Videos</span>
+              </h3>
+              <p className="sub-headline text-center">Take a look at some of our demo sessions to get an idea for what we stand for in educating our student.</p>
+            </div>
+            <div className="col-md-12">
+              <div className="pills">
+                <ul className="nav nav-tabs MT_Tab" id="MT_Tab" role="tablist">
+                  {demoListData &&
+                    demoListData.data &&
+                    demoListData.data.map((item, index) => (
+                      <li className="nav-item" role="presentation" key={index}>
+                        <button
+                          className={`${(item && item.id == activeTab) || index === 0 ? "nav-link active" : `nav-link`}`}
+                          id={`Edu-tab-${activeTab}`}
+                          data-bs-toggle="tab"
+                          data-bs-target={`#MT-tabPane-${activeTab}`}
+                          type="button"
+                          role="tab"
+                          aria-controls={`MT-tabPane-${activeTab}`}
+                          aria-selected="true"
+                          onClick={() => {
+                            //   setActiveTab(item && item.id);
+                            //   setActiveTabDetail(item && item.class_id);
+                            apiHit(item && item.class_id);
+                          }}
+                        >
+                          {item && item.class_category && item.class_category.name}
+                        </button>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+              <div className="tab-content " id="MT_TabContent">
+                <div className="tab-pane fade show active" id={`MT-tabPane-1`} role="tabpanel" aria-labelledby={`Edu-tab-1`} tabIndex="0">
+                  {demoVideoCheck ? (
+                    <Slider {...demoVideoConfig}>
+                      {defaultVideoDetailData &&
+                        defaultVideoDetailData.data &&
+                        defaultVideoDetailData.data.map((item, index) => (
+                          <div className="articles" key={index}>
+                            <div className="article">
+                              <div className="thumbnail">
+                                <iframe width="100%" height="200" src={item && item.video_url} frameBorder="50" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen title="Embedded youtube" style={{ borderRadius: "30px" }} />
+                              </div>
+
+                              <div className="detail">
+                                <h5>{item && item.title}</h5>
+                                <div className="description">
+                                  <p>
+                                    {item && parseHtml(item.description.substring(0, 150))}
+                                    {item && item.description.length > 150 ? (
+                                      <span
+                                        onClick={() => {
+                                          readMoreModal(item.title, item.description);
+                                        }}
+                                        role="button"
+                                      >
+                                        Read more...
+                                      </span>
+                                    ) : (
+                                      ""
+                                    )}
+                                  </p>
+                                </div>
+                                <div className="tag-link flex-none">
+                                  <div className="tag blue bg-light-blue">{item && item.standard_tag}</div>
+                                  <div className="tag bg-light-orange">{item && item.subject_tag}</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                    </Slider>
+                  ) : (
+                    <DemoVideos videoDetailData={videoDetailData} readMoreModal={readMoreModal} />
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ========================== DEMO VIDEO SECTION ENDS =================*/}
 
@@ -329,12 +436,18 @@ const mapStateToProps = (state) => {
     studentHearData: HomeReducer.studentHearData,
     categoryDetailsData: CategoryReducer.categoryDetailsData,
     courseSearchDetailsData: CategoryReducer.courseSearchDetailsData,
+    demoListData: DemoVideoReducer.demoListData,
+    defaultVideoDetailData: DemoVideoReducer.defaultVideoDetailData,
+
+
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    defaultDemoVideoListApi: () => dispatch(defaultDemoVideoListApi()),
     demoVideoListApi: () => dispatch(demoVideoListApi()),
+    demoVideoDetailApi: (data) => dispatch(demoVideoDetailApi(data)),
     topperListAPI: () => dispatch(topperListAPI()),
     achivementListAPI: () => dispatch(achivementListAPI()),
     demoVideoDetailApi: (data) => dispatch(demoVideoDetailApi(data)),
@@ -345,6 +458,7 @@ const mapDispatchToProps = (dispatch) => {
     AreaListAPI: (data) => dispatch(AreaListAPI(data)),
     categoryDetailsApi: (data) => dispatch(categoryDetailsApi(data)),
     courseSearchDetailAPI: (data) => dispatch(courseSearchDetailAPI(data)),
+
   };
 };
 
