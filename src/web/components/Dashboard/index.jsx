@@ -33,7 +33,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
     speed: 500,
     slidesToShow: 2,
     slidesToScroll: 2,
-    autoplay: false,
+    autoplay: true,
     // autoplaySpeed: 2000,
     cssEase: "linear",
     // responsive: {
@@ -53,22 +53,12 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
   };
 
   const CoursesWeOfferConfig = {
-    loop: false,
-    autoplay: false,
-    autoplayTimeout: 3000,
-    margin: 0,
     dots: true,
-    responsive: {
-      0: {
-        items: 1,
-      },
-      600: {
-        items: 2,
-      },
-      1000: {
-        items: 3,
-      },
-    },
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
   };
 
   const homeHeroCarousel = {
@@ -158,7 +148,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
               <div className="detail p-2">
                 <h5>{ReadMoreCWETitle}</h5>
                 <div className="description">
-                  <p>{ReadMoreCWEDescription}</p>
+                  <p>{parseHtml(ReadMoreCWEDescription)}</p>
                 </div>
               </div>
             </div>
@@ -461,7 +451,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
                     ) : null}
                     {/* <!-- explore-lakshya --> */}
 
-                    <OwlCarousel {...CoursesWeOfferConfig} className="owl-theme MT-OwlDots">
+                    <Slider {...CoursesWeOfferConfig} className="MT-SlickDots owl-theme MT-OwlDots">
                       {categoryDetailsData &&
                         categoryDetailsData.data &&
                         categoryDetailsData.data.map((item, index) => (
@@ -497,7 +487,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
                             </div>
                           </div>
                         ))}
-                    </OwlCarousel>
+                    </Slider>
                   </div>
                 ) : (
                   <div className="tab-pane fade show active" id="MT-tabPane-0" role="tabpanel" aria-labelledby="Edu-tab-0" tabIndex="0">
@@ -512,7 +502,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
                     </div>
                     {/* <!-- explore-lakshya --> */}
 
-                    <OwlCarousel {...CoursesWeOfferConfig} className="owl-theme MT-OwlDots">
+                    <Slider {...CoursesWeOfferConfig} className="MT-SlickDots owl-theme MT-OwlDots">
                       {defaultCategoryDetailsData &&
                         defaultCategoryDetailsData.data &&
                         defaultCategoryDetailsData.data.map((item, index) => (
@@ -548,7 +538,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
                             </div>
                           </div>
                         ))}
-                    </OwlCarousel>
+                    </Slider>
                   </div>
                 )}
               </div>

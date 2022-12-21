@@ -14,6 +14,9 @@ import Connect from "../Dashboard/Connect";
 import { parseHtml } from "../../../Utils/utils";
 import { IMAGE_BASE_URL } from "../../../redux/constants";
 import Modal from "react-bootstrap/Modal";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 
 const School = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, demoVideoListApi, topperListAPI, toppersData, achivementListAPI, categoryData, cityListAPI, courseSearchDetailAPI, courseSearchDetailsData }) => {
@@ -48,22 +51,12 @@ const School = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, demo
   };
 
   const CoursesWeOfferConfig = {
-    loop: false,
-    autoplay: false,
-    autoplayTimeout: 1000,
-    margin: 0,
     dots: true,
-    responsive: {
-      0: {
-        items: 1,
-      },
-      600: {
-        items: 2,
-      },
-      1000: {
-        items: 3,
-      },
-    },
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true
   };
 
   const [show, setShow] = useState(false);
@@ -84,7 +77,7 @@ const School = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, demo
               <div className="detail p-2">
                 <h5>{ReadMoreCWETitle}</h5>
                 <div className="description">
-                  <p>{ReadMoreCWEDescription}</p>
+                  <p>{parseHtml(ReadMoreCWEDescription)}</p>
                 </div>
               </div>
             </div>
@@ -172,8 +165,9 @@ const School = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, demo
                     </div>
                   ) : null}
                   {/* <!-- explore-lakshya --> */}
-                  <OwlCarousel className="owl-theme MT-OwlDots" {...CoursesWeOfferConfig}>
-                    {courseSearch && courseSearchDetailsData.data ? (
+                  {courseSearch && courseSearchDetailsData.data ?
+                    <Slider className="MT-SlickDots owl-theme MT-OwlDots" {...CoursesWeOfferConfig}>
+
                       <>
                         {courseSearchDetailsData &&
                           courseSearchDetailsData.data &&
@@ -211,8 +205,9 @@ const School = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, demo
                             </div>
                           ))}
                       </>
-                    ) : (
-                      <>
+                    </Slider>
+                    : (
+                      <Slider {...CoursesWeOfferConfig} className="MT-SlickDots owl-theme MT-OwlDots">
                         {categoryDetailsData &&
                           categoryDetailsData.data &&
                           categoryDetailsData.data.map((item, index) => (
@@ -226,7 +221,7 @@ const School = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, demo
                                   <div className="detail">
                                     <h5>{item && item.title}</h5>
                                     <div className="description">
-                                      <p>{item && parseHtml(item.description.substring(0, 150))} </p>
+                                      <p>{item && parseHtml(item.description.substring(0, 150))}</p>
                                       {item && item.description.length > 150 ? (
                                         <span
                                           onClick={() => {
@@ -248,9 +243,9 @@ const School = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, demo
                               </div>
                             </div>
                           ))}
-                      </>
+                      </Slider>
+
                     )}
-                  </OwlCarousel>
                 </div>
               </div>
             </div>
