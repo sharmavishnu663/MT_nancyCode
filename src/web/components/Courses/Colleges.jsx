@@ -26,7 +26,6 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
   const [demoVideoCheck, setDemoVideoCheck] = useState(true);
   const [activeTab, setActiveTab] = useState(1);
 
-
   useEffect(() => {
     defaultDemoVideoListApi();
     demoVideoListApi();
@@ -41,13 +40,11 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
     setCategoryActive(id);
     localStorage.setItem("categorySelectedId", id);
     categoryDetailsApi(id);
-
   };
 
   const handleSearch = (e) => {
     const data = { search: e };
     if (e) {
-
       courseSearchDetailAPI(data);
     } else {
       setCourseSearch(data);
@@ -69,7 +66,7 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    autoplay: true
+    autoplay: true,
   };
 
   const demoVideoConfig = {
@@ -78,8 +75,7 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    autoplay: true
-
+    autoplay: true,
   };
 
   const searchData = {
@@ -97,9 +93,9 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
       },
       1000: {
         items: 4,
-      }
+      },
     },
-  }
+  };
   const apiHit = (detailID) => {
     setDemoVideoCheck(false);
     demoVideoDetailApi(detailID);
@@ -201,9 +197,8 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
                     </div>
                   ) : null}
                   {/* <!-- explore-lakshya --> */}
-                  {courseSearch && courseSearchDetailsData.data ?
+                  {courseSearch && courseSearchDetailsData.data ? (
                     <OwlCarousel className="MT-SlickDots owl-theme MT-OwlDots" {...searchData}>
-
                       <>
                         {courseSearchDetailsData &&
                           courseSearchDetailsData.data &&
@@ -242,47 +237,47 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
                           ))}
                       </>
                     </OwlCarousel>
-                    : (
-                      <>
-                        <Slider {...CoursesWeOfferConfig} className="MT-SlickDots owl-theme MT-OwlDots">
-                          {categoryDetailsData &&
-                            categoryDetailsData.data &&
-                            categoryDetailsData.data.map((item, index) => (
-                              <div className="item" key={index}>
-                                <div className="articles our-courses">
-                                  <div className="article">
-                                    <div className="thumbnail">
-                                      <img src={item && IMAGE_BASE_URL + "/" + item.image} alt="thumbnail" />
-                                    </div>
+                  ) : (
+                    <>
+                      <Slider {...CoursesWeOfferConfig} className="CoursesWeOfferConfig MT-SlickDots owl-theme MT-OwlDots">
+                        {categoryDetailsData &&
+                          categoryDetailsData.data &&
+                          categoryDetailsData.data.map((item, index) => (
+                            <div className="item" key={index}>
+                              <div className="articles our-courses">
+                                <div className="article">
+                                  <div className="thumbnail">
+                                    <img src={item && IMAGE_BASE_URL + "/" + item.image} alt="thumbnail" />
+                                  </div>
 
-                                    <div className="detail">
-                                      <h5>{item && item.title}</h5>
-                                      <div className="description">
-                                        <p>{item && parseHtml(item.description.substring(0, 150))}</p>
-                                        {item && item.description.length > 150 ? (
-                                          <span
-                                            onClick={() => {
-                                              readMoreModal(item.title, item.description);
-                                            }}
-                                            role="button"
-                                          >
-                                            Read more...
-                                          </span>
-                                        ) : (
-                                          ""
-                                        )}
-                                      </div>
-                                      <div className="tag-link">
-                                        <div className="tag">{item.tag_name}</div>
-                                      </div>
+                                  <div className="detail">
+                                    <h5>{item && item.title}</h5>
+                                    <div className="description">
+                                      <p>{item && parseHtml(item.description.substring(0, 150))}</p>
+                                      {item && item.description.length > 150 ? (
+                                        <span
+                                          onClick={() => {
+                                            readMoreModal(item.title, item.description);
+                                          }}
+                                          role="button"
+                                        >
+                                          Read more...
+                                        </span>
+                                      ) : (
+                                        ""
+                                      )}
+                                    </div>
+                                    <div className="tag-link">
+                                      <div className="tag">{item.tag_name}</div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                            ))}
-                        </Slider>
-                      </>
-                    )}
+                            </div>
+                          ))}
+                      </Slider>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
@@ -368,7 +363,7 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
               <div className="tab-content " id="MT_TabContent">
                 <div className="tab-pane fade show active" id={`MT-tabPane-1`} role="tabpanel" aria-labelledby={`Edu-tab-1`} tabIndex="0">
                   {demoVideoCheck ? (
-                    <Slider {...demoVideoConfig}>
+                    <Slider {...demoVideoConfig} className="demoVideoConfig">
                       {defaultVideoDetailData &&
                         defaultVideoDetailData.data &&
                         defaultVideoDetailData.data.map((item, index) => (
@@ -450,8 +445,6 @@ const mapStateToProps = (state) => {
     courseSearchDetailsData: CategoryReducer.courseSearchDetailsData,
     demoListData: DemoVideoReducer.demoListData,
     defaultVideoDetailData: DemoVideoReducer.defaultVideoDetailData,
-
-
   };
 };
 
@@ -470,7 +463,6 @@ const mapDispatchToProps = (dispatch) => {
     AreaListAPI: (data) => dispatch(AreaListAPI(data)),
     categoryDetailsApi: (data) => dispatch(categoryDetailsApi(data)),
     courseSearchDetailAPI: (data) => dispatch(courseSearchDetailAPI(data)),
-
   };
 };
 

@@ -15,11 +15,12 @@ const DemoVideos = ({ videoDetailData, readMoreModal }) => {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
+    adaptiveHeight: true,
   };
 
   return (
     <>
-      <Slider {...demoVideoConfig2} className="MT-SlickDots">
+      <Slider {...demoVideoConfig2} className="demoVideoConfig MT-SlickDots">
         {videoDetailData &&
           videoDetailData.data &&
           videoDetailData.data.map((item, index) => (

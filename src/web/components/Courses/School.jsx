@@ -18,7 +18,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-
 const School = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, demoVideoListApi, topperListAPI, toppersData, achivementListAPI, categoryData, cityListAPI, courseSearchDetailAPI, courseSearchDetailsData }) => {
   const [categoryActive, setCategoryActive] = useState(localStorage.getItem("categorySelectedId"));
   const [courseSearch, setCourseSearch] = useState(courseSearchDetailsData);
@@ -56,7 +55,7 @@ const School = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, demo
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    autoplay: true
+    autoplay: true,
   };
 
   const [show, setShow] = useState(false);
@@ -165,9 +164,8 @@ const School = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, demo
                     </div>
                   ) : null}
                   {/* <!-- explore-lakshya --> */}
-                  {courseSearch && courseSearchDetailsData.data ?
-                    <Slider className="MT-SlickDots owl-theme MT-OwlDots" {...CoursesWeOfferConfig}>
-
+                  {courseSearch && courseSearchDetailsData.data ? (
+                    <Slider className="CoursesWeOfferConfig MT-SlickDots owl-theme MT-OwlDots" {...CoursesWeOfferConfig}>
                       <>
                         {courseSearchDetailsData &&
                           courseSearchDetailsData.data &&
@@ -206,46 +204,45 @@ const School = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, demo
                           ))}
                       </>
                     </Slider>
-                    : (
-                      <Slider {...CoursesWeOfferConfig} className="MT-SlickDots owl-theme MT-OwlDots">
-                        {categoryDetailsData &&
-                          categoryDetailsData.data &&
-                          categoryDetailsData.data.map((item, index) => (
-                            <div className="item" key={index}>
-                              <div className="articles our-courses">
-                                <div className="article">
-                                  <div className="thumbnail">
-                                    <img src={item && IMAGE_BASE_URL + "/" + item.image} alt="thumbnail" />
-                                  </div>
+                  ) : (
+                    <Slider {...CoursesWeOfferConfig} className="CoursesWeOfferConfig MT-SlickDots owl-theme MT-OwlDots">
+                      {categoryDetailsData &&
+                        categoryDetailsData.data &&
+                        categoryDetailsData.data.map((item, index) => (
+                          <div className="item" key={index}>
+                            <div className="articles our-courses">
+                              <div className="article">
+                                <div className="thumbnail">
+                                  <img src={item && IMAGE_BASE_URL + "/" + item.image} alt="thumbnail" />
+                                </div>
 
-                                  <div className="detail">
-                                    <h5>{item && item.title}</h5>
-                                    <div className="description">
-                                      <p>{item && parseHtml(item.description.substring(0, 150))}</p>
-                                      {item && item.description.length > 150 ? (
-                                        <span
-                                          onClick={() => {
-                                            readMoreModal(item.title, item.description);
-                                          }}
-                                          role="button"
-                                        >
-                                          Read more...
-                                        </span>
-                                      ) : (
-                                        ""
-                                      )}
-                                    </div>
-                                    <div className="tag-link">
-                                      <div className="tag">{item.tag_name}</div>
-                                    </div>
+                                <div className="detail">
+                                  <h5>{item && item.title}</h5>
+                                  <div className="description">
+                                    <p>{item && parseHtml(item.description.substring(0, 150))}</p>
+                                    {item && item.description.length > 150 ? (
+                                      <span
+                                        onClick={() => {
+                                          readMoreModal(item.title, item.description);
+                                        }}
+                                        role="button"
+                                      >
+                                        Read more...
+                                      </span>
+                                    ) : (
+                                      ""
+                                    )}
+                                  </div>
+                                  <div className="tag-link">
+                                    <div className="tag">{item.tag_name}</div>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          ))}
-                      </Slider>
-
-                    )}
+                          </div>
+                        ))}
+                    </Slider>
+                  )}
                 </div>
               </div>
             </div>

@@ -34,6 +34,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
     slidesToShow: 2,
     slidesToScroll: 2,
     autoplay: true,
+    arrows: false,
     // autoplaySpeed: 2000,
     cssEase: "linear",
     // responsive: {
@@ -59,6 +60,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
+    arrows: false,
   };
 
   const homeHeroCarousel = {
@@ -77,6 +79,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
+    adaptiveHeight: false,
   };
 
   const [category, setCategory] = useState();
@@ -451,7 +454,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
                     ) : null}
                     {/* <!-- explore-lakshya --> */}
 
-                    <Slider {...CoursesWeOfferConfig} className="MT-SlickDots owl-theme MT-OwlDots">
+                    <Slider {...CoursesWeOfferConfig} className="CoursesWeOfferConfig MT-SlickDots owl-theme MT-OwlDots">
                       {categoryDetailsData &&
                         categoryDetailsData.data &&
                         categoryDetailsData.data.map((item, index) => (
@@ -502,7 +505,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
                     </div>
                     {/* <!-- explore-lakshya --> */}
 
-                    <Slider {...CoursesWeOfferConfig} className="MT-SlickDots owl-theme MT-OwlDots">
+                    <Slider {...CoursesWeOfferConfig} className="CoursesWeOfferConfig MT-SlickDots owl-theme MT-OwlDots">
                       {defaultCategoryDetailsData &&
                         defaultCategoryDetailsData.data &&
                         defaultCategoryDetailsData.data.map((item, index) => (
@@ -595,7 +598,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
               <div className="tab-content " id="MT_TabContent">
                 <div className="tab-pane fade show active" id={`MT-tabPane-1`} role="tabpanel" aria-labelledby={`Edu-tab-1`} tabIndex="0">
                   {demoVideoCheck ? (
-                    <Slider {...demoVideoConfig} className="MT-SlickDots">
+                    <Slider {...demoVideoConfig} className="demoVideoConfig MT-SlickDots">
                       {defaultVideoDetailData &&
                         defaultVideoDetailData.data &&
                         defaultVideoDetailData.data.map((item, index) => (
@@ -617,7 +620,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
                                         }}
                                         role="button"
                                       >
-                                        Read more...
+                                        &nbsp;Read more...
                                       </span>
                                     ) : (
                                       ""
