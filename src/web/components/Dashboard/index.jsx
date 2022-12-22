@@ -32,25 +32,38 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
     infinite: true,
     speed: 500,
     slidesToShow: 2,
-    slidesToScroll: 2,
+    slidesToScroll: 1,
     autoplay: true,
     arrows: false,
-    // autoplaySpeed: 2000,
     cssEase: "linear",
-    // responsive: {
-    //   0: {
-    //     items: 1,
-    //   },
-    //   600: {
-    //     items: 1,
-    //   },
-    //   1000: {
-    //     items: 1,
-    //   },
-    //   1100: {
-    //     items: 2,
-    //   },
-    // },
+    responsive: [
+      {
+        breakpoint: 320,
+        settings: {
+          dots: true,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          autoplay: true,
+          arrows: false,
+          cssEase: "linear",
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          dots: true,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          autoplay: true,
+          arrows: false,
+          cssEase: "linear",
+        },
+      },
+    ],
   };
 
   const CoursesWeOfferConfig = {
@@ -61,16 +74,66 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
     slidesToScroll: 1,
     autoplay: true,
     arrows: false,
+    responsive: [
+      {
+        breakpoint: 320,
+        settings: {
+          dots: true,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          autoplay: true,
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 540,
+        settings: {
+          dots: true,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          autoplay: true,
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 940,
+        settings: {
+          dots: true,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          autoplay: true,
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          dots: true,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          autoplay: true,
+          arrows: false,
+        },
+      },
+    ],
   };
 
-  const homeHeroCarousel = {
-    loop: false,
-    items: 1,
-    animateIn: "animate__zoomIn",
-    animateOut: "animate__zoomOut",
-    autoplayTimeout: 5000,
-    autoplay: true,
-  };
+  // const homeHeroCarousel = {
+  //   loop: false,
+  //   items: 1,
+  //   animateIn: "animate__zoomIn",
+  //   animateOut: "animate__zoomOut",
+  //   autoplayTimeout: 5000,
+  //   autoplay: true,
+  // };
 
   const demoVideoConfig = {
     dots: true,
@@ -80,6 +143,44 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
     slidesToScroll: 1,
     autoplay: true,
     adaptiveHeight: false,
+    responsive: [
+      {
+        breakpoint: 320,
+        settings: {
+          dots: true,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          autoplay: true,
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 680,
+        settings: {
+          dots: true,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          autoplay: true,
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          dots: true,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          autoplay: true,
+          arrows: false,
+        },
+      },
+    ],
   };
 
   const [category, setCategory] = useState();

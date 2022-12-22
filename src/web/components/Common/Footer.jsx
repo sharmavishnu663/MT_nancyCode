@@ -64,28 +64,21 @@ const Footer = ({ emailSubscriptionApi, categoryData, socialLinkData }) => {
                     categoryData.data &&
                     categoryData.data.map((item, index) => (
                       <li key={index}>
-                        {item && item.name == 'School' ?
+                        {item && item.name == "School" ? (
                           <Link to={WebRoutes.SCHOOL} className="dropdown-item" onClick={(e) => handleCategory(item && item.id)}>
                             {item && item.name}
                           </Link>
-                          :
-                          null
-                        }
-                        {item && item.name == 'Science' ?
+                        ) : null}
+                        {item && item.name == "Science" ? (
                           <Link to={WebRoutes.COLLEGE} className="dropdown-item" onClick={(e) => handleCategory(item && item.id)}>
                             {item && item.name}
                           </Link>
-                          :
-                          null
-                        }
-                        {
-                          item && item.name != 'School' && item.name != 'Science' ?
-                            <Link to={WebRoutes.COMPETATIVE_EXAM} className="dropdown-item" onClick={(e) => handleCategory(item && item.id)}>
-                              {item && item.name}
-                            </Link>
-                            :
-                            null
-                        }
+                        ) : null}
+                        {item && item.name != "School" && item.name != "Science" ? (
+                          <Link to={WebRoutes.COMPETATIVE_EXAM} className="dropdown-item" onClick={(e) => handleCategory(item && item.id)}>
+                            {item && item.name}
+                          </Link>
+                        ) : null}
                       </li>
                     ))}
 
@@ -192,7 +185,7 @@ const Footer = ({ emailSubscriptionApi, categoryData, socialLinkData }) => {
                   }}
                   onFinish={onFinish}
                 >
-                  <label htmlFor="subscribe">Subsribe Our News Letter</label>
+                  <label htmlFor="subscribe">Subscribe Our News Letter</label>
                   <div>
                     <input type="email" id="subscribe" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.]{1}[a-zA-Z]{2,}$" value={email} placeholder="example@mail.com" onChange={(e) => setEmail(e.target.value)} required />
                     <button type="submit">
@@ -209,11 +202,13 @@ const Footer = ({ emailSubscriptionApi, categoryData, socialLinkData }) => {
             <div className="col-md-12 social-bookmarks">
               <h5 className="text-center mb-3">Follow Us</h5>
               <div className="social-icons">
-                {socialLinkData && socialLinkData.data && socialLinkData.data.map((item, index) =>
-                  <a href={item && item.link} target="_blank" key={index}>
-                    <img src={item && IMAGE_BASE_URL + '/' + item.image} alt="icon" />
-                  </a>
-                )}
+                {socialLinkData &&
+                  socialLinkData.data &&
+                  socialLinkData.data.map((item, index) => (
+                    <a href={item && item.link} target="_blank" key={index}>
+                      <img src={item && IMAGE_BASE_URL + "/" + item.image} alt="icon" />
+                    </a>
+                  ))}
 
                 {/* <a href="https://twitter.com/mt_education" target="_blank">
                   <img src="../assets/imgs/icon-twitter.svg" alt="icon" />

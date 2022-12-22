@@ -16,6 +16,45 @@ const DemoVideos = ({ videoDetailData, readMoreModal }) => {
     slidesToScroll: 1,
     autoplay: true,
     adaptiveHeight: true,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 320,
+        settings: {
+          dots: true,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          autoplay: true,
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 680,
+        settings: {
+          dots: true,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          autoplay: true,
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          dots: true,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          autoplay: true,
+          arrows: false,
+        },
+      },
+    ],
   };
 
   return (

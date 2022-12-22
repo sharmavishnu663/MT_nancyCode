@@ -224,7 +224,7 @@ p {
 /* common & navigation CSS ends here */
 
 .info-card {
-  padding: 10px 30px 60px;
+  padding: 10px 30px 30px;
   border-radius: 36px;
   max-width: 325px;
 }
@@ -384,7 +384,7 @@ p {
 .contact-us .modal-body .card-wrapper,
 .enquire-now .modal-body .card-wrapper {
   max-width: 1170px;
-  margin: 60px auto;
+  margin: 40px auto;
 }
 
 /* contact-us ends here  */
@@ -1983,6 +1983,7 @@ nav[aria-label="breadcrumb"] {
 
 .csr-card {
   margin-bottom: 0;
+  min-height: 650px;
 }
 
 .csr-card h2 {

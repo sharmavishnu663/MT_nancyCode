@@ -19,6 +19,7 @@ const Csr = ({ CSRAPI, CSRData }) => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    // adaptiveHeight: true,
   };
 
   // console.log('vishnu Csr' + CSRData);
@@ -55,12 +56,12 @@ const Csr = ({ CSRAPI, CSRData }) => {
           <div className="row">
             <div className="col-md-12">
               <div className="csr-wrapper">
-                <Slider {...toppersConfig}>
+                <Slider {...toppersConfig} className="MT-SlickDots">
                   {CSRData &&
                     CSRData.data &&
                     CSRData.data.map((item, index) => (
                       <div className="item px-2" key={index}>
-                        <div className="timeline-card csr-card">
+                        <div className="timeline-card csr-card pb-5">
                           <div className="content">
                             <div className="row">
                               <div className="col-md-12">
