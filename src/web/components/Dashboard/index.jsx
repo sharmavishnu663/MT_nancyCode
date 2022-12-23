@@ -485,7 +485,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
                   {categoryData &&
                     categoryData.data &&
                     categoryData.data.map((item, index) => (
-                      <li className="nav-item" role="presentation">
+                      <li className="nav-item" role="presentation" key={index}>
                         <button
                           key={index}
                           className={`${(item && item.id == categoryActive) || index === 0 ? "nav-link active" : `nav-link`}`}
