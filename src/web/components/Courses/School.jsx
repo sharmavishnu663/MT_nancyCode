@@ -204,8 +204,9 @@ const School = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, demo
                   ) : null}
                   {/* <!-- explore-lakshya --> */}
                   {courseSearch && courseSearchDetailsData.data ? (
-                    <Slider className="CoursesWeOfferConfig MT-SlickDots owl-theme MT-OwlDots" {...CoursesWeOfferConfig}>
-                      <>
+                    // <Slider className="CoursesWeOfferConfig MT-SlickDots owl-theme MT-OwlDots" {...CoursesWeOfferConfig}>
+                    <>
+                      <div className="col-lg-12">
                         {courseSearchDetailsData &&
                           courseSearchDetailsData.data &&
                           courseSearchDetailsData.data.map((item, index) => (
@@ -241,8 +242,8 @@ const School = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, demo
                               </div>
                             </div>
                           ))}
-                      </>
-                    </Slider>
+                      </div>
+                    </>
                   ) : (
                     <Slider {...CoursesWeOfferConfig} className="CoursesWeOfferConfig MT-SlickDots owl-theme MT-OwlDots">
                       {categoryDetailsData &&
