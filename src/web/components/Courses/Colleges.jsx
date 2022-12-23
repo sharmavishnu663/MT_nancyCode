@@ -276,12 +276,13 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
                   ) : null}
                   {/* <!-- explore-lakshya --> */}
                   {courseSearch && courseSearchDetailsData.data ? (
-                    <OwlCarousel className="MT-SlickDots owl-theme MT-OwlDots" {...searchData}>
-                      <>
+                    // <OwlCarousel className="MT-SlickDots owl-theme MT-OwlDots" {...searchData}>
+                    <>
+                      <div className="col-lg-12">
                         {courseSearchDetailsData &&
                           courseSearchDetailsData.data &&
                           courseSearchDetailsData.data.map((item, index) => (
-                            <div className="item" key={index}>
+                            <div className="col-lg-4" key={index}>
                               <div className="articles our-courses">
                                 <div className="article">
                                   <div className="thumbnail">
@@ -313,8 +314,9 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
                               </div>
                             </div>
                           ))}
-                      </>
-                    </OwlCarousel>
+                      </div>
+                    </>
+                    // </OwlCarousel>
                   ) : (
                     <>
                       <Slider {...CoursesWeOfferConfig} className="CoursesWeOfferConfig MT-SlickDots owl-theme MT-OwlDots">
