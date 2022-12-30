@@ -20,7 +20,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, demoVideoListApi, demoListData, topperListAPI, toppersData, achivementListAPI, categoryData, cityListAPI, courseSearchDetailAPI, courseSearchDetailsData, studentHearApi, studentHearData, demoVideoDetailApi, defaultDemoVideoListApi, defaultVideoDetailData, videoDetailData }) => {
   const [categoryActive, setCategoryActive] = useState(localStorage.getItem("categorySelectedId"));
-  const [courseSearch, setCourseSearch] = useState(courseSearchDetailsData);
+  const [courseSearch, setCourseSearch] = useState();
   const [search, setSearch] = useState();
   const [indexData, setIndexData] = useState(0);
   const [demoVideoCheck, setDemoVideoCheck] = useState(true);
@@ -46,8 +46,9 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
     const data = { search: e };
     if (e) {
       courseSearchDetailAPI(data);
+      setCourseSearch([data]);
     } else {
-      setCourseSearch(data);
+      setCourseSearch([]);
     }
   };
 
@@ -275,10 +276,10 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
                     </div>
                   ) : null}
                   {/* <!-- explore-lakshya --> */}
-                  {courseSearch && courseSearchDetailsData.data ? (
+                  {courseSearch && courseSearch.length > 0 && courseSearchDetailsData.data ? (
                     // <OwlCarousel className="MT-SlickDots owl-theme MT-OwlDots" {...searchData}>
                     <>
-                      <div className="col-lg-12">
+                      <div className="row">
                         {courseSearchDetailsData &&
                           courseSearchDetailsData.data &&
                           courseSearchDetailsData.data.map((item, index) => (
