@@ -71,7 +71,7 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
     arrows: false,
     responsive: [
       {
-        breakpoint: 320,
+        breakpoint: 450,
         settings: {
           dots: true,
           infinite: true,
@@ -119,7 +119,7 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
     arrows: false,
     responsive: [
       {
-        breakpoint: 320,
+        breakpoint: 450,
         settings: {
           dots: true,
           infinite: true,
@@ -317,8 +317,8 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
                           ))}
                       </div>
                     </>
-                    // </OwlCarousel>
                   ) : (
+                    // </OwlCarousel>
                     <>
                       <Slider {...CoursesWeOfferConfig} className="CoursesWeOfferConfig MT-SlickDots owl-theme MT-OwlDots">
                         {categoryDetailsData &&

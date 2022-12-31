@@ -509,8 +509,19 @@
     }
 
     .cards .col-md-12 {
-        padding: 16px 16px 0;
+        padding: 16px 16px 40px;
         margin: 0;
+    }
+
+    .CoursesWeOfferConfig .slick-dots {
+        bottom: -40px;
+    }
+
+    .social-icons,
+    .terms-policies {
+        max-width: initial;
+        justify-content: center;
+        gap: 20px;
     }
 
     .box-radius {

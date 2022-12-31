@@ -19,7 +19,7 @@ const DemoVideos = ({ videoDetailData, readMoreModal }) => {
     arrows: false,
     responsive: [
       {
-        breakpoint: 320,
+        breakpoint: 450,
         settings: {
           dots: true,
           infinite: true,

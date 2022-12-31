@@ -38,7 +38,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
     cssEase: "linear",
     responsive: [
       {
-        breakpoint: 320,
+        breakpoint: 450,
         settings: {
           dots: true,
           infinite: true,
@@ -76,7 +76,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
     arrows: false,
     responsive: [
       {
-        breakpoint: 320,
+        breakpoint: 450,
         settings: {
           dots: true,
           infinite: true,
@@ -145,7 +145,7 @@ const Dashboard = ({ defaultDemoVideoListApi, defaultCategoryListApi, categoryDe
     adaptiveHeight: false,
     responsive: [
       {
-        breakpoint: 320,
+        breakpoint: 450,
         settings: {
           dots: true,
           infinite: true,

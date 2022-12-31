@@ -71,7 +71,7 @@ const School = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, demo
     arrows: false,
     responsive: [
       {
-        breakpoint: 320,
+        breakpoint: 450,
         settings: {
           dots: true,
           infinite: true,
@@ -119,7 +119,7 @@ const School = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, demo
     arrows: false,
     responsive: [
       {
-        breakpoint: 320,
+        breakpoint: 450,
         settings: {
           dots: true,
           infinite: true,
@@ -503,7 +503,6 @@ const School = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, demo
     </>
   );
 };
-
 
 const mapStateToProps = (state) => {
   const { DemoVideoReducer, HomeReducer, CategoryReducer } = state;

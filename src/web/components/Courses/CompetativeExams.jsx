@@ -18,7 +18,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import DemoVideos from "../Dashboard/Demo-vedios";
 
-
 const CompetativeExam = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, demoVideoListApi, demoListData, topperListAPI, toppersData, achivementListAPI, categoryData, cityListAPI, courseSearchDetailAPI, courseSearchDetailsData, studentHearApi, studentHearData, demoVideoDetailApi, defaultDemoVideoListApi, defaultVideoDetailData, videoDetailData }) => {
   const [categoryActive, setCategoryActive] = useState(localStorage.getItem("categorySelectedId"));
   const [courseSearch, setCourseSearch] = useState();
@@ -73,7 +72,7 @@ const CompetativeExam = ({ categoryListApi, categoryDetailsApi, categoryDetailsD
     arrows: false,
     responsive: [
       {
-        breakpoint: 320,
+        breakpoint: 450,
         settings: {
           dots: true,
           infinite: true,
@@ -121,7 +120,7 @@ const CompetativeExam = ({ categoryListApi, categoryDetailsApi, categoryDetailsD
     arrows: false,
     responsive: [
       {
-        breakpoint: 320,
+        breakpoint: 450,
         settings: {
           dots: true,
           infinite: true,
