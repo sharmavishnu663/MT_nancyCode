@@ -54,6 +54,10 @@ const Enquiry = ({ openEnquiry, handleCancel, enquiryForm, userQueryApi, categor
     ...new Set(boardStandardsData.data.map((q) => q.name)),
   ];
 
+  useEffect(() => {
+    categoryBaodStandardsListAPI(category);
+  }, [category]);
+
   const handleCategory = (e) => {
     setCategory(e.target.value);
     categoryBaodStandardsListAPI(category);

@@ -33,6 +33,7 @@ const CompetativeExam = ({ categoryListApi, categoryDetailsApi, categoryDetailsD
     achivementListAPI();
     categoryListApi();
     cityListAPI();
+    studentHearApi();
     categoryDetailsApi(localStorage.getItem("categorySelectedId"));
   }, []);
   const handleCategoryId = (id) => {
@@ -524,6 +525,7 @@ const mapStateToProps = (state) => {
     courseSearchDetailsData: CategoryReducer.courseSearchDetailsData,
     demoListData: DemoVideoReducer.demoListData,
     defaultVideoDetailData: DemoVideoReducer.defaultVideoDetailData,
+    studentHearData: HomeReducer.studentHearData,
   };
 };
 

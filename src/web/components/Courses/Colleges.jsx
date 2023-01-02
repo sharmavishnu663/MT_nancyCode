@@ -33,6 +33,7 @@ const College = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, dem
     achivementListAPI();
     categoryListApi();
     cityListAPI();
+    studentHearApi();
     categoryDetailsApi(localStorage.getItem("categorySelectedId"));
   }, []);
 

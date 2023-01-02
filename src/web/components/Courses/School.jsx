@@ -32,6 +32,7 @@ const School = ({ categoryListApi, categoryDetailsApi, categoryDetailsData, demo
     achivementListAPI();
     categoryListApi();
     cityListAPI();
+    studentHearApi();
     categoryDetailsApi(localStorage.getItem("categorySelectedId"));
   }, []);
   const handleCategoryId = (id) => {
@@ -521,6 +522,7 @@ const mapStateToProps = (state) => {
     categoryDetailsData: CategoryReducer.categoryDetailsData,
     courseSearchDetailsData: CategoryReducer.courseSearchDetailsData,
     demoListData: DemoVideoReducer.demoListData,
+    studentHearData: HomeReducer.studentHearData,
     defaultVideoDetailData: DemoVideoReducer.defaultVideoDetailData,
   };
 };
